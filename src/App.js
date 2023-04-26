@@ -1,4 +1,4 @@
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './css/App.css';
 import {Navbar} from "./Navbar.js";
 
@@ -26,5 +26,5 @@ function App() {
     <div>{<Navbar />}</div>
   );
 }
-
+Navbar();
 export default App;
