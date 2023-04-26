@@ -4,6 +4,10 @@ import {Navbar} from "./Navbar.js";
 
 function App() {
   return (
+    <div className="">
+
+      {<Navbar />}
+    </div>
     // <h1 className="text-3xl font-bold underline">
     //   Hello world!
     // </h1>
@@ -23,7 +27,6 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <div>{<Navbar />}</div>
   );
 }
 

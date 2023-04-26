@@ -2,8 +2,8 @@ import "./css/App.css";
 
 export function Navbar() {
     return (
-        <div className="">
-            <nav>
+        <div className="fixed flex w-full h-full">
+            <nav className="mt-auto w-full">
                 <div className="">
                     <ul className="">
                         <li className="">
