@@ -1,6 +1,6 @@
 import "./css/App.css";
 
-function Navbar() {
+export function Navbar() {
     return (
         <div className="">
             <nav>
