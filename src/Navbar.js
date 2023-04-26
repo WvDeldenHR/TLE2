@@ -1,26 +1,26 @@
 import "./css/App.css";
 
-function Navbar() {
+export function Navbar() {
     return (
         <div className="">
             <nav>
                 <div className="">
                     <ul className="">
                         <li className="">
-                            <a className="" href="">
-                                <img className="" src="img/icons/icon_home_002_212427_32x32.svg" alt="Home"></img></a></li>
+                            <div className="">
+                                <img className="" src="./img/icons/icon_home_002_212427_32x32.svg" alt="Home"></img></div></li>
                         <li className="">
-                            <a className="" href="">
-                                <img className="" src="img/icons/icon_discover_001_212427_32x32.svg" alt="Ontdekken"></img></a></li>
+                            <div className="">
+                                <img className="" src="img/icons/icon_discover_001_212427_32x32.svg" alt="Ontdekken"></img></div></li>
                         <li className="">
-                            <a className="" href="">
-                                <img className="" src="img/icons/icon_plus_001_FFFFFF_32x32.svg" alt="Post Maken"></img></a></li>
+                            <div className="">
+                                <img className="" src="img/icons/icon_plus_001_FFFFFF_32x32.svg" alt="Post Maken"></img></div></li>
                         <li className="">
-                            <a className="" href="">
-                                <img className="" src="img/icons/icon_list_001_212427_32x32.svg" alt="Overzicht"></img></a></li>
+                            <div className="">
+                                <img className="" src="img/icons/icon_list_001_212427_32x32.svg" alt="Overzicht"></img></div></li>
                         <li className="">
-                            <a className="" href="">
-                                <img className="" src="img/icons/icon_user_001_212427_32x32.svg" alt="Instellingen"></img></a></li>
+                            <div className="">
+                                <img className="" src="img/icons/icon_user_001_212427_32x32.svg" alt="Instellingen"></img></div></li>
                     </ul>
                 </div>
             </nav>
