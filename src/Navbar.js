@@ -1,6 +1,6 @@
 import "./css/App.css";
 import home from './img/icons/home.png'
-import menu from './img/icons/menu.png'
+import overzicht from './img/icons/overzicht.png'
 import discover from './img/icons/ontdekken.png'
 import profile from './img/icons/profiel.png'
 
@@ -15,16 +15,16 @@ export function Navbar() {
                                 <img className="h-10" src={home} alt={"Home"}></img></div></li>
                         <li className="">
                             <div className="">
-                                <img className="h-10" src={menu} alt={"Ontdekken"}></img></div></li>
+                                <img className="h-10" src={discover} alt={"Ontdekken"}></img></div></li>
                         <li className="">
                             <div className="">
-                                <img className="h-10" src={"img/icons/icon_plus_001_FFFFFF_32x32.svg"} alt={"Post Maken"}></img></div></li>
+                                <button className="h-10 w-10 bg-green-600 rounded-full border-black"><p className="text-white">+</p></button></div></li>
                         <li className="">
                             <div className="">
-                                <img className="h-10" src={discover} alt={"Overzicht"}></img></div></li>
+                                <img className="h-10" src={overzicht} alt={"Overzicht"}></img></div></li>
                         <li className="">
                             <div className="">
-                                <img className="h-10" src={profile} alt={"Instellingen"}></img></div></li>
+                                <img className="h-10" src={profile} alt={"Ontdekken"}></img></div></li>
                     </ul>
                 </div>
             </nav>

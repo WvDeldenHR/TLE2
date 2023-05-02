@@ -4,7 +4,7 @@ import {Navbar} from "./Navbar.js";
 
 function App() {
   return (
-    <div className="">
+    <div className="mt-2">
 
       {<Navbar />}
     </div>
