@@ -1,26 +1,30 @@
 import "./css/App.css";
+import home from './img/icons/home.png'
+import menu from './img/icons/menu.png'
+import discover from './img/icons/ontdekken.png'
+import profile from './img/icons/profiel.png'
 
 export function Navbar() {
     return (
-        <div className="">
+        <div className="h-16">
             <nav className="">
                 <div className="">
-                    <ul className="flex">
+                    <ul className="flex place-content-center space-x-20 inset-x-0 bottom-0">
                         <li className="">
                             <div className="">
-                                <img className="" src="./img/icons/icon_home_002_212427_32x32.svg" alt="Home"></img></div></li>
+                                <img className="h-10" src={home} alt={"Home"}></img></div></li>
                         <li className="">
                             <div className="">
-                                <img className="" src="img/icons/icon_discover_001_212427_32x32.svg" alt="Ontdekken"></img></div></li>
+                                <img className="h-10" src={menu} alt={"Ontdekken"}></img></div></li>
                         <li className="">
                             <div className="">
-                                <img className="" src="img/icons/icon_plus_001_FFFFFF_32x32.svg" alt="Post Maken"></img></div></li>
+                                <img className="h-10" src={"img/icons/icon_plus_001_FFFFFF_32x32.svg"} alt={"Post Maken"}></img></div></li>
                         <li className="">
                             <div className="">
-                                <img className="" src="img/icons/icon_list_001_212427_32x32.svg" alt="Overzicht"></img></div></li>
+                                <img className="h-10" src={discover} alt={"Overzicht"}></img></div></li>
                         <li className="">
                             <div className="">
-                                <img className="" src="img/icons/icon_user_001_212427_32x32.svg" alt="Instellingen"></img></div></li>
+                                <img className="h-10" src={profile} alt={"Instellingen"}></img></div></li>
                     </ul>
                 </div>
             </nav>
