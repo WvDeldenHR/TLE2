@@ -4,9 +4,15 @@ import {Navbar} from "./Navbar.js";
 
 function App() {
   return (
-    <div className="mt-2">
+    <div className="">
+      <body className="vp">
+  
+      </body>
+      <footer className="fixed bottom-0">
 
       {<Navbar />}
+      
+      </footer>
     </div>
     // <h1 className="text-3xl font-bold underline">
     //   Hello world!
