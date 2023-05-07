@@ -1,12 +1,12 @@
 //import logo from './logo.svg';
 import './css/App.css';
-import {Navbar} from "./Navbar.js";
+import {Home} from "./views/Home.js";
 
 function App() {
   return (
     <div className="">
 
-      {<Navbar />}
+      {<Home />}
     </div>
     // <h1 className="text-3xl font-bold underline">
     //   Hello world!

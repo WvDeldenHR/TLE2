@@ -5,7 +5,7 @@ export function Navbar() {
         <div className="fixed flex w-full h-full">
             <nav className="mt-auto w-full">
                 <div className="">
-                    <ul className="">
+                    <ul className="flex">
                         <li className="">
                             <div className="">
                                 <img className="" src="./img/icons/icon_home_002_212427_32x32.svg" alt="Home"></img></div></li>

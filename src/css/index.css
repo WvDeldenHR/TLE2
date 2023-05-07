@@ -4,9 +4,10 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,7 +17,28 @@ code {
     monospace;
 }
 
+/* Custom CSS */
+.searchbar {
+  padding: 0.25rem 0.5rem 0.25rem 2.5rem;
+  background: transparent url(/src/assets/icons/icon_search_001_FFFFFF_32x32.svg) no-repeat 0.75rem center;
+  background-size: 1.125rem;
+}
 
-nav {
-  background-color: blue;
+.tag-button {
+  padding-block: 0.4rem;
+}
+
+.paragraph {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 0.875rem;
+  overflow: hidden;
+}
+
+
+
+.content-box {
+  background: url(/src/assets/img/img_lamp.jpg);
+  background-size: cover;
 }
