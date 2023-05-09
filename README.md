@@ -1,16 +1,17 @@
-#Libraries die gedownload moeten worden!
+# Libraries die gedownload moeten worden!
 npm i 
 npm i react-router-dom
 npm i axios
 
-Bij de server map (cd server) moeten de volgende libraries gedownload worden:
-npm i express
-npm i mysql
-npm i cors
-npm i bcrypt 
-npm i cookieparser
-npm i body-parser
-npm i express-session
+## Bij de server map (cd server) moeten de volgende libraries gedownload worden:
+
+npm i express \
+npm i mysql \
+npm i cors \
+npm i bcrypt  \
+npm i cookieparser \
+npm i body-parser \
+npm i express-session \
 
 
 # Getting Started with Create React App
