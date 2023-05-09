@@ -1,6 +1,6 @@
 //BACKEND login + register
 
-//Download de volgende, via 'npm install ...' express, mysql, cors, bycrypt, cookieparser, bodyparser, express-session
+//Download de volgende, via 'npm install ...' express, mysql, cors, bcrypt, cookieparser, body-parser, express-session
 const express = require ('express')
 const mysql = require ('mysql')
 const cors = require("cors")
@@ -14,7 +14,7 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:1234"],
+    origin: ["http://localhost:3000"], //change to your own localhost url
     methods: ["GET", "POST", "PUT"],
     credentials: true
 }))
