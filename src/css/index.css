@@ -18,14 +18,29 @@ code {
 }
 
 /* Custom CSS */
+::-webkit-scrollbar {
+  display:none;
+}
+
 .searchbar {
   padding: 0.25rem 0.5rem 0.25rem 2.5rem;
   background: transparent url(/src/assets/icons/icon_search_001_FFFFFF_32x32.svg) no-repeat 0.75rem center;
   background-size: 1.125rem;
 }
+.searchbar-alt {
+  padding: 0.25rem 0.5rem 0.25rem 2.5rem;
+  background: transparent url(/src/assets/icons/icon_search_001_212427_32x32.svg) no-repeat 0.75rem center;
+  background-size: 1.125rem;
+}
 
 .tag-button {
   padding-block: 0.4rem;
+}
+
+.content-box {
+  background: url(/src/assets/img/img_lamp.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .paragraph {
@@ -34,11 +49,4 @@ code {
   -webkit-box-orient: vertical;
   line-height: 0.875rem;
   overflow: hidden;
-}
-
-
-
-.content-box {
-  background: url(/src/assets/img/img_lamp.jpg);
-  background-size: cover;
 }

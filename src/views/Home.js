@@ -4,14 +4,14 @@ import { NotificationButton } from './../components/buttons/NotificationButton.j
 import { Searchbar } from './../components/forms/Searchbar.js';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
-import { PostCard } from './../components/PostCard.js';
+import { PostCardLarge } from './../components/PostCardLarge.js';
 
 
 export function Home() {
     return (
         <div className="">
             <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">
-                <div className="flex justify-end">
+                <div className="tnn | flex justify-end">
                     { <NotificationButton /> }
                 </div>
                 <div className="pt-2 pb-6">
@@ -31,7 +31,7 @@ export function Home() {
                 </div>
             </div>
 
-            <div className="-mt-12 px-6">
+            <div className="-mt-8 px-6">
                 <div className="pb-5">
                     <div className="content-box | flex rounded-lg w-full h-40 drop-shadow">
                         <div className="flex items-end w-full h-full">
@@ -55,8 +55,10 @@ export function Home() {
                         <h2 className="text text-dark font-semibold">Vandaag Voor Jou Gekozen</h2>
                     </div>
                     <div className="">
-                        {<PostCard />}
-                        {<PostCard />}
+                        {<PostCardLarge />}
+                        {<PostCardLarge />}
+                        {<PostCardLarge />}
+                        {<PostCardLarge />}
                     </div>
                 </div>
             </div>

@@ -6,14 +6,21 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        'primary': '#519859',
         'dark': '#212427',
+        'primary': '#519859',
+      },
+      borderColor: {
+        'primary': '#519859',
       },
       fontSize: {
         'xxs': '.5rem',
       },
+      spacing: {
+        '38': '9.5rem',
+      },
       textColor: {
         'dark': '#212427',
+        'primary': '#519859',
       },
     },
   },
