@@ -1,12 +1,12 @@
 //import logo from './logo.svg';
 import './css/App.css';
-import {Home} from "./views/Home.js";
+import {Create} from "./views/Create.js";
 
 function App() {
   return (
     <div className="">
 
-      {<Home />}
+      {<Create />}
     </div>
     // <h1 className="text-3xl font-bold underline">
     //   Hello world!
