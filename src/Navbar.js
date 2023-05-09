@@ -16,38 +16,27 @@ export function Navbar() {
                     <ul className="flex place-content-center space-x-15 inset-x-0 border-t-2 h-14 w-screen ">
                         <li className="">
                             <div className="mt-1.5">
-                                <button>
-                                    <img className="h-8 w-screen mt-1 active:bg-green-500 rounded-md" src={home} alt={"Home"}></img>
-                                </button>
+                                <a href="..."><img className="h-8 w-screen mt-1" src={home} alt={"Home"}></img></a>
                             </div>
                         </li>
                         <li className="">
                             <div className="mt-1.5">
-                                <button>
-                                    <img className="h-8 w-screen mt-1 active:bg-green-500 rounded-md" src={discover} alt={"Ontdekken"}>
-                                    </img>
-                                </button>
+                                <a href="..."><img className="h-8 w-screen mt-1" src={discover} alt={"Ontdekken"}></img></a>
                             </div>
                         </li>
                         <li className="">
                             <div className="mt-1.5">
-                                <button>
-                                    <img className="h-10 w-screen mt-0.5 active:fill-green" src={plus} alt={"Ontdekken"} href=""></img>
-                                </button>
+                                <a href="..."><img className="h-10 w-screen mt-0.5" src={plus} alt={"Ontdekken"}></img></a>
                             </div>
                         </li>
                         <li className="">
                             <div className="mt-1.5">
-                                <button>
-                                    <img className="h-8 w-screen mt-1 active:bg-green-500 rounded-md" src={overzicht} alt={"Overzicht"}></img>
-                                </button>
+                                <a href="../."><img className="h-8 w-screen mt-1" src={overzicht} alt={"Overzicht"}></img></a>
                             </div>
                         </li>
                         <li className="">
                             <div className="mt-1.5">
-                                <button>
-                                    <img className="h-8 w-screen mt-1 focus:bg-green-500 rounded-md" src={profile} alt={"Ontdekken"}></img>
-                                </button>      
+                                <a href ="App.js"> <img className="h-8 w-screen mt-1" src={profile} alt={"Ontdekken"}></img></a>  
                             </div>            
                          </li>                    
                     </ul>
