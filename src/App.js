@@ -1,19 +1,20 @@
 //import logo from './logo.svg';
+import React from 'react';
 import './css/App.css';
 import {Navbar} from "./Navbar.js";
-
+import {BrowserRouter} from "react-router-dom"
 function App() {
   return (
+    <BrowserRouter>
     <div className="">
       <body className="vp">
   
       </body>
       <footer className="fixed bottom-0">
-
-      {<Navbar />}
-      
+        {<Navbar />}
       </footer>
     </div>
+    </BrowserRouter>
     // <h1 className="text-3xl font-bold underline">
     //   Hello world!
     // </h1>

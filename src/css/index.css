@@ -16,7 +16,7 @@ code {
     monospace;
 }
 
-
-nav {
-  background-color: white;
+.active {
+color: red;
+background-color: red;
 }
