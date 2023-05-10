@@ -12,44 +12,44 @@ import {ReactComponent as HomeSvg} from './img/icons/icon_home_002_212427_32x32.
 export function Navbar() {
     return (
         <nav className="">
-            <div className="">
+            <div className="flex">
                 <router>
-                    <ul className="flex place-content-center space-x-10 inset-0 border-t-2 h-12 w-screen ">
-                        <li className="">
-                            <NavLink to="App.js" activeClassName="active">
-                                <div className="mt-1.5">
-                                    <HomeSvg className="w-10 h-10" src={home} alt={"Home"}></HomeSvg>
-                                </div>
-                            </NavLink>
+                    <ul className="flex content-center border-t-2 w-screen">
+                        <li className="w-screen">
+                            <div className="mt-1">
+                                <NavLink to="App.js" activeClassName="active">
+                                        <HomeSvg className="w-8 h-8" src={home} alt={"Home"}></HomeSvg>
+                                </NavLink>
+                            </div>
                         </li>    
-                        <li className="">
-                            <NavLink to="..." activeClassName="active">
-                                <div className="mt-1.5">
-                                    <DiscoverSvg className="w-10 h-10" src={home} alt={"Home"}></DiscoverSvg>
-                                </div>
-                            </NavLink>
+                        <li className="w-screen">
+                            <div className="mt-1 content-center">
+                                <NavLink to="..." activeClassName="active">    
+                                        <DiscoverSvg className="w-8 h-8" src={home} alt={"Home"}></DiscoverSvg>
+                                </NavLink>
+                            </div>
                         </li>
-                        <li className="">
-                            <NavLink to="..." activeClassName="active">
-                                <div className="mt-1.5">
-                                    <PlusSvg className="max-w-none h-10 w-10" src={home} alt={"Home"}></PlusSvg>
-                                </div>
-                            </NavLink>
+                        <li className="w-screen">
+                            <div className="mt-1">
+                                <NavLink to="..." activeClassName="active">
+                                        <PlusSvg className="max-w-none h-8 w-8" src={home} alt={"Home"}></PlusSvg>
+                                </NavLink>
+                            </div>
                         </li>
-                        <li className="">
-                            <NavLink to="nonactive" activeClassName="active">
-                                <div className="mt-1.5">
-                                    <ListSvg className="w-10 h-10" src={home} alt={"Home"}></ListSvg>
-                                </div>
-                            </NavLink>
+                        <li className="w-screen">
+                            <div className="mt-1">
+                                <NavLink to="nonactive" activeClassName="active">
+                                        <ListSvg className="w-8 h-8" src={home} alt={"Home"}></ListSvg>
+                                </NavLink>
+                            </div>
                         </li>
-                        <li className="">
-                            <NavLink to="alsonon" activeClassName="active">
-                                <div className="mt-1.5">
-                                    <UserSvg className="w-10 h-10" src={home} alt={"Home"}></UserSvg>
-                                </div>
-                            </NavLink>           
-                         </li>                    
+                        <li className="w-screen">
+                            <div className="mt-1">
+                                <NavLink to="alsonon" activeClassName="active">
+                                        <UserSvg className="w-8 h-8" src={home} alt={"Home"}></UserSvg>
+                                </NavLink>   
+                            </div>        
+                         </li>                     
                     </ul>
                 </router>
             </div>
