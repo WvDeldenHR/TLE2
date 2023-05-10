@@ -17,6 +17,7 @@ code {
 }
 
 .active {
-color: red;
-background-color: red;
+color: green;
+transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-out;
 }
