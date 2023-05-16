@@ -1,10 +1,10 @@
 import './../css/index.css';
 // Components
-import { NotificationButton } from './../components/buttons/NotificationButton.js';
-import { Searchbar } from './../components/forms/Searchbar.js';
+import { NotificationButton } from '../components/buttons/NotificationButton.js';
+import { Searchbar } from '../components/forms/Searchbar.js';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
-import { PostCardLarge } from './../components/PostCardLarge.js';
+import { PostCardLarge } from '../components/PostCardLarge.js';
 
 
 export function Home() {
