@@ -1,19 +1,17 @@
 import './../css/index.css';
 // Components
-import { NotificationButton } from '../components/buttons/NotificationButton.js';
-import { Searchbar } from '../components/forms/Searchbar.js';
+import { NotificationButton } from '../components/buttons/NotificationButton';
+import { Searchbar } from '../components/forms/Searchbar';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
-import { PostCardLarge } from '../components/PostCardLarge.js';
+import { PostCardLarge } from '../components/PostCardLarge';
 
 
 export function Home() {
     return (
         <div className="">
             <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">
-                <div className="tnn | flex justify-end">
-                    { <NotificationButton /> }
-                </div>
+                { <NotificationButton /> }
                 <div className="pt-2 pb-6">
                     <h1 className="text-3xl text-white font-semibold">Hallo</h1>
                     <h1 className="text-3xl text-white font-semibold">User</h1>
@@ -22,9 +20,7 @@ export function Home() {
                     <div className="w-full">
                        { <Searchbar /> }
                     </div>
-                    <div className="">
-                        { <FilterButton /> }
-                    </div>
+                    { <FilterButton /> }
                 </div>
                 <div className="-mr-5">
                     { <TagButtonsSlider />}

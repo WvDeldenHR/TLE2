@@ -3,13 +3,13 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import './css/App.css';
 
 // Components
-import { Navbar } from "./components/navs/Navbar.jsx";
+import { Navbar } from "./components/navs/Navbar";
 // Views
-import { Home } from "./views/Home.jsx";
-import { Discover } from './views/Discover.jsx';
-// import { Post } from './views/Post.jsx';
-// import { Overview } from './views/Overview.jsx';
-// import { Settings } from './views/Settings.jsx';
+import { Home } from "./views/Home";
+import { Discover } from './views/Discover';
+// import { Post } from './views/Post';
+// import { Overview } from './views/Overview';
+// import { Settings } from './views/Settings';
 
 
 function App() {

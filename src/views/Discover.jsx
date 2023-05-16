@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './../css/index.css';
 // Components
-import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt.js';
-import { SearchbarAlt } from '../components/forms/SearchbarAlt.js';
+import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
+import { SearchbarAlt } from '../components/forms/SearchbarAlt';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
-import { PostCard } from '../components/PostCard.js';
-import { PostCardSmall } from '../components/PostCardSmall.js';
+import { PostCard } from '../components/PostCard';
+import { PostCardSmall } from '../components/PostCardSmall';
 import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
 
 export function Discover() {
