@@ -2,7 +2,7 @@ import './../../css/index.css';
 
 export function FilterButton() {
     return (
-        <button className="rounded p-2 h-10 bg-white bg-opacity-25 drop-shadow">
+        <button onClick={test} className="rounded p-2 h-10 bg-white bg-opacity-25 drop-shadow">
             <svg className="fill-white" width="26" height="26" viewBox="0 0 32 32"><g>
                 <path d="M20.7,8.1c-2.4,0-4.8,0-7.2,0c-0.2,0-0.3,0.1-0.4,0.3c-0.7,1.5-1.9,2.4-3.6,2.4c-1.7,0-2.9-0.9-3.6-2.4
                     C5.7,8.1,5.6,8,5.4,8.1c-0.4,0-0.9,0-1.3,0c-0.8,0-1.3-0.6-1.3-1.3C2.7,6,3.3,5.4,4,5.4c0.4,0,0.9,0,1.3,0c0.2,0,0.3,0,0.4-0.2

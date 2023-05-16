@@ -8,6 +8,7 @@ module.exports = {
       backgroundColor: {
         'dark': '#212427',
         'primary': '#519859',
+        'error': "#ed1c24",
       },
       borderColor: {
         'primary': '#519859',
