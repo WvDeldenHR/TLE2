@@ -54,3 +54,8 @@ code {
 .filter-overlay {
   transition: all 0.5s ease-in-out;
 }
+.active {
+color: green;
+transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-out;
+}
