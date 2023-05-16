@@ -12,7 +12,7 @@ import { ReactComponent as IconUser } from './../../assets/icons/icon_user_001_2
 export function Navbar() {
     return (
         <div className="navbar | fixed w-full bottom-0 bg-white z-40">
-            <ul className="flex items-center justify-center px-3 pt-3 pb-4 w-full">
+            <ul className="flex items-center justify-center px-3 pt-2 pb-4 w-full">
                 <li className="mx-4">
                     <NavLink to="home">
                         <IconHome className="w-6 h-6"></IconHome>
@@ -24,7 +24,7 @@ export function Navbar() {
                     </NavLink>
                 </li>
                 <li className="-mt-6 mx-2 rounded-full p-5 bg-primary">
-                    <NavLink to="post">
+                    <NavLink to="create-post">
                         <IconPlus className="w-6 h-6"></IconPlus>
                     </NavLink>
                 </li>
