@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import './css/App.css';
 
 // Components
-import { Navbar } from "./components/navs/Navbar";
+// import { Navbar } from "./components/navs/Navbar";
 // Views
 import { Home } from "./views/Home";
 import { Discover } from './views/Discover';
@@ -23,7 +23,7 @@ function App() {
           <Route path="settings" element={ <Settings />} /> */}
       </Routes>
 
-      <Navbar />
+      {/* <Navbar /> */}
     </BrowserRouter>
   );
 }

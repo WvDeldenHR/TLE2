@@ -5,11 +5,14 @@ import { Searchbar } from '../components/forms/Searchbar';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
 import { PostCardLarge } from '../components/PostCardLarge';
+import { Navbar } from "../components/navs/Navbar";
+
 
 
 export function Home() {
     return (
         <div className="">
+                  <Navbar />
             <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">
                 { <NotificationButton /> }
                 <div className="pt-2 pb-6">
