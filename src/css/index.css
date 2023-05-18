@@ -68,3 +68,12 @@ code {
 .filter-overlay {
   transition: all 0.5s ease-in-out;
 }
+
+.lines {
+  margin-top: 1.625rem;
+  height: 0.1rem;
+}
+
+.fill-gray {
+  fill:  rgb(156 163 175);
+}

@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import './css/App.css';
 
 // Components
-import { Navbar } from "./components/navs/Navbar";
+// import { Navbar } from "./components/navs/Navbar";
 // Views
 import { Home } from "./views/Home";
 import { Discover } from './views/Discover';
@@ -16,14 +16,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="home" element={ <Home />} />
+          <Route index element={ <Home />} />
           <Route path="discover" element={ <Discover />} />
           <Route path="create-post" element={ <CreatePost />} />
           {/* <Route path="overview" element={ <Overview />} />
           <Route path="settings" element={ <Settings />} /> */}
       </Routes>
 
-      <Navbar />
+      {/* <Navbar /> */}
     </BrowserRouter>
   );
 }

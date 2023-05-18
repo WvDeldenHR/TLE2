@@ -14,27 +14,27 @@ export function Navbar() {
         <div className="navbar | fixed w-full bottom-0 bg-white z-40">
             <ul className="flex items-center justify-center px-3 pt-2 pb-4 w-full">
                 <li className="mx-4">
-                    <NavLink to="home">
+                    <NavLink end to="/">
                         <IconHome className="w-6 h-6"></IconHome>
                     </NavLink>
                 </li>    
                 <li className="mx-4">
-                    <NavLink to="discover">    
+                    <NavLink end to="/discover">    
                         <IconDiscover className="w-6 h-6"></IconDiscover>
                     </NavLink>
                 </li>
                 <li className="-mt-6 mx-2 rounded-full p-5 bg-primary">
-                    <NavLink to="create-post">
+                    <NavLink end to="/create-post">
                         <IconPlus className="w-6 h-6"></IconPlus>
                     </NavLink>
                 </li>
                 <li className="mx-4">
-                    <NavLink to="overview">
+                    <NavLink end to="/overview">
                         <IconList className="w-6 h-6"></IconList>
                     </NavLink>
                 </li>
                 <li className="mx-4">
-                    <NavLink to="settings">
+                    <NavLink end to="/settings">
                         <IconUser className="w-6 h-6"></IconUser>
                     </NavLink>     
                 </li>                     

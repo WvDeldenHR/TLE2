@@ -14,10 +14,12 @@ module.exports = {
         'primary': '#519859',
       },
       fontSize: {
-        'xxs': '.5rem',
+        'xxs': '0.625rem',
+        'xxxs': '.5rem',
       },
       spacing: {
         '38': '9.5rem',
+        '30': '7.5rem',
       },
       textColor: {
         'dark': '#212427',

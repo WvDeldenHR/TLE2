@@ -1,15 +1,18 @@
 import './../css/index.css';
 // Components
+import { Navbar } from "./../components/navs/Navbar";
 import { NotificationButton } from '../components/buttons/NotificationButton';
 import { Searchbar } from '../components/forms/Searchbar';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
-import { PostCardLarge } from '../components/PostCardLarge';
+import { PostCardLarge } from '../components/content/PostCardLarge';
 
 
 export function Home() {
     return (
         <div className="">
+            <Navbar />
+
             <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">
                 { <NotificationButton /> }
                 <div className="pt-2 pb-6">

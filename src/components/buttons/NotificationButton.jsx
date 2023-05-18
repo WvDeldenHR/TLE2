@@ -14,7 +14,7 @@ export function NotificationButton() {
 
     return (
         <div className="flex justify-end">
-            <span className="absolute flex items-center justify-center -mt-1 ml-7 rounded-full w-6 h-6 bg-error text-xxs text-white font-semibold z-10">1</span>
+            <span className="absolute flex items-center justify-center -mt-1 ml-7 rounded-full w-6 h-6 bg-error text-xxxs text-white font-semibold z-10">1</span>
             <button className="flex items-center justify-center rounded-full w-12 h-12 bg-white drop-shadow" onClick={ toggleOverlay }>
                 <img className="w-6" src={iconNotification} alt="Notifications"></img>
             </button>
