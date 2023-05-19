@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './css/App.css';
-import {Create} from "./views/Create.js";
+import {Create} from "./views/Create.jsx";
 
 function App() {
   return (
