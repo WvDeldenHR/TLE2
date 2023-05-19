@@ -1,12 +1,12 @@
 //import logo from './logo.svg';
 import './css/App.css';
-import {Create} from "./views/Create.jsx";
+import {CreatePost} from "./views/CreatePost.jsx";
 
 function App() {
   return (
     <div className="">
 
-      {<Create />}
+      {<CreatePost />}
     </div>
     // <h1 className="text-3xl font-bold underline">
     //   Hello world!
