@@ -10,7 +10,6 @@ export function CreatePost() {
     const [uploading, setUploading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-
     const postsCollectionRef = collection(db, "posts");
 
     const handleFileChange = (e) => {
@@ -69,7 +68,7 @@ export function CreatePost() {
 
         // Save the post data to Firebase
         await addDoc(postsCollectionRef, {
-            name: title,
+            title: title,
             description: des,
             imageURLs: fileURLs,
         });
