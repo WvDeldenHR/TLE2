@@ -1,12 +1,19 @@
 //import logo from './logo.svg';
 import './css/App.css';
 import {ListPosts} from "./views/ListPosts";
+import {CreatePost} from "./views/CreatePost";
+import {BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 
 function App() {
   return (
     <div className="">
+      <BrowserRouter>
+      <Routes>
+        <Route path='post/create' element={<CreatePost/>} ></Route>
+        <Route path='post/list' element={<ListPosts/>}></Route>
+      </Routes>
+      </BrowserRouter>
 
-      {<ListPosts />}
     </div>
     // <h1 className="text-3xl font-bold underline">
     //   Hello world!
