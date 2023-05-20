@@ -3,6 +3,7 @@ import './css/App.css';
 import {ListPosts} from "./views/ListPosts";
 import {CreatePost} from "./views/CreatePost";
 import {BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { EditPost } from './views/EditPost';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path='post/create' element={<CreatePost/>} ></Route>
         <Route path='post/list' element={<ListPosts/>}></Route>
+        <Route path="/post/edit/:postId" element={<EditPost />} />
       </Routes>
       </BrowserRouter>
 

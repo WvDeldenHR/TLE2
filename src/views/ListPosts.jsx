@@ -10,6 +10,10 @@ export function ListPosts() {
     const goBackHandler = () => {
       navigate("/post/create")
     }
+
+    const handleEdit = (postId) => {
+      navigate(`/post/edit/${postId}`);
+    };
   
     useEffect(() => {
       const data = onSnapshot(collection(db, "posts"), (snapshot) => {
@@ -53,6 +57,9 @@ export function ListPosts() {
                     />
                   ))}
                 </td>
+                <td className="border-2">
+                <button onClick={() => handleEdit(post.id)}>Edit</button>
+              </td>
               </tr>
             ))}
           </tbody>
