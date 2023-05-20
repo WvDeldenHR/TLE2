@@ -2,6 +2,7 @@ import { useState } from "react";
 import { db, storage } from "../firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 export function CreatePost() {
     const [title, setTitle] = useState("");
@@ -9,6 +10,8 @@ export function CreatePost() {
     const [files, setFiles] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const postsCollectionRef = collection(db, "posts");
 
@@ -80,10 +83,8 @@ export function CreatePost() {
 
         setUploading(false);
         console.log("Uploaded");
-        // Clear the form
-        setTitle("");
-        setDes("");
-        setFiles([]);
+
+        navigate("/post/list")
     };
 
     return (
@@ -171,6 +172,7 @@ export function CreatePost() {
                     >
                         {uploading ? "Uploading..." : "Publish"}
                     </button>
+
                 </div>
             </form>
         </div>
