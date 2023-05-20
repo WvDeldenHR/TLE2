@@ -51,6 +51,10 @@ export function EditPost() {
 
   const handleFileDelete = async (fileURL) => {
     try {
+      if (existingImages.length === 1) {
+        throw new Error("You cannot delete the last file");
+      }
+
       // Delete the file from storage
       const storageRef = ref(storage, fileURL);
       await deleteObject(storageRef);
@@ -61,28 +65,12 @@ export function EditPost() {
       console.log("File deleted");
     } catch (error) {
       console.log(error);
-      // Handle error, e.g., display an error message or navigate to an error page
+      setErrorMessage(error.message); // Set the error message
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //Some error handleing
-    if (!title || title.length < 6) {
-      setErrorMessage("Please fill in a title with at least 6 characters.");
-      return;
-    }
-
-    if (!des || des.length < 10) {
-      setErrorMessage("Please fill in a description of the product with at least 10 characters.");
-      return;
-    }
-
-    if (files.length === 0) {
-      setErrorMessage("Please select at least one file.");
-      return;
-    }
 
     // Upload new files
     const newFileURLs = await Promise.all(
@@ -116,11 +104,9 @@ export function EditPost() {
       })
     );
 
-    // Combine existing and new file URLs
-    const updatedFileURLs = [...existingImages, ...newFileURLs];
-
     // Update the post data in Firebase
     try {
+      const updatedFileURLs = [...existingImages, ...newFileURLs];
       await updateDoc(doc(db, "posts", postId), {
         title: title,
         description: des,
@@ -142,6 +128,7 @@ export function EditPost() {
   return (
     <div>
       <h1>Edit Post</h1>
+      {errorMessage && <p>{errorMessage}</p>} {/* Display the error message if it exists */}
       <form onSubmit={handleSubmit}>
         {/* Title field */}
         <div>
@@ -185,11 +172,6 @@ export function EditPost() {
             ))}
           </ul>
         </div>
-
-        {/* Error message */}
-        {errorMessage && (
-          <p className="text-red-500 mb-4">{errorMessage}</p>
-        )}
 
         <button type="submit">Save</button>
       </form>
