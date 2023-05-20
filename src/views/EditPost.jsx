@@ -125,6 +125,8 @@ export function EditPost() {
     return <p>Loading...</p>;
   }
 
+  // ...
+
   return (
     <div>
       <h1>Edit Post</h1>
@@ -145,36 +147,53 @@ export function EditPost() {
         {/* File input */}
         <div>
           <label>Files</label>
-          <input type="file" multiple onChange={handleFileChange} />
+          <input
+            type="file"
+            accept="image/png, image/gif, image/jpeg"
+            multiple
+            onChange={handleFileChange} />
         </div>
 
         {/* File previews */}
         <div>
           <label>Preview Images</label>
-          {previewImages.map((previewURL, index) => (
-            <div key={index}>
-              <img src={previewURL} alt={`Preview ${index + 1}`} style={{ width: "100px", height: "auto" }} />
-            </div>
-          ))}
+          <table>
+            <tbody>
+              <tr>
+                {previewImages.map((previewURL, index) => (
+                  <td className="border-3" key={index}>
+                    <img src={previewURL} alt={`Preview ${index + 1}`} style={{ width: "100px", height: "auto" }} />
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         {/* Existing files */}
         <div>
           <label>Existing Files</label>
-          <ul>
-            {existingImages.map((fileURL, index) => (
-              <li key={index}>
-                <img src={fileURL} alt={`File ${index + 1}`} style={{ width: "100px", height: "auto" }} />
-                <button type="button" onClick={() => handleFileDelete(fileURL)}>
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
+          <table>
+            <tbody>
+              {existingImages.map((fileURL, index) => (
+                <tr key={index}>
+                  <td>
+                    <img src={fileURL} alt={`File ${index + 1}`} style={{ width: "100px", height: "auto" }} />
+                  </td>
+                  <td>
+                    <button type="button" onClick={() => handleFileDelete(fileURL)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <button type="submit">Save</button>
       </form>
     </div>
   );
+
 }
