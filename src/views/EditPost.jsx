@@ -14,6 +14,7 @@ export function EditPost() {
   const [existingImages, setExistingImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [filesToDelete, setFilesToDelete] = useState([]); // New state for tracking files to delete
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -49,20 +50,19 @@ export function EditPost() {
     setPreviewImages(previewURLs);
   };
 
-  const handleFileDelete = async (fileURL) => {
+  const handleFileDelete = (fileURL) => {
     try {
       if (existingImages.length === 1) {
         throw new Error("You cannot delete the last file");
       }
-
-      // Delete the file from storage
-      const storageRef = ref(storage, fileURL);
-      await deleteObject(storageRef);
-
-      // Remove the file URL from the state
+  
+      // Remove the file URL from the existingImages state
       setExistingImages((prevImages) => prevImages.filter((url) => url !== fileURL));
-
-      console.log("File deleted");
+  
+      // Add the file URL to the filesToDelete state
+      setFilesToDelete((prevFiles) => [...prevFiles, fileURL]);
+  
+      console.log("File marked for deletion");
     } catch (error) {
       console.log(error);
       setErrorMessage(error.message); // Set the error message
@@ -71,14 +71,14 @@ export function EditPost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Upload new files
     const newFileURLs = await Promise.all(
       files.map((file) => {
         return new Promise((resolve, reject) => {
           const storageRef = ref(storage, Date.now() + "_" + file.name);
           const uploadTask = uploadBytesResumable(storageRef, file);
-
+  
           uploadTask.on(
             "state_changed",
             (snapshot) => {
@@ -107,12 +107,13 @@ export function EditPost() {
     // Update the post data in Firebase
     try {
       const updatedFileURLs = [...existingImages, ...newFileURLs];
+  
       await updateDoc(doc(db, "posts", postId), {
         title: title,
         description: des,
         imageURLs: updatedFileURLs,
       });
-
+  
       console.log("Post updated");
       navigate("/post/list"); // Redirect to the post list after successful update
     } catch (error) {
@@ -151,7 +152,8 @@ export function EditPost() {
             type="file"
             accept="image/png, image/gif, image/jpeg"
             multiple
-            onChange={handleFileChange} />
+            onChange={handleFileChange}
+          />
         </div>
 
         {/* File previews */}
@@ -162,7 +164,11 @@ export function EditPost() {
               <tr>
                 {previewImages.map((previewURL, index) => (
                   <td className="border-3" key={index}>
-                    <img src={previewURL} alt={`Preview ${index + 1}`} style={{ width: "100px", height: "auto" }} />
+                    <img
+                      src={previewURL}
+                      alt={`Preview ${index + 1}`}
+                      style={{ width: "100px", height: "auto" }}
+                    />
                   </td>
                 ))}
               </tr>
@@ -178,7 +184,11 @@ export function EditPost() {
               {existingImages.map((fileURL, index) => (
                 <tr key={index}>
                   <td>
-                    <img src={fileURL} alt={`File ${index + 1}`} style={{ width: "100px", height: "auto" }} />
+                    <img
+                      src={fileURL}
+                      alt={`File ${index + 1}`}
+                      style={{ width: "100px", height: "auto" }}
+                    />
                   </td>
                   <td>
                     <button type="button" onClick={() => handleFileDelete(fileURL)}>
@@ -195,5 +205,4 @@ export function EditPost() {
       </form>
     </div>
   );
-
 }

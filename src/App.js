@@ -2,7 +2,7 @@
 import './css/App.css';
 import {ListPosts} from "./views/ListPosts";
 import {CreatePost} from "./views/CreatePost";
-import {BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import {BrowserRouter, Route, Routes } from "react-router-dom"
 import { EditPost } from './views/EditPost';
 
 function App() {
