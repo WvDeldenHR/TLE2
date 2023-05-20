@@ -71,6 +71,17 @@ export function EditPost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    //some error catching
+    if (!title || title.length < 6) {
+      setErrorMessage("Please fill in a title with at least 6 characters.");
+      return;
+  }
+
+  if (!des || des.length < 10) {
+      setErrorMessage("Please fill in a description of the product with at least 10 characters.");
+      return;
+  }
   
     // Upload new files
     const newFileURLs = await Promise.all(
@@ -200,6 +211,11 @@ export function EditPost() {
             </tbody>
           </table>
         </div>
+        
+        {/* Error message */}
+        {errorMessage && (
+                    <p className="text-red-500 mb-4">{errorMessage}</p>
+                )}
 
         <button type="submit">Save</button>
       </form>
