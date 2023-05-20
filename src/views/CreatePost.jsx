@@ -19,8 +19,13 @@ export function CreatePost() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !des) {
-            setErrorMessage("Please fill in all required fields.");
+        if (!title || title.length < 6) {
+            setErrorMessage("Please fill in a title with at least 6 characters.");
+            return;
+        }
+
+        if (!des || des.length < 10) {
+            setErrorMessage("Please fill in a description of the product with at least 10 characters.");
             return;
         }
 
@@ -82,7 +87,9 @@ export function CreatePost() {
     };
 
     return (
-        <div className="h-full w-full max-w-xs">
+
+        <div className="flex flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
+            <h1 className="text-3xl">Citiesa</h1>
             <form
                 onSubmit={handleSubmit}
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -90,7 +97,7 @@ export function CreatePost() {
                 {/* Title field */}
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Title
+                        Titel
                     </label>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -107,6 +114,23 @@ export function CreatePost() {
                 {/* Description field */}
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Vertel Jouw Probleem
+                    </label>
+                    <textarea
+                        className="resize-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        rows="8"
+                        id="name"
+                        type="text"
+                        value={des}
+                        onChange={(event) => {
+                            setDes(event.target.value);
+                        }}
+                    />
+                </div>
+
+                {/* Description field
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
                         Description
                     </label>
                     <input
@@ -118,7 +142,7 @@ export function CreatePost() {
                             setDes(event.target.value);
                         }}
                     />
-                </div>
+                </div> */}
 
                 {/* File selection */}
                 <div className="mb-6">
@@ -130,6 +154,7 @@ export function CreatePost() {
                         multiple
                         onChange={handleFileChange}
                     />
+
                 </div>
 
                 {/* Error message */}
