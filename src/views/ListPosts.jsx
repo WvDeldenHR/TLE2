@@ -58,7 +58,7 @@ export function ListPosts() {
                   ))}
                 </td>
                 <td className="border-2">
-                <button onClick={() => handleEdit(post.id)}>Edit</button>
+                <button classname="border-2"onClick={() => handleEdit(post.id)}>Edit</button>
               </td>
               </tr>
             ))}

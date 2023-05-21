@@ -32,7 +32,6 @@ export function EditPost() {
         }
       } catch (error) {
         console.log(error);
-        // Handle error, e.g., display an error message or navigate to an error page
       }
     };
 
@@ -55,13 +54,14 @@ export function EditPost() {
       if (existingImages.length === 1) {
         throw new Error("You cannot delete the last file");
       }
-  
+
       // Remove the file URL from the existingImages state
       setExistingImages((prevImages) => prevImages.filter((url) => url !== fileURL));
-  
+
       // Add the file URL to the filesToDelete state
       setFilesToDelete((prevFiles) => [...prevFiles, fileURL]);
-  
+
+
       console.log("File marked for deletion");
     } catch (error) {
       console.log(error);
@@ -76,20 +76,20 @@ export function EditPost() {
     if (!title || title.length < 6) {
       setErrorMessage("Please fill in a title with at least 6 characters.");
       return;
-  }
+    }
 
-  if (!des || des.length < 10) {
+    if (!des || des.length < 10) {
       setErrorMessage("Please fill in a description of the product with at least 10 characters.");
       return;
-  }
-  
+    }
+
     // Upload new files
     const newFileURLs = await Promise.all(
       files.map((file) => {
         return new Promise((resolve, reject) => {
           const storageRef = ref(storage, Date.now() + "_" + file.name);
           const uploadTask = uploadBytesResumable(storageRef, file);
-  
+
           uploadTask.on(
             "state_changed",
             (snapshot) => {
@@ -118,19 +118,38 @@ export function EditPost() {
     // Update the post data in Firebase
     try {
       const updatedFileURLs = [...existingImages, ...newFileURLs];
-  
+
+      
       await updateDoc(doc(db, "posts", postId), {
         title: title,
         description: des,
         imageURLs: updatedFileURLs,
       });
-  
+
+      // Delete files marked for deletion
+    await Promise.all(
+      filesToDelete.map(async (fileURL) => {
+        const fileRef = ref(storage, fileURL);
+        await deleteObject(fileRef);
+      })
+    );
+
       console.log("Post updated");
       navigate("/post/list"); // Redirect to the post list after successful update
     } catch (error) {
       console.log(error);
       // Handle error, e.g., display an error message or navigate to an error page
     }
+  };
+
+  const handlePreviewDelete = (index) => {
+    const updatedFiles = [...files];
+    updatedFiles.splice(index, 1);
+    setFiles(updatedFiles);
+  
+    const updatedPreviews = [...previewImages];
+    updatedPreviews.splice(index, 1);
+    setPreviewImages(updatedPreviews);
   };
 
   if (loading) {
@@ -170,16 +189,19 @@ export function EditPost() {
         {/* File previews */}
         <div>
           <label>Preview Images</label>
-          <table>
-            <tbody>
-              <tr>
+          <table className="border-2">
+            <tbody className="border-2">
+              <tr className="border-2">
                 {previewImages.map((previewURL, index) => (
-                  <td className="border-3" key={index}>
+                  <td className="border-2" key={index}>
                     <img
                       src={previewURL}
                       alt={`Preview ${index + 1}`}
                       style={{ width: "100px", height: "auto" }}
                     />
+                    <button type="button" onClick={() => handlePreviewDelete(index)}>
+                      Delete
+                    </button>
                   </td>
                 ))}
               </tr>
@@ -190,18 +212,18 @@ export function EditPost() {
         {/* Existing files */}
         <div>
           <label>Existing Files</label>
-          <table>
-            <tbody>
+          <table className="border-2">
+            <tbody className="border-2">
               {existingImages.map((fileURL, index) => (
                 <tr key={index}>
-                  <td>
+                  <td className="border-2">
                     <img
                       src={fileURL}
                       alt={`File ${index + 1}`}
                       style={{ width: "100px", height: "auto" }}
                     />
                   </td>
-                  <td>
+                  <td className="border-2">
                     <button type="button" onClick={() => handleFileDelete(fileURL)}>
                       Delete
                     </button>
@@ -211,11 +233,11 @@ export function EditPost() {
             </tbody>
           </table>
         </div>
-        
+
         {/* Error message */}
         {errorMessage && (
-                    <p className="text-red-500 mb-4">{errorMessage}</p>
-                )}
+          <p className="text-red-500 mb-4">{errorMessage}</p>
+        )}
 
         <button type="submit">Save</button>
       </form>
