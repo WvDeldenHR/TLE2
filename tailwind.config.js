@@ -17,6 +17,9 @@ module.exports = {
         'xxs': '0.625rem',
         'xxxs': '.5rem',
       },
+      placeholderColor: {
+        'dark': '#212427',
+      },
       spacing: {
         '38': '9.5rem',
         '30': '7.5rem',

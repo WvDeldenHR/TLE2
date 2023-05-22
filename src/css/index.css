@@ -77,3 +77,10 @@ code {
 .fill-gray {
   fill:  rgb(156 163 175);
 }
+
+.upload-img {
+  background-image: url(/src/assets/icons/icon_camera_001_212427_32x32.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 2.5rem;
+}
