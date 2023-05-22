@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import './../css/index.css';
 // Components
 import { PostCreateContext } from '../components/content/PostCreateContext';
 import { PostCreateCategory } from '../components/content/PostCreateCategory';
 import { PostCreateData } from '../components/content/PostCreateData';
 // Images
-import IconArrow from './../assets/icons/icon_arrow_002_FFFFFF_32x32.svg';
-
+import IconRightArrow from './../assets/icons/icon_arrow_002_FFFFFF_32x32.svg';
+import IconLeftArrow from './../assets/icons/icon_arrow_003_519859_32x32.svg';
 
 export function PostCreate() {
   //
@@ -25,32 +24,26 @@ export function PostCreate() {
     };
 
     return (
-        <>
-          <button
-            onClick={() => {
-              handleNext();
-              setActive(switchOptions[activeSlide + 1]);
-            }}
-            className="flex items-center rounded-xl px-6 py-2 bg-primary text-white font-semibold drop-shadow"
-          >
-            Volgende
-            <img className="ml-4 w-4 h-4" src={IconArrow} alt="" />
+      <>
+        <button onClick={() => {
+                  handleNext();
+                  setActive(switchOptions[activeSlide + 1]);
+                }} 
+                className="flex items-center justify-center rounded-xl px-6 py-2 w-52 text-sm text-white font-semibold bg-primary drop-shadow">Volgende
+          <img className="ml-4 w-3 h-3" src={IconRightArrow} alt="" />
+        </button>
+        {activeSlide > 0 && (
+          <button onClick={() => {
+                    handlePrevious();
+                    setActive(switchOptions[activeSlide - 1]);
+                  }}
+                  className="flex items-center justify-center my-2 border-2 border-primary rounded-xl px-6 py-2 w-52 text-sm text-primary font-semibold bg-white">
+            <img className="mr-4 w-3 h-3" src={IconLeftArrow} alt="" />Vorige
           </button>
-          {activeSlide > 0 && (
-            <button
-              onClick={() => {
-                handlePrevious();
-                setActive(switchOptions[activeSlide - 1]);
-              }}
-              className="flex items-center border-2 border-primary rounded-xl px-6 py-2 bg-white text-primary font-semibold"
-            >
-              <img className="ml-4 w-4 h-4" src={IconArrow} alt="" />
-              Vorige
-            </button>
-          )}
-        </>
-      );
-    }
+        )}
+      </>
+    );
+  }
 
   return (
     <>
@@ -82,7 +75,7 @@ export function PostCreate() {
       <div className="px-8">
         {active}
 
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center">
           <ProgressButton />
         </div>
       </div>
