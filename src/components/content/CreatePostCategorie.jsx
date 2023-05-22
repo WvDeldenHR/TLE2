@@ -4,6 +4,6 @@ import './../../css/index.css';
 
 export function CreatePostCategorie() {
     return (
-        <></>
+        <h1>jbhsadbjahksdjhbkadsf</h1>
     )
 }
