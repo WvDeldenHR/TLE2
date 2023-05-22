@@ -15,6 +15,7 @@ export function EditPost() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [filesToDelete, setFilesToDelete] = useState([]); // New state for tracking files to delete
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -83,6 +84,8 @@ export function EditPost() {
       return;
     }
 
+    setUploading(true);
+
     // Upload new files
     const newFileURLs = await Promise.all(
       files.map((file) => {
@@ -119,7 +122,7 @@ export function EditPost() {
     try {
       const updatedFileURLs = [...existingImages, ...newFileURLs];
 
-      
+
       await updateDoc(doc(db, "posts", postId), {
         title: title,
         description: des,
@@ -127,12 +130,12 @@ export function EditPost() {
       });
 
       // Delete files marked for deletion
-    await Promise.all(
-      filesToDelete.map(async (fileURL) => {
-        const fileRef = ref(storage, fileURL);
-        await deleteObject(fileRef);
-      })
-    );
+      await Promise.all(
+        filesToDelete.map(async (fileURL) => {
+          const fileRef = ref(storage, fileURL);
+          await deleteObject(fileRef);
+        })
+      );
 
       console.log("Post updated");
       navigate("/post/list"); // Redirect to the post list after successful update
@@ -146,7 +149,7 @@ export function EditPost() {
     const updatedFiles = [...files];
     updatedFiles.splice(index, 1);
     setFiles(updatedFiles);
-  
+
     const updatedPreviews = [...previewImages];
     updatedPreviews.splice(index, 1);
     setPreviewImages(updatedPreviews);
@@ -159,31 +162,41 @@ export function EditPost() {
   // ...
 
   return (
-    <div>
-      <h1>Edit Post</h1>
-      {errorMessage && <p>{errorMessage}</p>} {/* Display the error message if it exists */}
+    <div className="flex flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
+      <h1 className="text-3xl">Edit Post</h1>
       <form onSubmit={handleSubmit}>
         {/* Title field */}
-        <div>
-          <label>Title</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">Title</label>
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
 
         {/* Description field */}
-        <div>
-          <label>Description</label>
-          <input type="text" value={des} onChange={(e) => setDes(e.target.value)} />
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">Description</label>
+          <textarea
+            className="resize-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            rows="8"
+            id="name"
+            type="text"
+            value={des}
+            onChange={(event) => {
+              setDes(event.target.value);
+            }}
+          />
         </div>
 
-        {/* File input */}
-        <div>
-          <label>Files</label>
+        {/* File selection */}
+        <div className="mb-6">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Upload files</label>
           <input
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             type="file"
             accept="image/png, image/gif, image/jpeg"
             multiple
             onChange={handleFileChange}
           />
+
         </div>
 
         {/* File previews */}
@@ -239,7 +252,17 @@ export function EditPost() {
           <p className="text-red-500 mb-4">{errorMessage}</p>
         )}
 
-        <button type="submit">Save</button>
+        {/* Submit button */}
+        <div className="flex items-center justify-between">
+                    <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline items-center"
+                        type="submit"
+                        disabled={uploading}
+                    >
+                        {uploading ? "Uploading..." : "Publish"}
+                    </button>
+
+                </div>
       </form>
     </div>
   );
