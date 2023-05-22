@@ -72,8 +72,6 @@ export function CreatePost() {
             })
         );
 
-
-
         // Save the post data to Firebase
         await addDoc(postsCollectionRef, {
             title: title,
@@ -88,7 +86,6 @@ export function CreatePost() {
     };
 
     return (
-
         <div className="flex flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
             <h1 className="text-3xl">Citiesa</h1>
             <form

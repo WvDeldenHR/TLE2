@@ -59,9 +59,6 @@ export function ListPosts() {
       // Handle error, e.g., display an error message or navigate to an error page
     }
   };
-  
-
-  
 
   return (
     <div>
