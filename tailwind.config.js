@@ -13,9 +13,16 @@ module.exports = {
       borderColor: {
         'primary': '#519859',
       },
+      fill: {
+        'white': '#ffffff',
+        'gray-400': 'rgb(156 163 175)',
+      },
       fontSize: {
         'xxs': '0.625rem',
         'xxxs': '.5rem',
+      },
+      minHeight: {
+        '72': '18rem',
       },
       placeholderColor: {
         'dark': '#212427',

@@ -2,7 +2,7 @@ import './../../css/index.css';
 //Components
 
 
-export function CreatePostCategorie() {
+export function PostCreateCategory() {
     return (
         <h1>jbhsadbjahksdjhbkadsf</h1>
     )

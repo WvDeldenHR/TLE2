@@ -24,7 +24,7 @@ export function Navbar() {
                     </NavLink>
                 </li>
                 <li className="-mt-6 mx-2 rounded-full p-5 bg-primary">
-                    <NavLink end to="/create-post">
+                    <NavLink end to="/post-create">
                         <IconPlus className="w-6 h-6"></IconPlus>
                     </NavLink>
                 </li>

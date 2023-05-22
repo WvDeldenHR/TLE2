@@ -7,7 +7,7 @@ import './css/App.css';
 // Views
 import { Home } from "./views/Home";
 import { Discover } from './views/Discover';
-import { CreatePost } from './views/CreatePost';
+import { PostCreate } from './views/PostCreate';
 // import { Overview } from './views/Overview';
 // import { Settings } from './views/Settings';
 
@@ -18,7 +18,7 @@ function App() {
       <Routes>
           <Route index element={ <Home />} />
           <Route path="discover" element={ <Discover />} />
-          <Route path="create-post" element={ <CreatePost />} />
+          <Route path="post-create" element={ <PostCreate />} />
           {/* <Route path="overview" element={ <Overview />} />
           <Route path="settings" element={ <Settings />} /> */}
       </Routes>

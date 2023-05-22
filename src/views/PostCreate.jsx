@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import './../css/index.css';
 // Components
-import { CreatePostContext } from '../components/content/CreatePostContext';
-import { CreatePostCategorie } from '../components/content/CreatePostCategorie';
+import { PostCreateContext } from '../components/content/PostCreateContext';
+import { PostCreateCategory } from '../components/content/PostCreateCategory';
+import { PostCreateData } from '../components/content/PostCreateData';
 // Images
 import IconArrow from './../assets/icons/icon_arrow_002_FFFFFF_32x32.svg';
 
-export function CreatePost() {
-  const switchOptions = [<CreatePostContext />, <CreatePostCategorie />];
+
+export function PostCreate() {
+  //
+  const switchOptions = [<PostCreateContext />, <PostCreateCategory />, <PostCreateData />];
   const [active, setActive] = useState(switchOptions[0]);
   const [activeSlide, setActiveSlide] = useState(0);
 
+  //
   function ProgressButton() {
     const handleNext = () => {
       setActiveSlide(prevSlide => Math.min(prevSlide + 1, 2));
@@ -75,12 +79,12 @@ export function CreatePost() {
         </div>
       </div>
 
-      <div>
+      <div className="px-8">
         {active}
-      </div>
 
-      <div className="flex justify-center">
-        <ProgressButton />
+        <div className="flex justify-center">
+          <ProgressButton />
+        </div>
       </div>
     </>
   );
