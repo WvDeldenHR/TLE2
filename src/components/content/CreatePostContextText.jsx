@@ -1,6 +1,9 @@
 import './../../css/index.css';
+import { useState } from "react";
 
-export function CreatePostContextText() {
+
+export function CreatePostContextText({title, setTitle, des, setDes}) {
+
     return (
         <>
             <div className="pb-6">
@@ -9,7 +12,13 @@ export function CreatePostContextText() {
                 </div>
 
                 <div className="py-2">
-                    <input className="rounded px-3 py-2 w-full bg-gray-200"></input>
+                    <input
+                        className="rounded px-3 py-2 w-full bg-gray-200"
+                        value={title}
+                        onChange={(event) => {
+                            setTitle(event.target.value);
+                        }}
+                    />
                 </div>
             </div>
 
@@ -19,7 +28,13 @@ export function CreatePostContextText() {
                 </div>
 
                 <div className="py-2">
-                    <textarea className="rounded px-3 py-2 w-full h-32 bg-gray-200"></textarea>
+                    <textarea
+                        className="rounded px-3 py-2 w-full h-32 bg-gray-200"
+                        value={des}
+                        onChange={(event) => {
+                            setDes(event.target.value);
+                        }}
+                    />
                 </div>
             </div>
         </>
