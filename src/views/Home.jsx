@@ -10,7 +10,7 @@ import { PostCardLarge } from '../components/content/PostCardLarge';
 
 export function Home() {
     return (
-        <div className="">
+        <div className="bg-white">
             <Navbar />
 
             <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">

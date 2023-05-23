@@ -22,7 +22,7 @@ export function Discover() {
     window.addEventListener('scroll', changeColor)
 
     return (
-        <div>
+        <div className="bg-white">
             <Navbar />
 
             <div className={`fixed top-0 left-0 right-0 m-1 px-6 py-4 rounded bg-white z-50 ${color ? "drop-shadow-lg" : ""}`}>

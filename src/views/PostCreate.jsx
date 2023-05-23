@@ -46,7 +46,7 @@ export function PostCreate() {
   }
 
   return (
-    <>
+    <div className="bg-white">
       <div className="bg-primary">
         <div className="flex items-center justify-center py-6">
           <span className="lines | block -mr-2 w-8 bg-white"></span>
@@ -79,6 +79,6 @@ export function PostCreate() {
           <ProgressButton />
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -11,6 +11,7 @@ module.exports = {
         'error': "#ed1c24",
       },
       borderColor: {
+        'dark': '#212427',
         'primary': '#519859',
       },
       fill: {

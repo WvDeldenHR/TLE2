@@ -30,9 +30,9 @@ export function PostCreateCategory() {
                 </div>
             </div>
             
-            <div className="py-8">
+            <div className="py-4 h-80">
                 <h2 className="text-base text-dark font-bold">Subcategorie</h2>
-                <div className="">
+                <div className="grid grid-cols-2 gap-3 my-4 px-6">
                     {contextOptions[optionsIndex]}
                 </div>
             </div>
