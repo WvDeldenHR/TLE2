@@ -1,4 +1,4 @@
-import './../../css/index.css';
+import '../../index.css';
 
 export function FilterButton() {
     return (

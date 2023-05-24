@@ -1,4 +1,4 @@
-import './../css/index.css';
+import '../index.css';
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 import iconFinancial from './../assets/icons/icon_financial_001_FFFFFF_32x32.svg';

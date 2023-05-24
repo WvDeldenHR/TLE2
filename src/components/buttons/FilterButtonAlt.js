@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './../../css/index.css';
+import '../../index.css';
 // Component
-import { SearchbarAlt } from './../../components/forms/SearchbarAlt.js';
+import { SearchbarAlt } from '../../forms/SearchbarAlt.js';
+
 // Images
 import IconArrow from './../../assets/icons/icon_arrow_001_212427_32x32.svg';
 import IconCharity from './../..//assets/icons/icon_charity_001_FFFFFF_32x32.svg'

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './../css/index.css';
+import '../index.css';
 // Components
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt.js';
-import { SearchbarAlt } from '../components/forms/SearchbarAlt.js';
+import { SearchbarAlt } from './../forms/SearchbarAlt.js';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
 import { PostCard } from '../components/PostCard.js';
 import { PostCardSmall } from '../components/PostCardSmall.js';

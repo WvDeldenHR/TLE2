@@ -1,13 +1,35 @@
-import './../css/index.css';
+import './../index.css';
+
+import { useState, useEffect } from 'react'
 // Components
 import { NotificationButton } from '../components/buttons/NotificationButton.js';
-import { Searchbar } from '../components/forms/Searchbar.js';
+import { Searchbar } from '../forms/Searchbar.js';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
 import { PostCardLarge } from '../components/PostCardLarge.js';
+import { Navbar } from "../navs/Navbar.jsx";
 
+import { auth } from "../config/firebase"
 
 export function Home() {
+
+    // const user = auth.currentUser;
+    // const displayName = user.displayName;
+    // console.log(displayName)
+
+    const [displayName, setDisplayName] = useState('');
+
+    useEffect(() => {
+      // Fetch the user's display name from Firebase
+      const user = auth.currentUser;
+      if (user) {
+        const { displayName } = user;
+        setDisplayName(displayName || ''); // Set the display name or an empty string
+        console.log(displayName)
+      }
+    }, []);
+
+
     return (
         <div className="">
             <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">
@@ -16,7 +38,7 @@ export function Home() {
                 </div>
                 <div className="pt-2 pb-6">
                     <h1 className="text-3xl text-white font-semibold">Hallo</h1>
-                    <h1 className="text-3xl text-white font-semibold">User</h1>
+                    <h1 className="text-3xl text-white font-semibold">{displayName}</h1>
                 </div>
                 <div className="flex">
                     <div className="w-full">
@@ -62,6 +84,8 @@ export function Home() {
                     </div>
                 </div>
             </div>
+
+            <Navbar />
 
         </div>
     );
