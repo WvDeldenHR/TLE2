@@ -1,62 +1,81 @@
 //import logo from './logo.svg';
-import './css/App.css';
 import {ListPosts} from "./views/ListPosts";
 import {CreatePost} from "./views/CreatePost";
 import {BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 import { EditPost } from './views/EditPost';
-import { auth } from "./firebase-config";
+import { auth } from "./config/firebase";
 import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from "firebase/auth";
+import './App.css';
+// import { Auth } from "./components/auth"
+
+import { Start } from "./components/Start" 
+import { SignUp } from "./components/SignUp"
+import { Login } from "./components/Login"
+import { UpdateUser } from "./components/userprofile/UpdateUser"
+import { Profile } from "./components/userprofile/Profile"
+import { ProfilePicture } from "./components/userprofile/ProfilePicture"
+import { UpdatePassword } from "./components/userprofile/UpdatePassword"
+import { LogOut } from "./components/userprofile/LogOut"
+import { ForgotPassword } from "./components/userprofile/ForgotPassword"
+
+
+// Components
+// import { Navbar } from "./navs/Navbar.jsx";
+// Views
+import { Home } from "./views/Home.jsx";
+import { Discover } from './views/Discover.jsx';
+// import { Post } from './views/Post.jsx';
+// import { Overview } from './views/Overview.jsx';
+// import { Settings } from './views/Settings.jsx';
+
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
-    const unsubscribeAuthListener = auth.onAuthStateChanged((user) => {
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is logged in
-        setUser(user);
+        // Gebruiker is ingelogd, voer de gewenste acties uit
+        console.log("Gebruiker is ingelogd:", user.uid);
       } else {
-        // User is not logged in
-        setUser(null);
+        // Gebruiker is uitgelogd, voer de gewenste acties uit
+        console.log("Gebruiker is uitgelogd");
+        // Je kunt hier bijvoorbeeld de gebruiker doorverwijzen naar de inlogpagina
       }
     });
 
+    return () => unsubscribe();
   }, []);
 
 
   return (
-    <div className="">
-      <BrowserRouter>
+    <BrowserRouter> 
       <Routes>
-        <Route path='post/create' element={user ? <CreatePost user={user} /> : <Navigate to="/login"/>} ></Route>
-        <Route path='post/list' element={<ListPosts/>}></Route>
-        <Route path="/post/edit/:postId" element={<EditPost />} />
-      </Routes>
-      </BrowserRouter>
+     
+        <Route path='/' element={<Start />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='/signup/picture' element={<ProfilePicture />}></Route>
+        <Route path='/login' element={<Login />}></Route>
 
-    </div>
-    // <h1 className="text-3xl font-bold underline">
-    //   Hello world!
-    // </h1>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-  );
+        <Route path="/discover" element={ <Discover />} />
+        <Route path='/profile' element={<Profile />}></Route>
+        <Route path='/home' element={<Home />}></Route>
+        <Route path='/update-profile' element={<UpdateUser />}></Route>
+        <Route path='/update-password' element={<UpdatePassword />}></Route>
+        <Route path='/logout' element={<LogOut />}></Route>
+        <Route path='/forgot-password' element={<ForgotPassword />}></Route>
+
+        <Route path='/post/create' element={<CreatePost/>} ></Route>
+        <Route path='/post/list' element={<ListPosts/>}></Route>
+        <Route path="/post/edit/:postId" element={<EditPost />} />
+
+  
+      </Routes>
+      {/* <Navbar /> */}
+    </BrowserRouter>
+  )
 }
 
 export default App;
+

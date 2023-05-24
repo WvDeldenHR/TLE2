@@ -1,6 +1,8 @@
-import './../../css/index.css';
+import '../../index.css';
+
 // Images
 import iconNotification from './../../assets/icons/icon_mail_001_212427_32x32.svg';
+
 
 export function NotificationButton() {
     return (
