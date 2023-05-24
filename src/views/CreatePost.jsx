@@ -10,6 +10,7 @@ export function CreatePost() {
     const [files, setFiles] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    // const [user]= useState("")
 
     const navigate = useNavigate();
 
@@ -155,6 +156,7 @@ export function CreatePost() {
                     </button>
 
                 </div>
+                {/* <input type="hidden" value={user.userId} /> */}
             </form>
         </div>
     );

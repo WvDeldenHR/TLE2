@@ -2,15 +2,35 @@
 import './css/App.css';
 import {ListPosts} from "./views/ListPosts";
 import {CreatePost} from "./views/CreatePost";
-import {BrowserRouter, Route, Routes } from "react-router-dom"
+import {BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 import { EditPost } from './views/EditPost';
+import { auth } from "./firebase-config";
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const unsubscribeAuthListener = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is logged in
+        setUser(user);
+      } else {
+        // User is not logged in
+        setUser(null);
+      }
+    });
+
+  }, []);
+
+
   return (
     <div className="">
       <BrowserRouter>
       <Routes>
-        <Route path='post/create' element={<CreatePost/>} ></Route>
+        <Route path='post/create' element={user ? <CreatePost user={user} /> : <Navigate to="/login"/>} ></Route>
         <Route path='post/list' element={<ListPosts/>}></Route>
         <Route path="/post/edit/:postId" element={<EditPost />} />
       </Routes>
