@@ -17,17 +17,32 @@ export function Home() {
     // const displayName = user.displayName;
     // console.log(displayName)
 
+    // const [displayName, setDisplayName] = useState('');
+
+    // useEffect(() => {
+    //   // Fetch the user's display name from Firebase
+    //   const user = auth.currentUser;
+    //   if (user) {
+    //     const { displayName } = user;
+    //     setDisplayName(displayName || ''); // Set the display name or an empty string
+    //     console.log(displayName)
+    //   }
+    // }, []);
+
     const [displayName, setDisplayName] = useState('');
 
-    useEffect(() => {
-      // Fetch the user's display name from Firebase
-      const user = auth.currentUser;
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         const { displayName } = user;
-        setDisplayName(displayName || ''); // Set the display name or an empty string
-        console.log(displayName)
+        setDisplayName(displayName || '');
       }
-    }, []);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
 
     return (

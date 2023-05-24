@@ -33,7 +33,9 @@ export function ProfilePicture() {
     }
 
     function updatePhotoURL(url) {
-        setPhotoURL(url)
+        const cacheBuster = Date.now(); // Generate a unique value (timestamp)
+        const updatedURL = `${url}?cache=${cacheBuster}`; // Append the cache buster to the photo URL
+        setPhotoURL(updatedURL);
     }
 
     function handleNextPage() {

@@ -85,7 +85,7 @@ export const Login = () => {
                             <div>
                             <div className="flex items-center justify-between">
                             <label htmlFor="password" className="block mb-2 text-xs font-medium mt-5 leading-6 text-gray-900">
-                            <i class="fa-regular fa-lock"></i>
+                            <i class="fa-solid fa-lock-keyhole"></i>
                                 {'\u00A0'} {'\u00A0'}
                                 Wachtwoord
                             </label>

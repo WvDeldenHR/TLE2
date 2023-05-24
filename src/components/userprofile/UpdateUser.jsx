@@ -23,6 +23,7 @@ export const UpdateUser = () => {
     const [photo, setPhoto] = useState(null)
     const [loading, setLoading] = useState(false)
     const [photoURL, setPhotoURL] = useState("")
+    
 
     const handleUpdateEmail = () => {
         updateEmail(currentUser, newEmail)
@@ -235,7 +236,7 @@ export const UpdateUser = () => {
 
 
             <p className="text-center text-xs text-gray-500">
-                            <NavLink to="/home/settings" className="font-semibold leading-6 text-green-800 hover:text-green-700">
+                            <NavLink to="/profile" className="font-semibold leading-6 text-green-800 hover:text-green-700">
                                 Ga terug
                             </NavLink>
                         </p>    

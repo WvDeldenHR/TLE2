@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db, storage } from "../firebase-config";
+import { db, storage, auth } from "../config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
@@ -73,11 +73,15 @@ export function CreatePost() {
             })
         );
 
+        // Get the current user's ID
+        const userId = auth.currentUser.uid;
+
         // Save the post data to Firebase
         await addDoc(postsCollectionRef, {
             title: title,
             description: des,
             imageURLs: fileURLs,
+            userId: userId, // Associate the post with the user
         });
 
         setUploading(false);

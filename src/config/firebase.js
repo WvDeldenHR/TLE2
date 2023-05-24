@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, updateProfile } from "firebase/auth"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
+import { getFirestore } from "@firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,6 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
+export const db = getFirestore(app);
 export const storage = getStorage(app)
 
 //storage
@@ -33,3 +35,4 @@ export async function upload(file, currentUser, setLoading) {
   setLoading(false)
   console.log("Uploaded file!")
 }
+

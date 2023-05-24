@@ -3,6 +3,8 @@ import { collection, deleteDoc, onSnapshot, doc, getDocs } from "firebase/firest
 import { db, storage } from "../firebase-config";
 import { ref, deleteObject } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase"
+import { Navbar } from "../navs/Navbar.jsx";
 
 export function ListPosts() {
   const [posts, setPosts] = useState([]);
@@ -11,8 +13,12 @@ export function ListPosts() {
   useEffect(() => {
     const data = onSnapshot(collection(db, "posts"), (snapshot) => {
       const postData = [];
+      const userId = auth.currentUser?.uid; // Get the current user's ID
       snapshot.forEach((doc) => {
-        postData.push({ id: doc.id, ...doc.data() });
+        const post = { id: doc.id, ...doc.data() };
+        if (post.userId === userId) { // Check if the post belongs to the current user
+          postData.push(post);
+        }
       });
       setPosts(postData);
     });
@@ -62,6 +68,7 @@ export function ListPosts() {
 
   return (
     <div>
+       <Navbar />
       <button className="border-3" onClick={goBackHandler}>Go back to making a post</button>
       <h1>Posts</h1>
       <table>

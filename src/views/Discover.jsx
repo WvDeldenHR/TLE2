@@ -8,6 +8,8 @@ import { PostCard } from '../components/PostCard.js';
 import { PostCardSmall } from '../components/PostCardSmall.js';
 import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
 
+import { Navbar } from "./../navs/Navbar.jsx";
+
 export function Discover() {
     // Scroll
     const [color, setColor] = useState(false)
@@ -22,6 +24,9 @@ export function Discover() {
 
     return (
         <div>
+
+            <Navbar/>
+
             <div className={`fixed top-0 left-0 right-0 m-1 px-6 py-4 rounded bg-white z-50 ${color ? "drop-shadow-lg" : ""}`}>
                 <div className="flex items-center pb-5">
                     <div className="w-full">
