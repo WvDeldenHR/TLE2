@@ -8,7 +8,7 @@ import './css/App.css';
 import { Home } from "./views/Home";
 import { Discover } from './views/Discover';
 import { PostCreate } from './views/PostCreate';
-// import { Overview } from './views/Overview';
+import { Overview } from './views/Overview';
 // import { Settings } from './views/Settings';
 
 
@@ -19,8 +19,8 @@ function App() {
           <Route index element={ <Home />} />
           <Route path="discover" element={ <Discover />} />
           <Route path="post-create" element={ <PostCreate />} />
-          {/* <Route path="overview" element={ <Overview />} />
-          <Route path="settings" element={ <Settings />} /> */}
+          <Route path="overview" element={ <Overview />} />
+          {/* <Route path="settings" element={ <Settings />} /> */}
       </Routes>
 
       {/* <Navbar /> */}
