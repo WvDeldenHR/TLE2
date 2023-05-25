@@ -52,7 +52,7 @@ export function Profile() {
 
       <Navbar />
 
-      <div className='flex justify-center pt-3 px-3 bg-green-800 shadow-inner'>
+      <div className='flex justify-center pt-3 px-3 bg-primary shadow-inner'>
 
       <a href="/logout">
       <div className='text-white flex justify-end text-l items-start fixed top-0 right-0 pe-10 pt-8'>
@@ -80,10 +80,10 @@ export function Profile() {
 
       </div>
 
-      <a href="/update-password">
+      <a href="/login-again">
       <button className="flex w-80 m-auto mt-10 shadow rounded bg-gray-100 px-5 py-3 text-xs font-semibold leading-6 text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">
         <div className='text-black me-5'>
-        <i class="fa-regular fa-lock"></i>
+        <i class="fa-solid fa-user-lock"></i>
         </div>
         Wachtwoord wijzigen
         <div className='text-black ms-24'>

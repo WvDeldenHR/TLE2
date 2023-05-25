@@ -3,6 +3,7 @@ import { auth, upload } from '../../config/firebase';
 import { useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import { updateEmail, updateProfile } from "firebase/auth";
+import { BackButton } from "../buttons/BackButton";
 
 export const UpdateUser = () => {
 
@@ -117,7 +118,9 @@ export const UpdateUser = () => {
 
         <div className="flex min-h-full w-full flex-1 flex-col justify-center items-center  lg:px-8 sm:w-full sm:h-full ">
 
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-green-800 pt-8 pb-14 border border-gray-200">
+                <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-primary pt-8 pb-14 border border-gray-200">
+
+                  <BackButton/>
                     {/* <img
                         className="mx-auto h-6 w-auto"
                         src={logo}
@@ -129,26 +132,30 @@ export const UpdateUser = () => {
                     </h2>
                 </div>
 
-                <div>
-                <label htmlFor="file-input" className="-mt-10 absolute m-auto left-0 right-0 items-center text-center justify-center grid place-items-center">
+                <div className="-mt-72 absolute m-auto left-0 right-0 items-center text-center justify-center grid place-items-center">
+
                   <img
                     src={`${photoURL}?timestamp=${Date.now()}`}
                     alt="Profile"
                     className="w-32 h-32 rounded-full shadow-xl object-cover cursor-pointer"
                   />
+
+                </div>
+            
+
+            <form onSubmit={handleSubmitDisplayName}
+                className="mt-32 sm:mx-auto sm:w-full sm:max-w-sm " >
+
                   <input
                     type="file"
                     onChange={handleChange}
                     id="file-input"
                     style={{ display: 'none' }}
                   />
-                </label>
-                {/* <p className='absolute right-44 top-64 shadow-xl text-gray-500'>
-                  <i class="fa-solid fa-camera fa-2xl"></i></p> */}
-                </div>
 
-            <form onSubmit={handleSubmitDisplayName}
-                className="mt-32 sm:mx-auto sm:w-full sm:max-w-sm " >
+                <label htmlFor="file-input" className="mb-10 block m-auto left-0 right-0 rounded-full bg-gray-200 px-3 py-2 text-black w-44 font-semibold items-center text-center text-xs border justify-center grid place-items-center">
+                    Verander Profielfoto
+                </label>
 
                 <label htmlFor="name" className="block text-xs font-medium leading-6 text-gray-900">
                 <i className="fa-regular fa-user"></i>
@@ -235,11 +242,11 @@ export const UpdateUser = () => {
             </form>
 
 
-            <p className="text-center text-xs text-gray-500">
+            {/* <p className="text-center text-xs text-gray-500">
                             <NavLink to="/profile" className="font-semibold leading-6 text-green-800 hover:text-green-700">
                                 Ga terug
                             </NavLink>
-                        </p>    
+                        </p>     */}
 
       </div>
       )

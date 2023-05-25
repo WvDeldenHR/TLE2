@@ -7,6 +7,8 @@ import { auth } from "./config/firebase";
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import './App.css';
+
+import  AuthChecker from "./AuthChecker"
 // import { Auth } from "./components/auth"
 
 import { Start } from "./components/Start" 
@@ -18,6 +20,7 @@ import { ProfilePicture } from "./components/userprofile/ProfilePicture"
 import { UpdatePassword } from "./components/userprofile/UpdatePassword"
 import { LogOut } from "./components/userprofile/LogOut"
 import { ForgotPassword } from "./components/userprofile/ForgotPassword"
+import { LoginAgain } from "./components/userprofile/LoginAgain";
 
 
 // Components
@@ -53,23 +56,28 @@ function App() {
     <BrowserRouter> 
       <Routes>
      
+        {/* Sign-up & Register */}
         <Route path='/' element={<Start />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/signup/picture' element={<ProfilePicture />}></Route>
         <Route path='/login' element={<Login />}></Route>
-
-        <Route path="/discover" element={ <Discover />} />
-        <Route path='/profile' element={<Profile />}></Route>
-        <Route path='/home' element={<Home />}></Route>
-        <Route path='/update-profile' element={<UpdateUser />}></Route>
-        <Route path='/update-password' element={<UpdatePassword />}></Route>
-        <Route path='/logout' element={<LogOut />}></Route>
         <Route path='/forgot-password' element={<ForgotPassword />}></Route>
 
-        <Route path='/post/create' element={<CreatePost/>} ></Route>
-        <Route path='/post/list' element={<ListPosts/>}></Route>
-        <Route path="/post/edit/:postId" element={<EditPost />} />
+        {/* Home & Discover */}
+        <Route path="/home" element={<AuthChecker><Home /></AuthChecker>} />
+        <Route path="/discover" element={<AuthChecker><Discover /></AuthChecker>} />
 
+        {/* Profile, Updates, Log Out */}
+        <Route path="/profile" element={<AuthChecker><Profile /></AuthChecker>} />
+        <Route path="/login-again" element={<AuthChecker><LoginAgain /></AuthChecker>} />
+        <Route path="/update-profile" element={<AuthChecker><UpdateUser /></AuthChecker>} />
+        <Route path="/update-password" element={<AuthChecker><UpdatePassword /></AuthChecker>} />
+        <Route path="/logout" element={<AuthChecker><LogOut /></AuthChecker>} />
+
+        {/* CRUD Post */}
+        <Route path="/post/create" element={<AuthChecker><CreatePost /></AuthChecker>} />
+        <Route path="/post/list" element={<AuthChecker><ListPosts /></AuthChecker>} />
+        <Route path="/post/edit/:postId" element={<AuthChecker><EditPost /></AuthChecker>} />
   
       </Routes>
       {/* <Navbar /> */}

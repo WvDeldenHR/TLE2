@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
-import { auth } from "../config/firebase"
+import { auth } from '../../firebase-config';
 import { NavLink, useNavigate } from 'react-router-dom'
-import logo from '../images/logo.png'
-import { BackButton } from "./buttons/BackButton";
+import { BackButton } from "../buttons/BackButton";
 
 const getErrorMessage = (errorCode) => {
     switch (errorCode) {
@@ -19,7 +18,7 @@ const getErrorMessage = (errorCode) => {
     }
   };
  
-export const Login = () => {
+export const LoginAgain = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,7 +30,7 @@ export const Login = () => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            navigate("/home")
+            navigate("/update-password")
             console.log(user);
         })
         .catch((error) => {
@@ -44,7 +43,7 @@ export const Login = () => {
  
     return(
         <>
-            <main className='h-full'>        
+            <main className='h-full bg-primary'>        
                 <section>
 
                     <div className="flex my-auto min-h-full w-full flex-1 flex-col justify-center items-center absolute inset-0 lg:px-8 sm:w-full sm:h-full ">   
@@ -52,14 +51,10 @@ export const Login = () => {
                     <BackButton />
 
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                        <img
-                            className="mx-auto h-6 w-auto"
-                            src={logo}
-                            alt="Logo"
-                        />
-                        <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-green-700">Welkom terug!</h1>
-                        <h2 className="mt-0 text-center text-xs leading-9 tracking-tight text-gray-500">
-                            Voer uw inloggegevens in om verder te gaan
+                
+                        <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-green-700">Opnieuw Inloggen</h1>
+                        <h2 className="mt-5 text-center text-xs px-20 leading-1 tracking-tight text-black">
+                            Om uw gegevens te wijzigen, moet u opnieuw inloggen. Vul uw inloggegevens in om door te gaan.
                         </h2>
                     </div>
                      
@@ -83,7 +78,7 @@ export const Login = () => {
                             </div>
 
                             <div>
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between mt-5">
                             <label htmlFor="password" className="block mb-2 text-xs font-medium mt-5 leading-6 text-gray-900">
                             <i class="fa-solid fa-user-lock"></i>
                                 {'\u00A0'} {'\u00A0'}
@@ -108,7 +103,7 @@ export const Login = () => {
 
                             <p className="mt-5 -mb-5 text-xs text-center text-red-900">{error}</p>
                                                 
-                            <div className='mt-10'>
+                            <div className='mt-20'>
                                 <button                                    
                                     onClick={onLogin}   
                                     className="flex w-80 mb-0 justify-center m-auto rounded-full bg-gray-700 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"                                     
@@ -118,12 +113,12 @@ export const Login = () => {
                             </div>                               
                         </form>
                        
-                        <p className="text-center text-xs text-gray-500">
+                        {/* <p className="text-center text-xs text-gray-500">
                             Nog geen account? {' '}
                             <NavLink to="/signup" className="font-semibold leading-6 text-green-800 hover:text-green-700">
                                 Registreer!
                             </NavLink>
-                        </p>
+                        </p> */}
                                                    
                     </div>
                 </section>
