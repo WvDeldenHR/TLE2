@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import '../index.css';
 // Components
-import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt.js';
-import { SearchbarAlt } from './../forms/SearchbarAlt.js';
+import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
+import { SearchbarAlt } from '../components/forms/SearchbarAlt';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
-import { PostCard } from '../components/PostCard.js';
-import { PostCardSmall } from '../components/PostCardSmall.js';
+import { PostCard } from '../components/content/PostCard';
+import { PostCardSmall } from '../components/content/PostCardSmall';
 import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
 
 import { Navbar } from "./../navs/Navbar.jsx";
@@ -23,9 +23,8 @@ export function Discover() {
     window.addEventListener('scroll', changeColor)
 
     return (
-        <div>
-
-            <Navbar/>
+        <div className="bg-white">
+            <Navbar />
 
             <div className={`fixed top-0 left-0 right-0 m-1 px-6 py-4 rounded bg-white z-50 ${color ? "drop-shadow-lg" : ""}`}>
                 <div className="flex items-center pb-5">

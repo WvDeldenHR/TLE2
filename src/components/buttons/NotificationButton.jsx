@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import '../../index.css';
-
+import './../../css/index.css';
 // Images
 import iconNotification from './../../assets/icons/icon_mail_001_212427_32x32.svg';
 import IconArrow from './../../assets/icons/icon_arrow_001_212427_32x32.svg';
 
 
-export function NotificationButtonAlt() {
+export function NotificationButton() {
     // Overlay Toggle Button
     const [overlay, setOverlay] = useState(false);
     const toggleOverlay = () => {
@@ -14,9 +13,9 @@ export function NotificationButtonAlt() {
     }; 
 
     return (
-        <div className="-mr-1">
-            <span className="absolute flex items-center justify-center -mt-1 ml-7 rounded-full w-6 h-6 bg-error text-xxs text-white font-semibold z-10">1</span>
-            <button className="flex items-center justify-center rounded-full w-12 h-12 bg-gray-200 drop-shadow" onClick={ toggleOverlay }>
+        <div className="flex justify-end">
+            <span className="absolute flex items-center justify-center -mt-1 ml-7 rounded-full w-6 h-6 bg-error text-xxxs text-white font-semibold z-10">1</span>
+            <button className="flex items-center justify-center rounded-full w-12 h-12 bg-white drop-shadow" onClick={ toggleOverlay }>
                 <img className="w-6" src={iconNotification} alt="Notifications"></img>
             </button>
 

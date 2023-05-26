@@ -1,15 +1,15 @@
-import '../index.css';
+import '../../index.css';
 // Images
-import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
-import iconFinancial from './../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
+import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.svg';
+import iconFinancial from './../../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
 
-export function PostCard() {
+export function PostCardLarge() {
     return (
-        <div className="content-box | relative mb-8 mr-4 rounded-lg h-40">
+        <div className="content-box | relative mb-8 rounded-lg h-40">
             <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
                 <img className="w-5" src={iconFinancial} alt="Financieel"></img>
             </div>
-            <div className="flex w-64 h-full drop-shadow">
+            <div className="flex h-full drop-shadow">
                 <div className="flex items-end w-7/12">
                     <div className="flex overflow-y-auto pl-3 py-3">
                         <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">Financieel</button></div>

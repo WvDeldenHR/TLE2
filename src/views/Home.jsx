@@ -2,11 +2,11 @@ import './../index.css';
 
 import { useState, useEffect } from 'react'
 // Components
-import { NotificationButton } from '../components/buttons/NotificationButton.js';
+import { NotificationButton } from '../components/buttons/NotificationButton';
 import { Searchbar } from '../forms/Searchbar.js';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
-import { PostCardLarge } from '../components/PostCardLarge.js';
+import { PostCardLarge } from '../components/content/PostCardLarge';
 import { Navbar } from "../navs/Navbar.jsx";
 
 import { auth } from "../config/firebase"
@@ -46,11 +46,11 @@ export function Home() {
 
 
     return (
-        <div className="">
+        <div className="bg-white">
+            <Navbar />
+
             <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">
-                <div className="tnn | flex justify-end">
-                    { <NotificationButton /> }
-                </div>
+                { <NotificationButton /> }
                 <div className="pt-2 pb-6">
                     <h1 className="text-3xl text-white font-semibold">Hallo</h1>
                     <h1 className="text-3xl text-white font-semibold">{displayName}</h1>
@@ -59,9 +59,7 @@ export function Home() {
                     <div className="w-full">
                        { <Searchbar /> }
                     </div>
-                    <div className="">
-                        { <FilterButton /> }
-                    </div>
+                    { <FilterButton /> }
                 </div>
                 <div className="-mr-5">
                     { <TagButtonsSlider />}

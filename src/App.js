@@ -20,17 +20,17 @@ import { ProfilePicture } from "./components/userprofile/ProfilePicture"
 import { UpdatePassword } from "./components/userprofile/UpdatePassword"
 import { LogOut } from "./components/userprofile/LogOut"
 import { ForgotPassword } from "./components/userprofile/ForgotPassword"
-import { LoginAgain } from "./components/userprofile/LoginAgain";
-
+import { LoginAgain } from "./components/userprofile/LoginAgain"
+import { SearchingPosts } from "./components/search/SearchingPosts"
 
 // Components
 // import { Navbar } from "./navs/Navbar.jsx";
 // Views
-import { Home } from "./views/Home.jsx";
-import { Discover } from './views/Discover.jsx';
-// import { Post } from './views/Post.jsx';
-// import { Overview } from './views/Overview.jsx';
-// import { Settings } from './views/Settings.jsx';
+import { Home } from "./views/Home";
+import { Discover } from './views/Discover';
+import { PostCreate } from './views/PostCreate';
+import { Overview } from './views/Overview';
+// import { Settings } from './views/Settings';
 
 
 function App() {
@@ -78,6 +78,9 @@ function App() {
         <Route path="/post/create" element={<AuthChecker><CreatePost /></AuthChecker>} />
         <Route path="/post/list" element={<AuthChecker><ListPosts /></AuthChecker>} />
         <Route path="/post/edit/:postId" element={<AuthChecker><EditPost /></AuthChecker>} />
+
+        <Route path="post-create" element={ <PostCreate />} />
+        <Route path="/search" element={ <SearchingPosts />} />
   
       </Routes>
       {/* <Navbar /> */}
