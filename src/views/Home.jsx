@@ -3,7 +3,7 @@ import './../index.css';
 import { useState, useEffect } from 'react'
 // Components
 import { NotificationButton } from '../components/buttons/NotificationButton';
-import { Searchbar } from '../forms/Searchbar.js';
+import { Searchbar } from '../components/forms/Searchbar';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
 import { PostCardLarge } from '../components/content/PostCardLarge';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './../css/index.css';
+import './../index.css';
 // Components
-import { Navbar } from "./../components/navs/Navbar";
+import { Navbar } from "./../navs/Navbar.jsx";
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
 import { SearchbarAlt } from '../components/forms/SearchbarAlt';
 import { OverviewUser } from '../components/content/OverviewUser';

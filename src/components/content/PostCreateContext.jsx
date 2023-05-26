@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './../../css/index.css';
+import '../../index.css';
 //Components
 import { PostCreateContextText } from './PostCreateContextText';
 import { PostCreateContextPhoto } from './PostCreateContextPhoto';

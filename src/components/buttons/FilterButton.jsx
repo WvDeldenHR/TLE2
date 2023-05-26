@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './../../css/index.css';
+import './../../index.css';
 // Component
 import { SearchbarAlt } from './../../components/forms/SearchbarAlt';
 // Images
