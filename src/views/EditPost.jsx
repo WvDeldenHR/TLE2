@@ -5,6 +5,9 @@ import { db, storage } from "../firebase-config";
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 
 export function EditPost() {
+
+  const mainCategories = ['Financieel', 'Eten', 'Spullen', 'Acties'];
+
   const { postId } = useParams();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -17,6 +20,9 @@ export function EditPost() {
   const [filesToDelete, setFilesToDelete] = useState([]); // New state for tracking files to delete
   const [uploading, setUploading] = useState(false);
 
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -25,6 +31,7 @@ export function EditPost() {
           const postData = postDoc.data();
           setTitle(postData.title);
           setDes(postData.description);
+          setSelectedCategory(postData.category); // Stel de geselecteerde categorie in
           setFiles([]);
           setExistingImages(postData.imageURLs);
           setLoading(false);
@@ -127,6 +134,7 @@ export function EditPost() {
         title: title,
         description: des,
         imageURLs: updatedFileURLs,
+        category: selectedCategory,
       });
 
       // Delete files marked for deletion
@@ -246,6 +254,23 @@ export function EditPost() {
             </tbody>
           </table>
         </div>
+
+        {/* Category selection */}
+        <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2">Choose a main category</label>
+        <div className="flex">
+          {mainCategories.map((mainCategory) => (
+            <button
+              key={mainCategory}
+              className={`border rounded py-2 px-4 mr-2 ${selectedCategory === mainCategory ? 'bg-blue-500 text-white' : 'bg-white'}`}
+              type="button"
+              onClick={() => setSelectedCategory(mainCategory)}
+            >
+              {mainCategory}
+            </button>
+          ))}
+        </div>
+      </div>
 
         {/* Error message */}
         {errorMessage && (

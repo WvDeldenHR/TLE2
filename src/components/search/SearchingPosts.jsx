@@ -7,6 +7,9 @@ import '../../index.css';
 // Images
 import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.svg';
 import iconFinancial from './../../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
+import iconStuff from './../../assets/icons/icon_stuff_001_FFFFFF_32x32.svg';
+import iconConsumption from './../../assets/icons/icon_consumption_001_FFFFFF_32x32.svg';
+import iconCharity from './../../assets/icons/icon_charity_001_FFFFFF_32x32.svg';
 
 
 export const SearchingPosts = () => {
@@ -60,12 +63,24 @@ export const SearchingPosts = () => {
             }}
           >
             <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
-                <img className="w-5" src={iconFinancial} alt="Financieel"></img>
+            {post.category === 'Financieel' && (
+              <img className="w-5" src={iconFinancial} alt="Financieel" />
+            )}
+            {post.category === 'Acties' && (
+              <img className="w-5" src={iconCharity} alt="Acties" />
+            )}
+            {post.category === 'Eten' && (
+              <img className="w-5" src={iconConsumption} alt="Financieel" />
+            )}
+            {post.category === 'Spullen' && (
+              <img className="w-5" src={iconStuff} alt="Acties" />
+            )}
+          
             </div>
             <div className="flex h-full drop-shadow">
                 <div className="flex items-end w-7/12">
                     <div className="flex overflow-y-auto pl-3 py-3">
-                        <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">Financieel</button></div>
+                        <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.category}</button></div>
                         <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">Buurthuis-activiteiten</button></div>
                     </div>
                 </div>

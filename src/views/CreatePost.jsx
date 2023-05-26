@@ -5,11 +5,17 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
 export function CreatePost() {
+
+    const mainCategories = ['Financieel', 'Eten', 'Spullen', 'Acties'];
+
     const [title, setTitle] = useState("");
     const [des, setDes] = useState("");
     const [files, setFiles] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+
+    const [selectedCategory, setSelectedCategory] = useState('');
+
     // const [user]= useState("")
 
     const navigate = useNavigate();
@@ -82,6 +88,7 @@ export function CreatePost() {
             description: des,
             imageURLs: fileURLs,
             userId: userId, // Associate the post with the user
+            category: selectedCategory, // Include the selected categor
         });
 
         setUploading(false);
@@ -106,7 +113,7 @@ export function CreatePost() {
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="name"
                         type="text"
-                        placeholder="Username"
+                        placeholder=""
                         value={title}
                         onChange={(event) => {
                             setTitle(event.target.value);
@@ -144,10 +151,28 @@ export function CreatePost() {
 
                 </div>
 
+                {/* Category selection */}
+                <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">Choose a main category</label>
+                <div className="flex">
+                    {mainCategories.map((mainCategory) => (
+                    <button
+                        key={mainCategory}
+                        className={`border rounded py-2 px-4 mr-2 ${selectedCategory === mainCategory ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                        type="button"
+                        onClick={() => setSelectedCategory(mainCategory)}
+                    >
+                        {mainCategory}
+                    </button>
+                    ))}
+                </div>
+                </div>
+
                 {/* Error message */}
                 {errorMessage && (
                     <p className="text-red-500 mb-4">{errorMessage}</p>
                 )}
+                
 
                 {/* Submit button */}
                 <div className="flex items-center justify-between">
@@ -161,6 +186,9 @@ export function CreatePost() {
 
                 </div>
                 {/* <input type="hidden" value={user.userId} /> */}
+
+
+
             </form>
         </div>
     );

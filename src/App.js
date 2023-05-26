@@ -30,6 +30,10 @@ import { Home } from "./views/Home";
 import { Discover } from './views/Discover';
 import { PostCreate } from './views/PostCreate';
 import { Overview } from './views/Overview';
+import FinancialCategory from "./components/category/FinancialCategory";
+import StuffCategory from "./components/category/StuffCategory";
+import ConsumptionCategory from "./components/category/ConsumptionCategory";
+import CharityCategory from "./components/category/CharityCategory";
 // import { Settings } from './views/Settings';
 
 
@@ -81,7 +85,16 @@ function App() {
 
         <Route path="post-create" element={ <PostCreate />} />
         <Route path="/search" element={ <SearchingPosts />} />
-  
+
+        {/* <Route path="/category/:category" render={({ match }) => <CategoryPosts category={match.params.category} />} />
+   */}
+
+        <Route path="/financieel" element={<FinancialCategory />} />
+        <Route exact path="/spullen" element={<StuffCategory />} />
+        <Route exact path="/eten" element={<ConsumptionCategory />} />
+        <Route exact path="/acties" element={<CharityCategory />} />   
+
+
       </Routes>
       {/* <Navbar /> */}
     </BrowserRouter>
