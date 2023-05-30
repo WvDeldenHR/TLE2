@@ -8,8 +8,7 @@ import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
 import { PostCardLarge } from '../components/content/PostCardLarge';
 import { Navbar } from "../components/navs/Navbar.jsx";
-
-import Searching from './../components/search/Searching';
+import Searchbar from '../components/search/Searchbar';
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
@@ -96,7 +95,7 @@ export function Home() {
                 </div>
                 <div className={`transition-3 | flex items-center ${search ? "-transformY-38" : "transformY-0"}`}>
                     <div onClick={() => searchToggle(1) } className={`flex mr-3 rounded-lg w-full h-10 ${search ? "bg-gray-200" : "bg-white bg-opacity-25"}`}>
-                       { <Searching onSearch={handleSearch} /> }
+                       { <Searchbar onSearch={handleSearch} /> }
                     </div>
                     <div className={`transition-3 ${search ? "hidden" : "flex"}`}>
                         { <FilterButton />}
@@ -113,7 +112,7 @@ export function Home() {
             <div className={`fixed w-full top-16 left-0 right-0 bottom-0 bg-white overflow-x-hidden z-30 ${search ? "h-full" : "h-0"} `}>
                 <div className={`transition-3 | p-6 w-full h-full bg-white ${search ? "opacity-100" : "opacity-0"}`}>            
                     <div className="pb-6">
-                        <h2 className="text-normal text-dark font-semibold">Recente Zoekopdrachten</h2>
+                        {/* <h2 className="text-normal text-dark font-semibold">Recente Zoekopdrachten</h2> */}
                     </div>
 
                     {noResults ? (

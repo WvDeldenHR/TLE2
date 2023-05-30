@@ -8,8 +8,7 @@ import { NotificationButtonAlt } from '../components/buttons/NotificationButtonA
 import { PostCard } from '../components/content/PostCard';
 import { PostCardSmall } from '../components/content/PostCardSmall';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
-
-import Searching from './../components/search/Searching';
+import Searchbar from '../components/search/Searchbar';
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
@@ -58,6 +57,7 @@ export function Discover() {
             );
         setFilteredPosts(filtered);
         setNoResults(filtered.length === 0);
+        
     };
 
 
@@ -76,7 +76,7 @@ export function Discover() {
                 </div>
                 <div className={`transition-3 | flex items-center ${search ? "pb-2 -transformY-17" : "-transformY-0"}`}>
                     <div onClick={() => searchToggle(1) } className="flex mr-3 rounded-lg w-full h-10 drop-shadow bg-gray-200">
-                        <Searching onSearch={handleSearch} />
+                        <Searchbar onSearch={handleSearch} />
                     </div>
                     <div className={`transition-3 ${search ? "hidden" : "flex"}`}>
                         { <FilterButtonAlt />}
@@ -93,7 +93,7 @@ export function Discover() {
             <div className={`fixed w-full top-16 left-0 right-0 bg-white overflow-x-hidden z-30 ${search ? "h-full" : "h-0"} `}>
                 <div className={`transition-3 | px-6 py-10 w-full h-full bg-white ${search ? "opacity-100" : "opacity-0"}`}>
                     <div className="pb-6">
-                        <h2 className="text-normal text-dark font-semibold">Recente Zoekopdrachten</h2>
+                        {/* <h2 className="text-normal text-dark font-semibold">Recente Zoekopdrachten</h2> */}
                     </div>
 
                         {noResults ? (
