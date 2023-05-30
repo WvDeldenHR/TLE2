@@ -1,18 +1,20 @@
-import './../index.css';
-
 import { useState, useEffect } from 'react'
+import { auth } from "../config/firebase"
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { db } from './../config/firebase';
 // Components
 import { NotificationButton } from '../components/buttons/NotificationButton';
-import { Searchbar } from '../components/forms/Searchbar';
 import { FilterButton } from '../components/buttons/FilterButton';
 import { TagButtonsSlider } from '../components/buttons/TagButtonsSlider';
 import { PostCardLarge } from '../components/content/PostCardLarge';
-import { Navbar } from "../navs/Navbar.jsx";
+import { Navbar } from "../components/navs/Navbar.jsx";
 
-import { auth } from "../config/firebase"
+import Searching from './../components/search/Searching';
+// Images
+import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
+
 
 export function Home() {
-
     // const user = auth.currentUser;
     // const displayName = user.displayName;
     // console.log(displayName)
@@ -45,24 +47,105 @@ export function Home() {
   }, []);
 
 
+    // Searchbar Toggle
+    const [search, setSearch] = useState(0)
+    const searchToggle = (index) => {
+        setSearch(index);
+    }
+
+    // Search Function
+    const [posts, setPosts] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([]);
+    const [noResults, setNoResults] = useState(false);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(
+            query(collection(db, 'posts')), (snapshot) => {
+                const fetchedPosts = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+                setPosts(fetchedPosts);
+                setFilteredPosts(fetchedPosts);
+            }
+        );
+        return () => unsubscribe();
+        }, []);
+    
+        const handleSearch = (searchQuery) => {
+            const lowercaseQuery = searchQuery.toLowerCase();
+            const filtered = posts.filter((post) =>
+                post.title.toLowerCase().includes(lowercaseQuery)
+            );
+        setFilteredPosts(filtered);
+        setNoResults(filtered.length === 0);
+    };
+
     return (
         <div className="bg-white">
             <Navbar />
 
-            <div className="m-1 px-6 py-4 rounded-xl h-80 bg-primary">
-                { <NotificationButton /> }
-                <div className="pt-2 pb-6">
-                    <h1 className="text-3xl text-white font-semibold">Hallo</h1>
-                    <h1 className="text-3xl text-white font-semibold">{displayName}</h1>
-                </div>
-                <div className="flex">
-                    <div className="w-full">
-                       { <Searchbar /> }
+            <div className={`transition-3 | px-6 py-4 overflow-y-hidden 
+                            ${search ? "fixed border-b-1 border-gray-300 rounded-none h-18 top-0 left-0 right-0 z-40 bg-white" : "relative m-1 rounded-xl h-80 bg-primary"}`}>
+                <div className={`transition-3 ${search ? "opacity-0 -transformY-40" : "opacity-100 transformY-0"}`}>
+                    { <NotificationButton /> }
+                    <div className="pt-2 pb-6">
+                        <h1 className="text-3xl text-white font-semibold">Hallo</h1>
+                        <h1 className="text-3xl text-white font-semibold">{displayName}</h1>
                     </div>
-                    { <FilterButton /> }
+                </div>
+                <div className={`transition-3 | flex items-center ${search ? "-transformY-38" : "transformY-0"}`}>
+                    <div onClick={() => searchToggle(1) } className={`flex mr-3 rounded-lg w-full h-10 ${search ? "bg-gray-200" : "bg-white bg-opacity-25"}`}>
+                       { <Searching onSearch={handleSearch} /> }
+                    </div>
+                    <div className={`transition-3 ${search ? "hidden" : "flex"}`}>
+                        { <FilterButton />}
+                    </div>
+                    <div onClick={() => searchToggle(0) } className={`transition-3 ${search ? "w-20 transformX-0" : "w-0 transformX-24"}`}>
+                        <span className="text-sm text-dark font-semibold">Annuleren</span>
+                    </div>
                 </div>
                 <div className="-mr-5">
                     { <TagButtonsSlider />}
+                </div>
+            </div>
+
+            <div className={`fixed w-full top-16 left-0 right-0 bottom-0 bg-white overflow-x-hidden z-30 ${search ? "h-full" : "h-0"} `}>
+                <div className={`transition-3 | p-6 w-full h-full bg-white ${search ? "opacity-100" : "opacity-0"}`}>            
+                    <div className="pb-6">
+                        <h2 className="text-normal text-dark font-semibold">Recente Zoekopdrachten</h2>
+                    </div>
+
+                    {noResults ? (
+                        <p className="text-dark">Geen resultaten gevonden</p>
+                    ) : (filteredPosts.map((post) => (
+                        <div key={post.id} className="flex items-center mb-3 h-20">
+                           <div className="rounded-lg h-4/5 w-3/12"
+                                key={post.id}
+                                style={{
+                                    backgroundColor: '#E6E6E6',
+                                    backgroundImage: `url(${post.imageURLs[0]})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                }}>
+                            </div>
+                            <div className="ml-4 pl-2 border-b-1 border-gray-500 w-full">
+                                <div className="flex">
+                                    <h3 className="w-52 text-sm text-dark font-bold truncate">{post.title}</h3>
+                                    <span className="flex justify-end w-full text-xxs text-gray-500 font-normal">30-5-2023</span>
+                                </div>
+                                <div className="flex items-center py-0.5">
+                                    <img className="w-3" src={iconLocation} alt=""></img>
+                                    <span className="ml-1 text-xxs text-dark font-medium">Locatie</span>
+                                </div>
+                                <div className="flex overflow-y-auto pb-2">
+                                    <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxxs font-semibold">Financieel</button></div>
+                                    <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxxs font-semibold">Buurthuis-activiteiten</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    )))}
                 </div>
             </div>
 
@@ -97,9 +180,6 @@ export function Home() {
                     </div>
                 </div>
             </div>
-
-            <Navbar />
-
         </div>
     );
 }

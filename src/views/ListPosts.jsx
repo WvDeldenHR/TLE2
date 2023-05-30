@@ -4,7 +4,7 @@ import { db, storage } from "../firebase-config";
 import { ref, deleteObject } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase"
-import { Navbar } from "../navs/Navbar.jsx";
+import { Navbar } from "../components/navs/Navbar.jsx";
 
 export function ListPosts() {
   const [posts, setPosts] = useState([]);

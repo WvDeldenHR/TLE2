@@ -14,6 +14,9 @@ module.exports = {
         'dark': '#212427',
         'primary': '#519859',
       },
+      borderWidth: {
+        '1': '1px',
+      },
       fill: {
         'white': '#ffffff',
         'gray-400': 'rgb(156 163 175)',
@@ -22,6 +25,9 @@ module.exports = {
         'xxs': '0.625rem',
         'xxxs': '.5rem',
       },
+      height: {
+        '18': '4.5rem',
+      },
       minHeight: {
         '72': '18rem',
       },
@@ -29,6 +35,7 @@ module.exports = {
         'dark': '#212427',
       },
       spacing: {
+        '0.5': '0.125rem',
         '38': '9.5rem',
         '30': '7.5rem',
       },
