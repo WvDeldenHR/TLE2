@@ -4,7 +4,7 @@ import './../../index.css';
 import { SearchbarAlt } from './../../components/forms/SearchbarAlt';
 // Images
 import IconArrow from './../../assets/icons/icon_arrow_001_212427_32x32.svg';
-import IconCharity from './../..//assets/icons/icon_charity_001_FFFFFF_32x32.svg'
+import IconCharity from './../..//assets/icons/icon_charity_001_FFFFFF_32x32.svg';
 import IconConsumption from './../../assets/icons/icon_consumption_001_FFFFFF_32x32.svg';
 import IconFinancial from './../../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
 import IconStuff from './../../assets/icons/icon_stuff_001_FFFFFF_32x32.svg';
@@ -57,11 +57,15 @@ export function FilterButton() {
                 <div className="grid grid-cols-2">
                     <div className="">
                         <div className="flex items-center pb-4">
+
+
                             <div className="mr-2 rounded p-2 bg-primary">
                                 <img className="w-4" src={ IconFinancial } alt="Financieel"></img>
                             </div>
                             <div>
+                                <a href="/financieel">
                                 <h3 className="text-dark font-semibold">Financieel</h3>
+                                </a>
                             </div>
                         </div>
                         <div className="px-4 pb-4">
@@ -78,7 +82,9 @@ export function FilterButton() {
                                 <img className="w-4" src={ IconStuff } alt="Spullen"></img>
                             </div>
                             <div>
+                                <a href="/spullen">
                                 <h3 className="text-dark font-semibold">Spullen</h3>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -88,7 +94,9 @@ export function FilterButton() {
                                 <img className="w-4" src={ IconConsumption } alt="Eten & Drinken"></img>
                             </div>
                             <div>
+                                <a href="/eten">
                                 <h3 className="text-dark font-semibold">Eten & Drinken</h3>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -98,7 +106,9 @@ export function FilterButton() {
                                 <img className="w-4" src={ IconCharity } alt="Acties"></img>
                             </div>
                             <div>
+                                <a href="/acties">
                                 <h3 className="text-dark font-semibold">Acties</h3>
+                                </a>
                             </div>
                         </div>
                     </div>
