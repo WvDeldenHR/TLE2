@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { auth } from "../../config/firebase"
-import { Navbar } from "../../navs/Navbar.jsx";
+import { Navbar } from "../../components/navs/Navbar.jsx";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 

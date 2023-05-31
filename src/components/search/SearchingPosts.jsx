@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../config/firebase';
-import Searching from './Searching';
+import Searchbar from './Searchbar';
 
-import '../../index.css';
 // Images
 import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.svg';
 import iconFinancial from './../../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
@@ -43,7 +42,7 @@ export const SearchingPosts = () => {
   return (
     <div className='p-8'>
       {/* Render the SearchBar component and pass the handleSearch function */}
-      <Searching onSearch={handleSearch} />
+      <Searchbar onSearch={handleSearch} />
 
       {/* Display the filtered posts */}
       {filteredPosts.map((post) => (

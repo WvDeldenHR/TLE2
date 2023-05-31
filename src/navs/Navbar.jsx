@@ -24,7 +24,7 @@ export function Navbar() {
                                 </NavLink>
                         </li>
                         <li className="-mt-6 mx-2 rounded-full p-5 bg-primary">
-                                <NavLink to="/post/create" activeClassName="active">
+                                <NavLink to="/overview" activeClassName="active">
                                         <PlusSvg className="h-8 w-8" src={home} alt={"Home"}></PlusSvg>
                                 </NavLink>
                         </li>
