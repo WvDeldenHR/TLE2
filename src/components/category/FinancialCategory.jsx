@@ -61,7 +61,7 @@ const FinancialCategory = () => {
 
       {posts.map((post) => (
         <div >
-            <button onClick={() => handeDetail(post.id)}>
+            <button onClick={() => handeDetail(post.id)} className="w-full">
                 <div
                 className="content-box relative mb-8 rounded-lg h-40"
                 key={post.id}
