@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from './../config/firebase';
+import { useNavigate } from "react-router-dom";
+
 // Components
 import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
 import { Navbar } from "../components/navs/Navbar";
@@ -14,6 +16,9 @@ import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
 
 export function Discover() {
+
+    const navigate = useNavigate();
+
     // Scroll
     const [shadow, setShadow] = useState(false)
     const scrollShadow = () => {

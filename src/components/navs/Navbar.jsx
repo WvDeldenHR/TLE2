@@ -28,7 +28,7 @@ export function Navbar() {
                     </NavLink>
                 </li>
                 <li className="mx-4">
-                    <NavLink end to="/post/list">
+                    <NavLink end to="/overview">
                         <IconList className="w-6 h-6"></IconList>
                     </NavLink>
                 </li>
