@@ -29,7 +29,7 @@ export function Navbar() {
                                 </NavLink>
                         </li>
                         <li className="mx-4">
-                                <NavLink to="/post/list" activeClassName="active">
+                                <NavLink to="/overview" activeClassName="active">
                                         <ListSvg className="w-8 h-8" src={home} alt={"Home"}></ListSvg>
                                 </NavLink>
                         </li>

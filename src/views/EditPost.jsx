@@ -129,12 +129,15 @@ export function EditPost() {
     try {
       const updatedFileURLs = [...existingImages, ...newFileURLs];
 
+      // Get the current date
+      const currentDate = new Date();
 
       await updateDoc(doc(db, "posts", postId), {
         title: title,
         description: des,
         imageURLs: updatedFileURLs,
         category: selectedCategory,
+        createdAt: currentDate.toLocaleDateString() // Save the current date
       });
 
       // Delete files marked for deletion
@@ -146,7 +149,7 @@ export function EditPost() {
       );
 
       console.log("Post updated");
-      navigate("/post/list"); // Redirect to the post list after successful update
+      navigate("/overview"); // Redirect to the post list after successful update
     } catch (error) {
       console.log(error);
       // Handle error, e.g., display an error message or navigate to an error page

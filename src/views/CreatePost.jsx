@@ -29,6 +29,10 @@ export function CreatePost() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const user = auth.currentUser;
+        const { displayName, email, photoURL } = user;
+
+
         if (!title || title.length < 6) {
             setErrorMessage("Please fill in a title with at least 6 characters.");
             return;
@@ -53,6 +57,7 @@ export function CreatePost() {
                 return new Promise((resolve, reject) => {
                     const storageRef = ref(storage, Date.now() + "_" + file.name);
                     const uploadTask = uploadBytesResumable(storageRef, file);
+                    
 
                     uploadTask.on(
                         "state_changed",
@@ -82,6 +87,9 @@ export function CreatePost() {
         // Get the current user's ID
         const userId = auth.currentUser.uid;
 
+        // Get the current date
+        const currentDate = new Date();
+
         // Save the post data to Firebase
         await addDoc(postsCollectionRef, {
             title: title,
@@ -89,12 +97,16 @@ export function CreatePost() {
             imageURLs: fileURLs,
             userId: userId, // Associate the post with the user
             category: selectedCategory, // Include the selected categor
+            createdAt: currentDate.toLocaleDateString(), // Save the current date
+            displayName: displayName, // Save the user's displayName
+            email: email, // Save the user's email
+            photoURL: photoURL // Save the user's photoURL
         });
 
         setUploading(false);
         console.log("Uploaded");
 
-        navigate("/post/list")
+        navigate("/overview")
     };
 
     return (

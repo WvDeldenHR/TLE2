@@ -19,7 +19,7 @@ export function ListPosts() {
         if (post.userId === userId) { // Check if the post belongs to the current user
           postData.push(post);
         }
-      });
+      }); 
       setPosts(postData);
     });
 

@@ -30,6 +30,7 @@ import { Home } from "./views/Home";
 import { Discover } from './views/Discover';
 import { PostCreate } from './views/PostCreate';
 import { Overview } from './views/Overview';
+import { PostDetail } from './views/PostDetail';
 import FinancialCategory from "./components/category/FinancialCategory";
 import StuffCategory from "./components/category/StuffCategory";
 import ConsumptionCategory from "./components/category/ConsumptionCategory";
@@ -83,12 +84,12 @@ function App() {
         <Route path="/post/list" element={<AuthChecker><ListPosts /></AuthChecker>} />
         <Route path="/post/edit/:postId" element={<AuthChecker><EditPost /></AuthChecker>} />
 
+        <Route path="/overview" element={ <Overview />} />
+        <Route path="/post/:postId" element={ <PostDetail />} />
+
         <Route path="post-create" element={ <PostCreate />} />
         <Route path="/search" element={ <SearchingPosts />} />
-
-        {/* <Route path="/category/:category" render={({ match }) => <CategoryPosts category={match.params.category} />} />
-   */}
-
+      
         <Route path="/financieel" element={<FinancialCategory />} />
         <Route exact path="/spullen" element={<StuffCategory />} />
         <Route exact path="/eten" element={<ConsumptionCategory />} />

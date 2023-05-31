@@ -27,10 +27,10 @@ export function Overview() {
     };
 
     return (
-        <div className="bg-white">
+        <div className="bg-white ">
             <Navbar />
 
-            <div className={`fixed top-0 left-0 right-0 m-1 px-6 py-4 rounded bg-white z-50 ${color ? "drop-shadow-lg" : ""}`}>
+            <div className={`fixed top-0 left-0 right-0 m-1 px-6 mb-10 pt-5 rounded bg-white z-50 ${color ? "drop-shadow-lg" : ""}`}>
                 <div className="flex items-center pb-5">
                     <div className="w-full">
                         <h2 className="text-lg text-dark font-bold">Ontdekken</h2>
@@ -50,7 +50,7 @@ export function Overview() {
                 </div>
             </div>
 
-            <div className="mt-60 px-6">
+            <div className="mt-60 px-6 pb-20">
                 {contextOptions[optionsIndex]}
             </div>
         </div>

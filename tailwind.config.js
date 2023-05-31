@@ -13,6 +13,7 @@ module.exports = {
       borderColor: {
         'dark': '#212427',
         'primary': '#519859',
+        'error': "#ed1c24",
       },
       fill: {
         'white': '#ffffff',
@@ -35,6 +36,7 @@ module.exports = {
       textColor: {
         'dark': '#212427',
         'primary': '#519859',
+        'error': "#ed1c24",
       },
     },
   },
