@@ -121,15 +121,18 @@ export function PostDetail () {
                 </div>
 
                 {/* Slideshow */}
+                {/* Slideshow */}
                 <div className="mt-4 mb-36">
-                  {post.imageURLs.length > 1 && (
-                    <button onClick={previousImage}>&lt;</button>
-                  )}
                   <img src={post.imageURLs[currentImageIndex]} alt="" />
                   {post.imageURLs.length > 1 && (
-                    <button onClick={nextImage}>&gt;</button>
+                    <div className="flex justify-center">
+                      <button onClick={previousImage} className="mr-10 mt-4 rounded-2xl bg-gray-300 text-black py-1 px-3"><i class="fa-solid fa-angle-left"></i></button>
+                      <p className="mt-5"><i class="fa-regular fa-image fa-lg"></i></p>
+                      <button onClick={nextImage} className="ml-10 mt-4 rounded-2xl bg-gray-300 text-black py-1 px-3"><i class="fa-solid fa-angle-right"></i></button>
+                    </div>
                   )}
                 </div>
+
 
             </div>
 

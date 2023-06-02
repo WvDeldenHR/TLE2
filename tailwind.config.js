@@ -45,6 +45,10 @@ module.exports = {
         'primary': '#519859',
         'error': "#ed1c24",
       },
+      zIndex: {
+        '15': '15',
+        '60': '60',
+      },
     },
   },
   plugins: [],

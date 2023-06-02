@@ -90,6 +90,9 @@ export function CreatePost() {
         // Get the current date
         const currentDate = new Date();
 
+        // Convert the current date to a localized date string
+        const createdAtString = currentDate.toLocaleDateString();
+
         // Save the post data to Firebase
         await addDoc(postsCollectionRef, {
             title: title,
@@ -97,7 +100,7 @@ export function CreatePost() {
             imageURLs: fileURLs,
             userId: userId, // Associate the post with the user
             category: selectedCategory, // Include the selected categor
-            createdAt: currentDate.toLocaleDateString(), // Save the current date
+            createdAt: new Date(createdAtString), // Convert the createdAt string to a Date object
             displayName: displayName, // Save the user's displayName
             email: email, // Save the user's email
             photoURL: photoURL // Save the user's photoURL

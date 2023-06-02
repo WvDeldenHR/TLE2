@@ -13,7 +13,7 @@ export function NotificationButtonAlt2() {
     }; 
 
     return (
-        <div className="fixed flex justify-end right-7 top-8">
+        <div className="fixed flex justify-end right-7 top-8 z-20">
             <span className="absolute flex items-center justify-center -mt-1 ml-7 rounded-full w-6 h-6 bg-error text-xxxs text-white font-semibold z-10">1</span>
             <button className="flex items-center justify-center rounded-full w-12 h-12 bg-white drop-shadow" onClick={ toggleOverlay }>
                 <img className="w-6" src={iconNotification} alt="Notifications"></img>
