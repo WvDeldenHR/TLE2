@@ -99,7 +99,7 @@ export function Home() {
         fetchLatestPost();
       }, []);
       
-      const handeDetail = (postId) => {
+      const handleDetail = (postId) => {
         navigate(`/overview`);
       }
 
@@ -174,9 +174,9 @@ export function Home() {
             <div className="-mt-8 px-6">
 
                 <div className="pb-5">
-                {latestPost && (
+                {latestPost ? (
                     <div>
-                        <button onClick={() => handeDetail()} className='w-full'>
+                        <button onClick={() => handleDetail()} className='w-full'>
                             <div className="flex rounded-lg w-full h-40 drop-shadow"
                             style={{
                                 backgroundColor: '#E6E6E6',
@@ -202,8 +202,14 @@ export function Home() {
                             </div>
                         </button>
                     </div>
+
+                    ) : (
+
+                        <div className='my-10'></div>
+
                     )}
                 </div>
+                
                 <div>
                     <div className="pb-3">
                         <h2 className="text text-dark font-semibold">Vandaag Voor Jou Gekozen</h2>

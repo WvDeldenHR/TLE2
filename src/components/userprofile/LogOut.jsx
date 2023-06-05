@@ -43,7 +43,7 @@ export const LogOut = (props) => {
                                                                      
                    
                         <p className="flex mt-10 justify-center text-xs text-gray-500">
-                            <NavLink to="/home/settings" className="font-semibold leading-6 text-grey-900 hover:text-green-700">
+                            <NavLink to="/home" className="font-semibold leading-6 text-grey-900 hover:text-green-700">
                                 Nee, Ga terug
                             </NavLink>
                         </p>        

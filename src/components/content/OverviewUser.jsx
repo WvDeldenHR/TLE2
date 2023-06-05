@@ -77,7 +77,6 @@ export function OverviewUser() {
 
           return (
             <div key={post.id}>
-              {/* ...existing code... */}
               
                 <div className="flex w-full mb-2 items-center">
 
@@ -150,7 +149,7 @@ export function OverviewUser() {
                         <img className="w-2 mr-1" src={iconLocation} alt="Location"></img>
                         <span className="text-dark text-xxs truncate">Locatie</span>
                   </div>
-                   <p className="paragraph | tetx-dark text-xs">
+                   <p className="paragraph | text-dark text-xs">
                          {post.description}
                    </p>
                 </div>

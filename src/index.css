@@ -119,6 +119,7 @@ input:focus-visible, textarea:focus-visible {
   -webkit-box-orient: vertical;
   line-height: 0.875rem;
   overflow: hidden;
+  text-align: start;
 }
 
 .filter-overlay {

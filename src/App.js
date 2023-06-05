@@ -84,16 +84,16 @@ function App() {
         <Route path="/post/list" element={<AuthChecker><ListPosts /></AuthChecker>} />
         <Route path="/post/edit/:postId" element={<AuthChecker><EditPost /></AuthChecker>} />
 
-        <Route path="/overview" element={ <Overview />} />
-        <Route path="/post/:postId" element={ <PostDetail />} />
+        <Route path="/overview" element={<AuthChecker> <Overview /> </AuthChecker>} />
+        <Route path="/post/:postId" element={<AuthChecker> <PostDetail /> </AuthChecker>} />
 
-        <Route path="post-create" element={ <PostCreate />} />
-        <Route path="/search" element={ <SearchingPosts />} />
+        <Route path="post-create" element={<AuthChecker> <PostCreate /> </AuthChecker>} />
+        <Route path="/search" element={<AuthChecker> <SearchingPosts /> </AuthChecker>} />
       
-        <Route path="/financieel" element={<FinancialCategory />} />
-        <Route exact path="/spullen" element={<StuffCategory />} />
-        <Route exact path="/eten" element={<ConsumptionCategory />} />
-        <Route exact path="/acties" element={<CharityCategory />} />   
+        <Route path="/financieel" element={<AuthChecker> <FinancialCategory /> </AuthChecker>} />
+        <Route exact path="/spullen" element={<AuthChecker> <StuffCategory /> </AuthChecker>} />
+        <Route exact path="/eten" element={<AuthChecker> <ConsumptionCategory /> </AuthChecker>} />
+        <Route exact path="/acties" element={<AuthChecker> <CharityCategory /> </AuthChecker>} />   
 
 
       </Routes>
