@@ -8,7 +8,8 @@ import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
 import { Navbar } from "../components/navs/Navbar";
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
 import { PostCard } from '../components/content/PostCard';
-import { PostCardSmall } from '../components/content/PostCardSmall';
+// import { PostCardSmall } from '../components/content/PostCardSmall';
+import { RecommendedPosts } from '../components/content/RecommendedPosts';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
 import Searchbar from '../components/search/Searchbar';
 // Images
@@ -16,7 +17,6 @@ import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
 
 export function Discover() {
-
     const navigate = useNavigate();
 
     // Scroll
@@ -66,6 +66,8 @@ export function Discover() {
     };
 
 
+
+    
     // Content
     return (
         <div className="bg-white">
@@ -140,11 +142,7 @@ export function Discover() {
                         <h2 className="text-lg text-dark font-bold">Aanbevolen Voor Jou</h2>
                     </div>
                     <div className="flex -mt-1 -mr-6 pt-5 overflow-y-auto">
-                        { <PostCardSmall /> }
-                        { <PostCardSmall /> }
-                        { <PostCardSmall /> }
-                        { <PostCardSmall /> }
-                        { <PostCardSmall /> }
+                        <RecommendedPosts />
                     </div>
                 </div>
 
