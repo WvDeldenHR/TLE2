@@ -99,7 +99,7 @@ export function OverviewUser() {
                 </div>
 
 
-                <div className="w-24 px-2">
+                <div className="px-2 overflow-hidden">
                 <h3 className="text-dark text-sm font-semibold truncate">{post.title}</h3>
                 </div>
 

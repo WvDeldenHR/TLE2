@@ -15,12 +15,30 @@ export function CreatePost() {
     const [errorMessage, setErrorMessage] = useState("");
 
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [location, setLocation] = useState("");
+    const [locationError, setLocationError] = useState('');
+    const [subCategory, setSubCategory] = useState("");
+
 
     // const [user]= useState("")
 
     const navigate = useNavigate();
 
     const postsCollectionRef = collection(db, "posts");
+
+    const postcodePattern = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/;
+
+    const handleLocationChange = (event) => {
+        const inputValue = event.target.value;
+        setLocation(inputValue);
+
+        if (!inputValue.match(postcodePattern)) {
+        setLocationError('Please enter a valid Dutch postcode.');
+        } else {
+        setLocationError('');
+        }
+    };
+
 
     const handleFileChange = (e) => {
         setFiles(Array.from(e.target.files));
@@ -92,6 +110,7 @@ export function CreatePost() {
 
         // Convert the current date to a localized date string
         const createdAtString = currentDate.toLocaleDateString();
+          
 
         // Save the post data to Firebase
         await addDoc(postsCollectionRef, {
@@ -103,7 +122,10 @@ export function CreatePost() {
             createdAt: new Date(createdAtString), // Convert the createdAt string to a Date object
             displayName: displayName, // Save the user's displayName
             email: email, // Save the user's email
-            photoURL: photoURL // Save the user's photoURL
+            photoURL: photoURL, // Save the user's photoURL
+            location: location, // Include the location
+            subCategory: subCategory, // Include the subcategory
+            
         });
 
         setUploading(false);
@@ -166,6 +188,23 @@ export function CreatePost() {
 
                 </div>
 
+                {/* Location field */}
+                <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Location
+                </label>
+                <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="location"
+                    type="text"
+                    placeholder="3011WN"
+                    value={location}
+                    onChange={handleLocationChange}
+                />
+                 {locationError && <span>{locationError}</span>}
+                </div>
+
+
                 {/* Category selection */}
                 <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Choose a main category</label>
@@ -182,6 +221,27 @@ export function CreatePost() {
                     ))}
                 </div>
                 </div>
+
+                {/* Subcategory selection */}
+                <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Choose a subcategory
+                </label>
+                <select
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    value={subCategory}
+                    onChange={(event) => {
+                    setSubCategory(event.target.value);
+                    }}
+                >
+                    <option value="">Select a subcategory</option>
+                    {/* Add your subcategory options here */}
+                    <option value="Subcategory 1">Buurthuis-activiteiten</option>
+                    <option value="Subcategory 2">School</option>
+                    <option value="Subcategory 3">Milieu</option>
+                </select>
+                </div>
+
 
                 {/* Error message */}
                 {errorMessage && (

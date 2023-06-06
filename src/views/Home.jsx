@@ -87,12 +87,21 @@ export function Home() {
 
     useEffect(() => {
         const fetchLatestPost = async () => {
-          const postsCollectionRef = collection(db, "posts");
-          const q = query(postsCollectionRef, orderBy("createdAt", "desc"), limit(1));
-          const querySnapshot = await getDocs(q);
-          if (!querySnapshot.empty) {
-            const latestPostData = querySnapshot.docs[0].data();
-            setLatestPost(latestPostData);
+          const user = auth.currentUser;
+          if (user) {
+            const userId = user.uid;
+            const postsCollectionRef = collection(db, "posts");
+            const q = query(
+              postsCollectionRef,
+              where("userId", "==", userId),
+              orderBy("createdAt", "desc"),
+              limit(1)
+            );
+            const querySnapshot = await getDocs(q);
+            if (!querySnapshot.empty) {
+              const latestPostData = querySnapshot.docs[0].data();
+              setLatestPost(latestPostData);
+            }
           }
         };
       

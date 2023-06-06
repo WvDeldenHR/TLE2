@@ -8,6 +8,7 @@ import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
 import { Navbar } from "../components/navs/Navbar";
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
 import { PostCard } from '../components/content/PostCard';
+import { PostCardActies } from '../components/content/PostCardActies';
 import { PostCardSmall } from '../components/content/PostCardSmall';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
 import Searchbar from '../components/search/Searchbar';
@@ -166,11 +167,7 @@ export function Discover() {
                         <h2 className="text-lg text-dark font-bold">Acties</h2>
                     </div>
                     <div className="flex -mt-1 -mr-6 pt-5 overflow-y-auto">
-                        { <PostCard /> }
-                        { <PostCard /> }
-                        { <PostCard /> }
-                        { <PostCard /> }
-                        { <PostCard /> }
+                        { <PostCardActies /> }
                     </div>
                 </div>
             </div>

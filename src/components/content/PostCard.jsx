@@ -6,7 +6,7 @@ import iconFinancial from './../../assets/icons/icon_financial_001_FFFFFF_32x32.
 export function PostCard() {
     return (
         <div className="content-box | relative mb-8 mr-4 rounded-lg h-40">
-            <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
+            <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10"> 
                 <img className="w-5" src={iconFinancial} alt="Financieel"></img>
             </div>
             <div className="flex w-64 h-full drop-shadow">
