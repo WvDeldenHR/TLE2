@@ -17,7 +17,7 @@ const CharityCategory = () => {
   const [categoryName, setCategoryName] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchPosts = async () => {
       const q = query(collection(db, 'posts'), where('category', '==', 'Acties'));
       const querySnapshot = await getDocs(q);
