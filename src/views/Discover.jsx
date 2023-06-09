@@ -166,7 +166,7 @@ export function Discover() {
                     <div className="">
                         <h2 className="text-lg text-dark font-bold">Acties</h2>
                     </div>
-                    <div className="flex -mt-1 -mr-6 pt-5 overflow-y-auto">
+                    <div className="flex flex-row -mt-1 -mr-6 pt-5 overflow-y-auto">
                         { <PostCardActies /> }
                     </div>
                 </div>

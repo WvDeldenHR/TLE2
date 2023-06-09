@@ -33,11 +33,16 @@ export function PostCardActies() {
         navigate(-1); // Go back to the previous page
     };
 
+    const handleDetail = (postId) => {
+        navigate(`/post/${postId}`);
+      }
+
     return (
-        <div>
+        <div className='flex flex-row mr-6 '>
             {posts.map((post) => (
+                <button onClick={() => handleDetail(post.id)}>
                 <div
-                className="content-box relative mb-8 rounded-lg h-40"
+                className="content-box relative mb-8 rounded-lg h-40 mr-4"
                 key={post.id}
                 style={{
                     backgroundImage: `url(${post.imageURLs[0]})`,
@@ -60,7 +65,7 @@ export function PostCardActies() {
                             <h3 className="text-dark text-sm font-semibold truncate">{post.title}</h3>
                             <div className="flex items-center pb-2">
                                 <img className="w-2 mr-1" src={iconLocation} alt="Location"></img>
-                                <span className="text-dark text-xxs truncate">Locatie</span>
+                                <span className="text-dark text-xxs truncate">{post.location}</span>
                             </div>
                             <p className="paragraph | tetx-dark text-xs">
                                 {post.description}
@@ -68,6 +73,7 @@ export function PostCardActies() {
                         </div>
                     </div>
                 </div>
+                </button>
             ))}
         </div>
     );

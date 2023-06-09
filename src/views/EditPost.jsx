@@ -21,6 +21,12 @@ export function EditPost() {
   const [uploading, setUploading] = useState(false);
 
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [location, setLocation] = useState("");
+  const [locationError, setLocationError] = useState('');
+  const [subCategory, setSubCategory] = useState("");
+
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumberError, setPhoneNumberError] = useState('');
 
 
   useEffect(() => {
@@ -77,6 +83,32 @@ export function EditPost() {
     }
   };
 
+  const postcodePattern = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/;
+
+    const handleLocationChange = (event) => {
+        const inputValue = event.target.value;
+        setLocation(inputValue);
+
+        if (!inputValue.match(postcodePattern)) {
+        setLocationError('Please enter a valid Dutch postcode.');
+        } else {
+        setLocationError('');
+        }
+    };
+
+    const phoneNumberPattern = /^(06|\+31)[1-9]\d{8}$/;
+
+    const handlePhoneNumberChange = (event) => {
+        const inputValue = event.target.value;
+        setPhoneNumber(inputValue);
+    
+        if (!inputValue.match(phoneNumberPattern)) {
+          setPhoneNumberError('Please enter a valid Dutch phone number starting with 06 or +31.');
+        } else {
+          setPhoneNumberError('');
+        }
+    };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -128,16 +160,16 @@ export function EditPost() {
     // Update the post data in Firebase
     try {
       const updatedFileURLs = [...existingImages, ...newFileURLs];
-
-      // Get the current date
-      const currentDate = new Date();
+ 
 
       await updateDoc(doc(db, "posts", postId), {
         title: title,
         description: des,
         imageURLs: updatedFileURLs,
         category: selectedCategory,
-        createdAt: currentDate.toLocaleDateString() // Save the current date
+        location: location, // Include the location
+        subCategory: subCategory, // Include the subcategory
+        phoneNumber: phoneNumber,
       });
 
       // Delete files marked for deletion
@@ -258,6 +290,38 @@ export function EditPost() {
           </table>
         </div>
 
+        {/* Location field */}
+        <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Location
+                </label>
+                <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="location"
+                    type="text"
+                    placeholder="3011WN"
+                    value={location}
+                    onChange={handleLocationChange}
+                />
+                 {locationError && <span>{locationError}</span>}
+                </div>
+
+                {/* Location field */}
+                <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Telefoon Nummer
+                </label>
+                <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="phoneNumber"
+                    type="text"
+                    placeholder="0624351839"
+                    value={phoneNumber}
+                    onChange={handlePhoneNumberChange}
+                />
+                 {phoneNumberError && <div className="error">{phoneNumberError}</div>}
+                </div>
+
         {/* Category selection */}
         <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">Choose a main category</label>
@@ -274,6 +338,26 @@ export function EditPost() {
           ))}
         </div>
       </div>
+
+      {/* Subcategory selection */}
+      <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Choose a subcategory
+                </label>
+                <select
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    value={subCategory}
+                    onChange={(event) => {
+                    setSubCategory(event.target.value);
+                    }}
+                >
+                    <option value="">Select a subcategory</option>
+                    {/* Add your subcategory options here */}
+                    <option value="Subcategory 1">Buurthuis-activiteiten</option>
+                    <option value="Subcategory 2">School</option>
+                    <option value="Subcategory 3">Milieu</option>
+                </select>
+                </div>
 
         {/* Error message */}
         {errorMessage && (

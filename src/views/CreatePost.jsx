@@ -19,6 +19,9 @@ export function CreatePost() {
     const [locationError, setLocationError] = useState('');
     const [subCategory, setSubCategory] = useState("");
 
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
+
 
     // const [user]= useState("")
 
@@ -36,6 +39,19 @@ export function CreatePost() {
         setLocationError('Please enter a valid Dutch postcode.');
         } else {
         setLocationError('');
+        }
+    };
+
+    const phoneNumberPattern = /^(06|\+31)[1-9]\d{8}$/;
+
+    const handlePhoneNumberChange = (event) => {
+        const inputValue = event.target.value;
+        setPhoneNumber(inputValue);
+    
+        if (!inputValue.match(phoneNumberPattern)) {
+          setPhoneNumberError('Please enter a valid Dutch phone number starting with 06 or +31.');
+        } else {
+          setPhoneNumberError('');
         }
     };
 
@@ -125,6 +141,7 @@ export function CreatePost() {
             photoURL: photoURL, // Save the user's photoURL
             location: location, // Include the location
             subCategory: subCategory, // Include the subcategory
+            phoneNumber: phoneNumber,
             
         });
 
@@ -202,6 +219,22 @@ export function CreatePost() {
                     onChange={handleLocationChange}
                 />
                  {locationError && <span>{locationError}</span>}
+                </div>
+
+                {/* Location field */}
+                <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Telefoon Nummer
+                </label>
+                <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="phoneNumber"
+                    type="text"
+                    placeholder="0624351839"
+                    value={phoneNumber}
+                    onChange={handlePhoneNumberChange}
+                />
+                 {phoneNumberError && <div className="error">{phoneNumberError}</div>}
                 </div>
 
 
