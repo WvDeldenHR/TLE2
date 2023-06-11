@@ -95,7 +95,7 @@ export function PostDetail () {
 
                 <div className="flex items-center">
                         <img className="w-2 mr-1" src={iconLocation} alt="Location"></img>
-                        <span className="text-dark text-xs truncate">Locatie</span>
+                        <span className="text-dark text-xs truncate">{post.location}</span>
                     </div>
 
                 {/* Profiel pic + name of author */}

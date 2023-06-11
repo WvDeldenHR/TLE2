@@ -8,6 +8,7 @@ import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
 import { Navbar } from "../components/navs/Navbar";
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
 import { PostCard } from '../components/content/PostCard';
+import { RecommendedPosts } from '../components/content/RecommendedPosts';
 import { PostCardActies } from '../components/content/PostCardActies';
 import { PostCardSmall } from '../components/content/PostCardSmall';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
