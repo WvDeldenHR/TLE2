@@ -40,7 +40,7 @@ export function ProfilePicture() {
 
     function handleNextPage() {
         //Home
-        navigate("/home");
+        navigate("/signup/location");
       }
 
     // function handleChange(e) {

@@ -22,6 +22,13 @@ import { LogOut } from "./components/userprofile/LogOut"
 import { ForgotPassword } from "./components/userprofile/ForgotPassword"
 import { LoginAgain } from "./components/userprofile/LoginAgain"
 import { SearchingPosts } from "./components/search/SearchingPosts"
+import { UserLocation } from "./components/userprofile/UserLocation";
+import { UpdateUserLocation }  from "./components/userprofile/UpdateUserLocation";
+
+import { LocationAlgorithm } from "./components/algorithm/LocationAlgorithm";
+
+import  UserPreference from "./components/algorithm/UserPreference"
+import  RecommendationAlgorithm from "./components/algorithm/RecommendationAlgorithm"
 
 // Components
 // import { Navbar } from "./navs/Navbar.jsx";
@@ -65,6 +72,7 @@ function App() {
         <Route path='/' element={<Start />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/signup/picture' element={<ProfilePicture />}></Route>
+        <Route path='/signup/location' element={<UserLocation />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/forgot-password' element={<ForgotPassword />}></Route>
 
@@ -72,11 +80,16 @@ function App() {
         <Route path="/home" element={<AuthChecker><Home /></AuthChecker>} />
         <Route path="/discover" element={<AuthChecker><Discover /></AuthChecker>} />
 
+        <Route path="/location" element={<AuthChecker><LocationAlgorithm /></AuthChecker>} />
+        <Route path="/user-pref" element={<AuthChecker><UserPreference /></AuthChecker>} />
+        <Route path="/rec" element={<AuthChecker><RecommendationAlgorithm /></AuthChecker>} />
+
         {/* Profile, Updates, Log Out */}
         <Route path="/profile" element={<AuthChecker><Profile /></AuthChecker>} />
         <Route path="/login-again" element={<AuthChecker><LoginAgain /></AuthChecker>} />
         <Route path="/update-profile" element={<AuthChecker><UpdateUser /></AuthChecker>} />
         <Route path="/update-password" element={<AuthChecker><UpdatePassword /></AuthChecker>} />
+        <Route path="/update-location" element={<AuthChecker><UpdateUserLocation /></AuthChecker>} />
         <Route path="/logout" element={<AuthChecker><LogOut /></AuthChecker>} />
 
         {/* CRUD Post */}

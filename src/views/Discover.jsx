@@ -16,6 +16,8 @@ import Searchbar from '../components/search/Searchbar';
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
+import { LocationAlgorithm } from '../components/algorithm/LocationAlgorithm';
+
 
 export function Discover() {
     const navigate = useNavigate();
@@ -151,12 +153,14 @@ export function Discover() {
                     <div className="">
                         <h2 className="text-lg text-dark font-bold">In Jou Buurt</h2>
                     </div>
-                    <div className="flex -mt-1 -mr-6 pt-5 overflow-y-auto">
+                    <div className="flex flex-row -mt-1 -mr-6 pt-5 overflow-y-auto">
+                        {/* { <PostCard /> }
                         { <PostCard /> }
                         { <PostCard /> }
                         { <PostCard /> }
-                        { <PostCard /> }
-                        { <PostCard /> }
+                        { <PostCard /> } */}
+
+                        { <LocationAlgorithm />}
                     </div>
                 </div>
 
@@ -164,7 +168,7 @@ export function Discover() {
                     <div className="">
                         <h2 className="text-lg text-dark font-bold">Acties</h2>
                     </div>
-                    <div className="flex -mt-1 -mr-6 pt-5 overflow-y-auto">
+                    <div className="flex flex-row -mt-1 -mr-6 pt-5 overflow-y-auto">
                         { <PostCardActies /> }
                     </div>
                 </div>

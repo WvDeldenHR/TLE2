@@ -36,6 +36,10 @@ const ConsumptionCategory = () => {
     navigate(-1); // Go back to the previous page
   };
 
+  const handleDetail = (postId) => {
+    navigate(`/post/${postId}`);
+  }
+
   return (
     <div className='p-6'>
       <div className="flex pb-8">
@@ -54,13 +58,15 @@ const ConsumptionCategory = () => {
       <h2 className='text-primary text-xl font-bold'>{categoryName}</h2>
       </div>
 
+
       {posts.map((post) => (
+          <button onClick={() => handleDetail(post.id)} className='w-full'>
          <div
          className="content-box relative mb-8 rounded-lg h-40"
          key={post.id}
          style={{
            backgroundImage: `url(${post.imageURLs[0]})`,
-           backgroundSize: '60%',
+           backgroundSize: '80%',
            backgroundPosition: 'left',
            backgroundRepeat: 'no-repeat',
          }}
@@ -91,7 +97,7 @@ const ConsumptionCategory = () => {
                  <h3 className="text-dark text-sm font-semibold truncate">{post.title}</h3>
                  <div className="flex items-center pb-2">
                      <img className="w-2 mr-1" src={iconLocation} alt="Location"></img>
-                     <span className="text-dark text-xxs truncate">Locatie</span>
+                     <span className="text-dark text-xxs truncate">{post.location}</span>
                  </div>
                  <p className="paragraph | tetx-dark text-xs">
                      {post.description}
@@ -99,8 +105,10 @@ const ConsumptionCategory = () => {
              </div>
          </div>
      </div>
+     </button>
       ))}
-    </div>
+      </div>
+
   );
 };
 
