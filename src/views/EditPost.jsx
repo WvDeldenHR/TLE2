@@ -23,11 +23,14 @@ export function EditPost() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [location, setLocation] = useState("");
   const [locationError, setLocationError] = useState('');
-  const [subCategory, setSubCategory] = useState("");
+
+  const [subCategories, setSubCategories] = useState([]);
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [phoneNumberError, setPhoneNumberError] = useState('');
 
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -40,6 +43,11 @@ export function EditPost() {
           setSelectedCategory(postData.category); // Stel de geselecteerde categorie in
           setFiles([]);
           setExistingImages(postData.imageURLs);
+          setLatitude(postData.latitude); // Stel de huidige latitude in
+          setLongitude(postData.longitude); // Stel de huidige longitude in
+          if (postData.subCategories) {
+            setSubCategories(postData.subCategories);
+          }
           setLoading(false);
         } else {
           throw new Error("Post not found");
@@ -85,16 +93,34 @@ export function EditPost() {
 
   const postcodePattern = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/;
 
-    const handleLocationChange = (event) => {
-        const inputValue = event.target.value;
-        setLocation(inputValue);
-
-        if (!inputValue.match(postcodePattern)) {
-        setLocationError('Please enter a valid Dutch postcode.');
-        } else {
-        setLocationError('');
-        }
-    };
+  const handleLocationChange = (event) => {
+    const inputValue = event.target.value;
+    setLocation(inputValue);
+  
+    if (!inputValue.match(postcodePattern)) {
+      setLocationError('Please enter a valid Dutch postcode.');
+    } else {
+      setLocationError('');
+      // Geocode de nieuwe locatie om de latitude en longitude op te halen
+      const geocodeURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(inputValue)}&key=AIzaSyCke_6wBLigt3n6BugUGsG5wIllNQIos4c`;
+      
+      fetch(geocodeURL)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "OK") {
+            const { lat, lng } = data.results[0].geometry.location;
+            setLatitude(lat);
+            setLongitude(lng);
+          } else {
+            throw new Error("Geocoding failed");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+  
 
     const phoneNumberPattern = /^(06|\+31)[1-9]\d{8}$/;
 
@@ -107,6 +133,15 @@ export function EditPost() {
         } else {
           setPhoneNumberError('');
         }
+    };
+
+    // New handleSubcategoryToggle function
+    const handleSubcategoryToggle = (subcategory) => {
+      if (subCategories.includes(subcategory)) {
+        setSubCategories(subCategories.filter((sc) => sc !== subcategory));
+      } else {
+        setSubCategories([...subCategories, subcategory]);
+      }
     };
 
   const handleSubmit = async (e) => {
@@ -168,8 +203,10 @@ export function EditPost() {
         imageURLs: updatedFileURLs,
         category: selectedCategory,
         location: location, // Include the location
-        subCategory: subCategory, // Include the subcategory
+        subCategories: subCategories, // Include the subcategories as an array
         phoneNumber: phoneNumber,
+        latitude: latitude, // Bijgewerkte latitude opslaan
+        longitude: longitude, // Bijgewerkte longitude opslaan
       });
 
       // Delete files marked for deletion
@@ -339,24 +376,111 @@ export function EditPost() {
         </div>
       </div>
 
-      {/* Subcategory selection */}
-      <div className="mb-4">
+     {/* Subcategory selection */}
+     <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Choose a subcategory
+                    Choose subcategories
                 </label>
-                <select
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    value={subCategory}
-                    onChange={(event) => {
-                    setSubCategory(event.target.value);
-                    }}
-                >
-                    <option value="">Select a subcategory</option>
-                    {/* Add your subcategory options here */}
-                    <option value="Subcategory 1">Buurthuis-activiteiten</option>
-                    <option value="Subcategory 2">School</option>
-                    <option value="Subcategory 3">Milieu</option>
-                </select>
+                <div className="flex flex-wrap">
+                    {/* Add your subcategory buttons here */}
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Onderwijs") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Onderwijs")}
+                    >
+                    Onderwijs
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Dierenwelzijn") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Dierenwelzijn")}
+                    >
+                    Dierenwelzijn
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Milieu") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Milieu")}
+                    >
+                    Milieu
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Kunst & Cultuur") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Kunst & Cultuur")}
+                    >
+                    Kunst & Cultuur
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Medisch Hulp") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Medisch Hulp")}
+                    >
+                    Medisch Hulp
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Kleding") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Kleding")}
+                    >
+                    Kleding
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Elektronica") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Elektronica")}
+                    >
+                    Elektronica
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Boeken & Media") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Boeken & Media")}
+                    >
+                    Boeken & Media
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Speelgoed & Spellen") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Speelgoed & Spellen")}
+                    >
+                    Speelgoed & Spellen
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Voedselrecycling") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Voedselrecycling")}
+                    >
+                    Voedselrecycling
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Boodschappen") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Boodschappen")}
+                    >
+                    Boodschappen
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Sport") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Sport")}
+                    >
+                    Sport
+                    </div>
+                    {/* Add more subcategory buttons */}
+                </div>
                 </div>
 
         {/* Error message */}

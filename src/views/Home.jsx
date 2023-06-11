@@ -14,6 +14,8 @@ import Searchbar from '../components/search/Searchbar';
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
+import RecommendationAlgorithm from '../components/algorithm/RecommendationAlgorithm';
+
 
 export function Home() {
     // const user = auth.currentUser;
@@ -221,13 +223,15 @@ export function Home() {
                 
                 <div>
                     <div className="pb-3">
-                        <h2 className="text text-dark font-semibold">Vandaag Voor Jou Gekozen</h2>
+                        <h2 className="text text-dark font-semibold">Aanbevolen voor jou</h2>
                     </div>
-                    <div className="">
+                    <div className="mb-24">
+                        {/* {<PostCardLarge />}
                         {<PostCardLarge />}
                         {<PostCardLarge />}
-                        {<PostCardLarge />}
-                        {<PostCardLarge />}
+                        {<PostCardLarge />} */}
+
+                        <RecommendationAlgorithm />
                     </div>
                 </div>
             </div>

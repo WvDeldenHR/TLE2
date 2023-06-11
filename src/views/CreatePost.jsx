@@ -17,7 +17,7 @@ export function CreatePost() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [location, setLocation] = useState("");
     const [locationError, setLocationError] = useState('');
-    const [subCategory, setSubCategory] = useState("");
+    const [subCategories, setSubCategories] = useState([]);
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [phoneNumberError, setPhoneNumberError] = useState('');
@@ -55,8 +55,17 @@ export function CreatePost() {
         }
     };
 
+    const handleSubcategoryToggle = (subcategory) => {
+        if (subCategories.includes(subcategory)) {
+          setSubCategories(subCategories.filter((sc) => sc !== subcategory));
+        } else {
+          setSubCategories([...subCategories, subcategory]);
+        }
+      }          
+
 
     const handleFileChange = (e) => {
+        e.preventDefault();
         setFiles(Array.from(e.target.files));
     };
 
@@ -126,30 +135,73 @@ export function CreatePost() {
 
         // Convert the current date to a localized date string
         const createdAtString = currentDate.toLocaleDateString();
-          
 
-        // Save the post data to Firebase
-        await addDoc(postsCollectionRef, {
+        // Geocode the location
+        const geocodeURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        location
+      )}&key=AIzaSyCke_6wBLigt3n6BugUGsG5wIllNQIos4c`;  
+
+      try {
+        const response = await fetch(geocodeURL);
+        const data = await response.json();
+  
+        if (data.status === "OK") {
+          const { lat, lng } = data.results[0].geometry.location;
+  
+          // Save the post data to Firebase
+          await addDoc(postsCollectionRef, {
             title: title,
             description: des,
             imageURLs: fileURLs,
             userId: userId, // Associate the post with the user
-            category: selectedCategory, // Include the selected categor
+            category: selectedCategory, // Include the selected category
             createdAt: new Date(createdAtString), // Convert the createdAt string to a Date object
             displayName: displayName, // Save the user's displayName
             email: email, // Save the user's email
             photoURL: photoURL, // Save the user's photoURL
             location: location, // Include the location
-            subCategory: subCategory, // Include the subcategory
+            subCategories: subCategories, // Include the subcategories as an array
             phoneNumber: phoneNumber,
-            
-        });
-
-        setUploading(false);
-        console.log("Uploaded");
-
-        navigate("/overview")
+            latitude: lat, // Include the latitude
+            longitude: lng, // Include the longitude
+          });
+  
+          setUploading(false);
+          console.log("Uploaded");
+  
+          navigate("/overview");
+        } else {
+          setErrorMessage("Failed to geocode the location.");
+        }
+      } catch (error) {
+        console.log(error);
+        setErrorMessage("An error occurred while geocoding the location.");
+      }
     };
+          
+
+        // // Save the post data to Firebase
+        // await addDoc(postsCollectionRef, {
+        //     title: title,
+        //     description: des,
+        //     imageURLs: fileURLs,
+        //     userId: userId, // Associate the post with the user
+        //     category: selectedCategory, // Include the selected categor
+        //     createdAt: new Date(createdAtString), // Convert the createdAt string to a Date object
+        //     displayName: displayName, // Save the user's displayName
+        //     email: email, // Save the user's email
+        //     photoURL: photoURL, // Save the user's photoURL
+        //     location: location, // Include the location
+        //     subCategory: subCategory, // Include the subcategory
+        //     phoneNumber: phoneNumber,
+            
+        // });
+
+        // setUploading(false);
+        // console.log("Uploaded");
+
+        // navigate("/overview")
+    
 
     return (
         <div className="flex flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
@@ -258,21 +310,108 @@ export function CreatePost() {
                 {/* Subcategory selection */}
                 <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Choose a subcategory
+                    Choose subcategories
                 </label>
-                <select
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    value={subCategory}
-                    onChange={(event) => {
-                    setSubCategory(event.target.value);
-                    }}
-                >
-                    <option value="">Select a subcategory</option>
-                    {/* Add your subcategory options here */}
-                    <option value="Subcategory 1">Buurthuis-activiteiten</option>
-                    <option value="Subcategory 2">School</option>
-                    <option value="Subcategory 3">Milieu</option>
-                </select>
+                <div className="flex flex-wrap">
+                    {/* Add your subcategory buttons here */}
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Onderwijs") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Onderwijs")}
+                    >
+                    Onderwijs
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Dierenwelzijn") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Dierenwelzijn")}
+                    >
+                    Dierenwelzijn
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Milieu") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Milieu")}
+                    >
+                    Milieu
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Kunst & Cultuur") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Kunst & Cultuur")}
+                    >
+                    Kunst & Cultuur
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Medisch Hulp") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Medisch Hulp")}
+                    >
+                    Medisch Hulp
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Kleding") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Kleding")}
+                    >
+                    Kleding
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Elektronica") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Elektronica")}
+                    >
+                    Elektronica
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Boeken & Media") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Boeken & Media")}
+                    >
+                    Boeken & Media
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Speelgoed & Spellen") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Speelgoed & Spellen")}
+                    >
+                    Speelgoed & Spellen
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Voedselrecycling") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Voedselrecycling")}
+                    >
+                    Voedselrecycling
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Boodschappen") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Boodschappen")}
+                    >
+                    Boodschappen
+                    </div>
+                    <div
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Sport") && "bg-blue-700"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Sport")}
+                    >
+                    Sport
+                    </div>
+                    {/* Add more subcategory buttons */}
+                </div>
                 </div>
 
 
@@ -280,6 +419,7 @@ export function CreatePost() {
                 {errorMessage && (
                     <p className="text-red-500 mb-4">{errorMessage}</p>
                 )}
+                
                 
 
                 {/* Submit button */}
