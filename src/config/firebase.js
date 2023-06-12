@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, updateProfile } from "firebase/auth"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import { getFirestore } from "@firebase/firestore";
-import { GeoFirestore } from 'geofirestore';
+// import { GeoFirestore } from 'geofirestore';
 
 
 // Your web app's Firebase configuration
@@ -25,7 +25,7 @@ export const db = getFirestore(app);
 export const storage = getStorage(app)
 
 export const firestore = getFirestore(app);
-export const geofirestore = new GeoFirestore(firestore);
+// export const geofirestore = new GeoFirestore(firestore);
 
 //storage
 export async function upload(file, currentUser, setLoading) {
