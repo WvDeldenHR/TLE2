@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import iconArrow from './../../assets/icons/icon_arrow_001_212427_32x32.svg';
 import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.svg';
 import iconEdit from './../../assets/icons/icon_edit_002_212427_32x32.svg';
-import iconNavigation from './../../assets/icons/icon_navigation_001_212427_32x32.svg'
+import iconNavigation from './../../assets/icons/icon_navigation_001_212427_32x32.svg';
+import iconCross from './../../assets/icons/icon_cross_001_212427_32x32.svg';
 
 
 export function UpdateUserLocation() {
@@ -121,14 +122,14 @@ export function UpdateUserLocation() {
         
         <div className={`transition-3 -mx-6 px-6 py-4 ${!isActive ? "bg-transparent opacity-60" : "bg-gray-200"}`}>
           <h2 className="text-base text-dark font-bold">Opgeslagen Locatie</h2>
-          <div className="flex items-center py-1">
+          <div className="flex items-center py-1 h-12">
             <img className="w-5" src={iconLocation} alt=""></img>
             {!editing || !isActive ? (
               <span className="mx-4 w-full text-sm text-gray-600 font-medium">
                 {userLocation ? userLocation.location : ""}
               </span>
             ) : (
-              <form className="mx-4 w-full" onSubmit={handleSubmit}>
+              <form className="mx-4" onSubmit={handleSubmit}>
                 <input className="border-b-1 border-black p-1 text-sm text-dark font-medium bg-transparent"
                         id="location"
                         type="text"
@@ -139,9 +140,20 @@ export function UpdateUserLocation() {
               </form>
             )}
             <div className="flex justify-end">
-              <button onClick={() => setEditing(!editing)} className="rounded-full p-3 bg-white drop-shadow" disabled={!isActive}>
-                <img className="w-8" src={iconEdit} alt=""></img>
-              </button>
+              {!editing || !isActive ? (
+                <button onClick={() => setEditing(!editing)} className="rounded-full p-3 bg-white drop-shadow" disabled={!isActive}>
+                  <img className="w-8" src={iconEdit} alt=""></img>
+                </button>
+              ) : (
+                <div className="flex pl-2 gap-2">
+                <button type="submit" className="rounded-full p-3 bg-white drop-shadow">
+                  <img className="w-8" src={iconEdit} alt=""></img>
+                </button>
+                <button className="rounded-full p-3 bg-white drop-shadow" onClick={() => setEditing(!editing)}>
+                  <img className="w-8" src={iconCross} alt=""></img>
+                </button>
+                </div>
+              )}
             </div>
           </div>
           {locationError && <span className="text-xs text-error font-semibold">{locationError}</span>}
