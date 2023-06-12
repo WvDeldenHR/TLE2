@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { auth, db } from "../../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+// Components
+import { LoadingScreen } from "../other/LoadingScreen";
+import { Navbar } from "../navs/Navbar";
 // Images
 import iconArrow from './../../assets/icons/icon_arrow_001_212427_32x32.svg';
 import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.svg';
@@ -105,7 +108,7 @@ export function UpdateUserLocation() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   if (!currentUser) {
