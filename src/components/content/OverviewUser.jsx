@@ -125,7 +125,7 @@ export function OverviewUser() {
 
                 </div>
               
-              <button onClick={() => handleDetail(post.id)}>
+              <button className="w-full" onClick={() => handleDetail(post.id)}>
                 <div
                   className="content-box relative mb-12 rounded-lg h-40 drop-shadow"
                   style={{
