@@ -100,18 +100,28 @@ const UserPreference = () => {
     };
   
     return (
-    <div className='w-full bg-white p-8'>
+    <div className="flex min-h-full w-full flex-1 flex-col justify-center items-center  lg:px-8 sm:w-full sm:h-full ">
         <BackButton></BackButton>
 
-        <div className='text-center mb-10 mt-3'>
-      <h1 className='font-bold'>Mijn Interesses</h1>
-      <p className='text-xs mt-5 px-10'> Lorem ipsum, er moet hier een tekst komen met uitleg over waarom gebruikers subcategroieen moeten kiezen en dat het temaken heeft met algoritme bla bla.</p>
-      </div>
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-primary pt-8 pb-14 border border-gray-200">
+
+<BackButton/>
+  {/* <img
+      className="mx-auto h-6 w-auto"
+      src={logo}
+      alt="Logo"
+  /> */}
+  <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">Mijn interesses</h1>
+  <h2 className="mt-2 text-center px-14 text-xs tracking-tight text-white">
+      In welke onderwerpen bent u geintereseerd? Door dit door te geven zorgen wij ervoor dat u aanbevelingen krijgt die bij u passen. <br></br> 
+  </h2>
+</div>
+
       <form onSubmit={handleSubmit}>
     
 
         {/* Subcategory selection */}
-        <div className="mb-4">
+        <div className="pt-10 px-10 text-xs">
             
             
             <div className="subcategory-container">
@@ -247,7 +257,7 @@ const UserPreference = () => {
 
                 <div className="subcategory-grid">
                 
-                <div className="flex items-center">
+                <div className="flex items-center mt-10">
 
 
                             <div className="mr-2 rounded p-2 bg-primary">
@@ -322,7 +332,7 @@ const UserPreference = () => {
                 
                 <div className="subcategory-group">
                 
-                <div className="flex items-center">
+                <div className="flex items-center mt-10">
 
 
                         <div className="mr-2 rounded p-2 bg-primary">
@@ -388,7 +398,7 @@ const UserPreference = () => {
 
                 <div className="subcategory-group">
                     
-                <div className="flex items-center">
+                <div className="flex items-center mt-10">
 
 
                     <div className="mr-2 rounded p-2 bg-primary">
@@ -485,8 +495,8 @@ const UserPreference = () => {
         <br />
         
         <button type="submit" 
-        className="block items-center justify-center rounded-full py-3 px-6 bg-gray-600 text-white mx-auto text-sm font-bold mb-14"
-        >Sla interesses op</button>
+        className="block items-center text-xs font-medium mb-20 justify-center rounded-full py-3 px-10 bg-gray-600 text-white mx-auto" 
+        >Volgende</button>
       </form>
     
     </div>

@@ -29,6 +29,7 @@ import { LocationAlgorithm } from "./components/algorithm/LocationAlgorithm";
 
 import  UserPreference from "./components/algorithm/UserPreference"
 import  RecommendationAlgorithm from "./components/algorithm/RecommendationAlgorithm"
+import  RecommendationAlgorithmVerTwo from "./components/algorithm/RecommendationAlgorithmVerTwo"
 
 // Components
 // import { Navbar } from "./navs/Navbar.jsx";
@@ -83,6 +84,7 @@ function App() {
         <Route path="/location" element={<AuthChecker><LocationAlgorithm /></AuthChecker>} />
         <Route path="/user-pref" element={<AuthChecker><UserPreference /></AuthChecker>} />
         <Route path="/rec" element={<AuthChecker><RecommendationAlgorithm /></AuthChecker>} />
+        <Route path="/rectwo" element={<AuthChecker><RecommendationAlgorithmVerTwo /></AuthChecker>} />
 
         {/* Profile, Updates, Log Out */}
         <Route path="/profile" element={<AuthChecker><Profile /></AuthChecker>} />

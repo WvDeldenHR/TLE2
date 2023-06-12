@@ -66,7 +66,7 @@ const ConsumptionCategory = () => {
          key={post.id}
          style={{
            backgroundImage: `url(${post.imageURLs[0]})`,
-           backgroundSize: '80%',
+           backgroundHeight: '100%',
            backgroundPosition: 'left',
            backgroundRepeat: 'no-repeat',
          }}

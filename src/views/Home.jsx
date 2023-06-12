@@ -216,7 +216,7 @@ export function Home() {
 
                     ) : (
 
-                        <div className='my-10'></div>
+                        <div className='my-5'></div>
 
                     )}
                 </div>

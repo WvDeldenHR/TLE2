@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { db, auth } from "../../config/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { BackButton } from "../buttons/BackButton";
 
 export function UserLocation() {
   const [location, setLocation] = useState("");
@@ -32,18 +33,19 @@ export function UserLocation() {
         const userId = auth.currentUser.uid;
 
         // Get the user document reference
-        const userRef = doc(db, "users", userId);
+        const userRef = doc(db, "user-locations", userId);
 
-        // Update the user document with latitude and longitude
-        await updateDoc(userRef, {
+         // Create a new user document with latitude and longitude
+        await setDoc(userRef, {
           latitude: lat,
           longitude: lng,
+          location: location,
           userId: auth.currentUser.uid,
         });
 
-        navigate("/"); // Redirect to the desired location after saving the location
+        navigate("/user-pref"); // Redirect to the desired location after saving the location
       } else {
-        setErrorMessage("Invalid postal code. Please enter a valid postal code.");
+        setErrorMessage("Ongeldige postcode");
       }
     } catch (error) {
       console.log("Geocoding API request error:", error);
@@ -51,21 +53,35 @@ export function UserLocation() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
-      <h1 className="text-3xl">User Location</h1>
+    <div className="flex min-h-full w-full flex-1 flex-col justify-center items-center  lg:px-8 sm:w-full sm:h-full">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-primary pt-8 pb-14 border border-gray-200">
+
+        <BackButton/>
+          {/* <img
+              className="mx-auto h-6 w-auto"
+              src={logo}
+              alt="Logo"
+          /> */}
+          <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">Uw Locatie</h1>
+          <h2 className="mt-2 text-center text-xs tracking-tight text-white px-16">
+              Voeg uw locatie toe. Dit is volledig prive en delen wij met niemand.<br></br> 
+          </h2>
+
+      </div>
+
       <form
         onSubmit={handleSaveLocation}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="mt-10 mb-10 sm:mx-auto sm:w-full sm:max-w-sm"
       >
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Postal Code
+            Uw locatie
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="postalCode"
+            className="mb-10 w-80 block m-auto left-0 right-0 rounded-full bg-gray-100 px-3 py-2 text-black w-44 font-semibold items-center text-center text-xs border justify-center grid place-items-center"
+            id="location"
             type="text"
-            placeholder="Enter your postal code"
+            placeholder="2010AA"
             value={location}
             onChange={handleLocationChange}
           />
@@ -75,10 +91,10 @@ export function UserLocation() {
 
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+             className="block items-center text-xs font-medium mb-20 justify-center rounded-full py-3 px-10 bg-gray-600 text-white mx-auto"                      
             type="submit"
           >
-            Save Location
+            Volgende
           </button>
         </div>
       </form>

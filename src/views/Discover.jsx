@@ -17,6 +17,7 @@ import Searchbar from '../components/search/Searchbar';
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
 import { LocationAlgorithm } from '../components/algorithm/LocationAlgorithm';
+import RecommendationAlgorithmVerTwo from '../components/algorithm/RecommendationAlgorithmVerTwo';
 
 
 export function Discover() {
@@ -145,7 +146,8 @@ export function Discover() {
                         <h2 className="text-lg text-dark font-bold">Aanbevolen Voor Jou</h2>
                     </div>
                     <div className="flex -mt-1 -mr-6 pt-5 overflow-y-auto">
-                        <RecommendedPosts />
+                        {/* <RecommendedPosts /> */}
+                        <RecommendationAlgorithmVerTwo/>
                     </div>
                 </div>
 

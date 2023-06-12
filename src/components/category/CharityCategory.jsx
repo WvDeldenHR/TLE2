@@ -60,7 +60,7 @@ const CharityCategory = () => {
          key={post.id}
          style={{
            backgroundImage: `url(${post.imageURLs[0]})`,
-           backgroundSize: '60%',
+           backgroundHeight: '100%',
            backgroundPosition: 'left',
            backgroundRepeat: 'no-repeat',
          }}

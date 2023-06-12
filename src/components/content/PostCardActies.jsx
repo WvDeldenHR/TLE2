@@ -33,7 +33,7 @@ export function PostCardActies() {
         navigate(-1); // Go back to the previous page
     };
 
-    const handleDetail = (postId) => {
+    const handleDetail = (postId) => { 
         navigate(`/post/${postId}`);
       }
 
@@ -46,9 +46,10 @@ export function PostCardActies() {
                 key={post.id}
                 style={{
                     backgroundImage: `url(${post.imageURLs[0]})`,
-                    backgroundSize: '120%',
+                    // backgroundSize: '120%',
                     backgroundPosition: 'left',
                     backgroundRepeat: 'no-repeat',
+                    backgroundHeight: '100%',
                 }}
                 >
                     <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10"> 

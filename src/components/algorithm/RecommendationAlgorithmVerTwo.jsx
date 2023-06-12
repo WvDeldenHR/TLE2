@@ -9,7 +9,7 @@ import iconStuff from './../../assets/icons/icon_stuff_001_FFFFFF_32x32.svg';
 import iconConsumption from './../../assets/icons/icon_consumption_001_FFFFFF_32x32.svg';
 import iconCharity from './../../assets/icons/icon_charity_001_FFFFFF_32x32.svg';
 
-const RecommendationAlgorithm = () => {
+const RecommendationAlgorithmVerTwo = () => {
     const [recommendations, setRecommendations] = useState([]);
     const navigate = useNavigate();
   
@@ -167,7 +167,7 @@ const RecommendationAlgorithm = () => {
 
 
   return (
-    <div>
+    <div className='flex my-2'>
       
       {recommendations.length > 0 ? (
         recommendations.map((post, index) => (
@@ -175,13 +175,14 @@ const RecommendationAlgorithm = () => {
              <button onClick={() => handleDetail(post.id)} className='w-full'>
            
         <div
-         className="content-box relative mb-8 rounded-lg h-40"
+         className="content-box relative mr-4 rounded-lg h-48"
          key={post.id}
          style={{
            backgroundImage: `url(${post.imageURLs[0]})`,
-           backgroundSize: '100%',
+          //  backgroundSize: '130%',
            backgroundPosition: 'left',
            backgroundRepeat: 'no-repeat',
+           backgroundHeight: '100%',
          }}
        >
          <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
@@ -199,24 +200,21 @@ const RecommendationAlgorithm = () => {
          )}
        
          </div>
-         <div className="flex h-full drop-shadow">
-             <div className="flex items-end w-7/12">
-                 <div className="flex overflow-y-auto pl-3 py-3">
-                     <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.category}</button></div>
-                     <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.subCategories.join(', ')}</button></div>
-                 </div>
-             </div>
-             <div className="flex flex-col justify-center rounded-r-lg pl-4 pr-3 pt-8 pb-6 w-5/12 bg-white">
-                 <h3 className="text-dark text-sm font-semibold truncate">{post.title}</h3>
-                 <div className="flex items-center pb-2">
-                     <img className="w-2 mr-1" src={iconLocation} alt="Location"></img>
-                     <span className="text-dark text-xxs truncate">{post.location}</span>
-                 </div>
-                 <p className="paragraph | tetx-dark text-xs">
-                     {post.description}
-                 </p>
-             </div>
-         </div>
+         <div className="flex flex-col w-38 h-full drop-shadow">
+                    <div className="flex items-end h-full">
+                        <div className="flex overflow-y-auto pl-3 py-3">
+                            <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.category}</button></div>
+                            {/* <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.subCategories.join(', ')}</button></div> */}
+                        </div>
+                    </div>
+                    <div className="flex flex-col rounded-b-lg px-3 py-1 bg-white">
+                        <h3 className="text-dark text-sm font-bold truncate">{post.title}</h3>
+                        <div className="flex items-center">
+                            <img className="w-2 mr-1" src={iconLocation} alt="Location"></img>
+                            <span className="text-dark text-xxs truncate">{post.location}</span>
+                        </div>
+                    </div>
+                </div>
          </div>
          </button>
           </div>
@@ -228,4 +226,4 @@ const RecommendationAlgorithm = () => {
   );
 };
 
-export default RecommendationAlgorithm;
+export default RecommendationAlgorithmVerTwo;

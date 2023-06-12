@@ -8,6 +8,7 @@ import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.sv
 import iconEdit from './../../assets/icons/icon_edit_002_212427_32x32.svg';
 import iconNavigation from './../../assets/icons/icon_navigation_001_212427_32x32.svg';
 import iconCross from './../../assets/icons/icon_cross_001_212427_32x32.svg';
+import { BackButton } from "../buttons/BackButton";
 
 
 export function UpdateUserLocation() {
@@ -76,7 +77,28 @@ export function UpdateUserLocation() {
 
     try {
       // Geocode the new location to get latitude and longitude
-      // ... your code ...
+      const geocodeURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        location
+      )}&key=AIzaSyCke_6wBLigt3n6BugUGsG5wIllNQIos4c`; // Replace with your Google Maps API key
+
+      const response = await fetch(geocodeURL);
+      const data = await response.json();
+
+      if (data.status === "OK") {
+        const { lat, lng } = data.results[0].geometry.location;
+
+        // Update the location document in Firestore with new location, latitude, and longitude
+        const locationDocRef = doc(db, "user-locations", currentUser.uid);
+        await setDoc(locationDocRef, {
+          location: location,
+          latitude: lat,
+          longitude: lng,
+          userId: auth.currentUser.uid,
+        });
+        console.log("User location updated successfully!");
+      } else {
+        console.error("Geocoding error:", data.status);
+      }
     } catch (error) {
       console.error("Error updating user location:", error);
     }
@@ -93,29 +115,28 @@ export function UpdateUserLocation() {
 
   return (
     <>
-      <div className="px-6 bg-white">
-        <div className="flex items-center mt-3 mb-6 py-4">
-          <div>
-            <button  onClick={handleGoBack} className="rounded-full p-3 bg-gray-200 drop-shadow">
-              <img className="w-5" src={iconArrow} alt=""></img>
-            </button>
-          </div>
-          <div className="flex justify-center -ml-8 w-full">
-            <h1 className="text-lg text-dark font-bold">Mijn Locatie</h1>
-          </div>
+     <div className="flex min-h-full w-full flex-1 flex-col  lg:px-8 sm:w-full sm:h-full">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-primary pt-8 pb-14 border border-gray-200">
+
+        <BackButton/>
+          <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">Uw Locatie</h1>
+          <h2 className="mt-2 text-center text-xs tracking-tight text-white px-16">
+              Voeg uw locatie toe. Dit is volledig prive en delen wij met niemand.<br></br> 
+          </h2>
+
         </div>
         
-        <div className={`transition-3 -mx-6 px-6 py-4 ${!isActive ? "bg-transparent opacity-60" : "bg-gray-200"}`}>
-          <h2 className="text-base text-dark font-bold">Opgeslagen Locatie</h2>
+        <div className={`transition-3 -mx-6 px-20 py-4 pt-7 pb-7 ${!isActive ? "bg-transparent opacity-60" : "bg-gray-200"}`}>
+          <h2 className="text-base text-xs text-dark font-bold">Opgeslagen Locatie</h2>
           <div className="flex items-center py-1 h-12">
             <img className="w-5" src={iconLocation} alt=""></img>
             {!editing || !isActive ? (
-              <span className="mx-4 w-full text-sm text-gray-600 font-medium">
+              <span className="mx-4 w-full text-xs text-gray-600 font-medium">
                 {userLocation ? userLocation.location : ""}
               </span>
             ) : (
               <form className="mx-4" onSubmit={handleSubmit}>
-                <input className="border-b-1 border-black p-1 text-sm text-dark font-medium bg-transparent"
+                <input className="border-b-1 border-black p-1 text-xs text-dark font-medium bg-transparent"
                         id="location"
                         type="text"
                         value={location}
@@ -144,12 +165,12 @@ export function UpdateUserLocation() {
           {locationError && <span className="text-xs text-error font-semibold">{locationError}</span>}
         </div>
 
-        <div className={`transition-3 | -mx-6 px-6 py-4 ${!isActive ? "bg-gray-200" : "bg-transparent"}`}>
-          <h2 className={`transition-3 | text-base text-dark font-bold ${!isActive ? "" : "opacity-60"}`}>Huidige Locatie</h2>
+        <div className={`transition-3 | -mx-6 px-20 py-4 pt-7 pb-7 ${!isActive ? "bg-gray-200" : "bg-transparent"}`}>
+          <h2 className={`transition-3 | text-base text-xs text-dark font-bold ${!isActive ? "" : "opacity-60"}`}>Huidige Locatie</h2>
           <div className="flex items-center py-2">
             <div className={`transition-3 | flex ${!isActive ? "" : "opacity-60"}`}>
               <img className="w-5" src={iconNavigation} alt=""></img>
-              <span className="px-4 text-sm text-gray-600 font-medium">{userLocation ? userLocation.location : ""}</span>
+              <span className="px-4 text-xs text-gray-600 font-medium">{userLocation ? userLocation.location : ""}</span>
             </div>
             <div className="flex justify-end w-full">
               <label className="relative inline-block w-12 h-6">
@@ -165,34 +186,6 @@ export function UpdateUserLocation() {
           </div>
         </div>
       </div>
-
-
-   
-      <div>
-        {userLocation ? (
-          <div>
-            <p>Location: {userLocation.location}</p>
-            <p>Latitude: {userLocation.latitude}</p>
-            <p>Longitude: {userLocation.longitude}</p>
-          </div>
-        ) : (
-          <p>No location found.</p>
-        )}
-
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="location">Postal Code:</label>
-        <input
-          type="text"
-          id="location"
-          value={location}
-          onChange={handleLocationChange}
-          required
-          disabled={!isActive}
-        />
-        {locationError && <p>{locationError}</p>}
-        <button type="submit" disabled={!isActive}>Update</button>
-      </form>
-    </div>
     </>
   );
 }

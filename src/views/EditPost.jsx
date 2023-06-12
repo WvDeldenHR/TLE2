@@ -40,6 +40,8 @@ export function EditPost() {
           const postData = postDoc.data();
           setTitle(postData.title);
           setDes(postData.description);
+          setLocation(postData.location);
+          setPhoneNumber(postData.phoneNumber);
           setSelectedCategory(postData.category); // Stel de geselecteerde categorie in
           setFiles([]);
           setExistingImages(postData.imageURLs);
@@ -336,9 +338,13 @@ export function EditPost() {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="location"
                     type="text"
-                    placeholder="3011WN"
+                   
                     value={location}
-                    onChange={handleLocationChange}
+                    onChange={(event) => {
+                      handleLocationChange(event); // Call the handleLocationChange function
+                      setLocation(event.target.value); // Update the location state
+                    }}
+                    
                 />
                  {locationError && <span>{locationError}</span>}
                 </div>
@@ -352,9 +358,11 @@ export function EditPost() {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="phoneNumber"
                     type="text"
-                    placeholder="0624351839"
                     value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
+                    onChange={(event) => {
+                      handlePhoneNumberChange(event); // Call the handlePhoneNumberChange function
+                      setPhoneNumber(event.target.value); // Update the phoneNumber state
+                    }}
                 />
                  {phoneNumberError && <div className="error">{phoneNumberError}</div>}
                 </div>

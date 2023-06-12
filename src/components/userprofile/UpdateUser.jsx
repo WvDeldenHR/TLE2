@@ -24,6 +24,7 @@ export const UpdateUser = () => {
     const [photo, setPhoto] = useState(null)
     const [loading, setLoading] = useState(false)
     const [photoURL, setPhotoURL] = useState("")
+    const [uploadedPhotoURL, setUploadedPhotoURL] = useState("");
     
 
     const handleUpdateEmail = () => {
@@ -98,22 +99,23 @@ export const UpdateUser = () => {
     }, [photo, currentUser])
 
     function handleChange(e) {
-        if (e.target.files[0]) {
-            setPhoto(e.target.files[0])
-        }
+      if (e.target.files[0]) {
+        setPhoto(e.target.files[0]);
+      }
     }
 
     function updatePhotoURL(url) {
+      setUploadedPhotoURL(url);
       const cacheBuster = Date.now(); // Generate a unique value (timestamp)
       const updatedURL = `${url}?cache=${cacheBuster}`; // Append the cache buster to the photo URL
       setPhotoURL(updatedURL);
-    }
+  }
 
     function navTo() {
       navigate("/home/settings/update/password")
     }
 
-      // Render your component with the form
+      // Render your component with the form 
       return (
 
         <div className="flex min-h-full w-full flex-1 flex-col justify-center items-center  lg:px-8 sm:w-full sm:h-full ">
@@ -121,11 +123,7 @@ export const UpdateUser = () => {
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-primary pt-8 pb-14 border border-gray-200">
 
                   <BackButton/>
-                    {/* <img
-                        className="mx-auto h-6 w-auto"
-                        src={logo}
-                        alt="Logo"
-                    /> */}
+                  
                     <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">Profielbeheer</h1>
                     <h2 className="mt-2 text-center text-xs tracking-tight text-white">
                         Werk uw profielfoto en/of gegevens bij <br></br> 
@@ -136,7 +134,7 @@ export const UpdateUser = () => {
 
                   <img
                     src={`${photoURL}?timestamp=${Date.now()}`}
-                    alt="Profile"
+                  
                     className="w-32 h-32 rounded-full shadow-xl object-cover cursor-pointer"
                   />
 

@@ -109,7 +109,7 @@ export function PostDetail () {
                 <div className="flex">
                 <div className="flex overflow-y-auto pl-3 py-2 -ms-3">
                         <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.category}</button></div>
-                        <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">Buurthuis-activiteiten</button></div>
+                        <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.subCategories.join(', ')}</button></div>
                     </div>
                 </div>
 
