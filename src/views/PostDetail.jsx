@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { auth, db } from "../config/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { Navbar } from "../navs/Navbar.jsx";
+import { Navbar } from "../components/navs/Navbar.jsx";
 import { BackButton } from "../components/buttons/BackButton";
 import { NotificationButtonAlt2 } from '../components/buttons/NotificationButtonAlt2';
 import { HelpButton } from "../components/buttons/HelpButton"
-
+// Componetns
+import { LoadingScreen } from "./../components/other/LoadingScreen";
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 import iconFinancial from './../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
@@ -38,7 +39,7 @@ export function PostDetail () {
     }, [postId]);
   
     if (!post) {
-      return <div>Loading...</div>;
+      return <LoadingScreen />;
     }
 
     const imageURL = post.imageURLs && post.imageURLs[0]; // Check if imageURLs exist

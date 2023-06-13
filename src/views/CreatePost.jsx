@@ -155,7 +155,7 @@ export function CreatePost() {
             imageURLs: fileURLs,
             userId: userId, // Associate the post with the user
             category: selectedCategory, // Include the selected category
-            createdAt: new Date(createdAtString), // Convert the createdAt string to a Date object
+            createdAt: new Date(), // Convert the createdAt string to a Date object
             displayName: displayName, // Save the user's displayName
             email: email, // Save the user's email
             photoURL: photoURL, // Save the user's photoURL
