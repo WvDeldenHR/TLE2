@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth, updateProfile } from "firebase/auth"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import { getFirestore } from "@firebase/firestore";
+import 'firebase/firestore';
+import { collection, updateDoc, query, where, getDocs } from "firebase/firestore";
 
 
 // Your web app's Firebase configuration
@@ -38,4 +40,22 @@ export async function upload(file, currentUser, setLoading) {
   setLoading(false)
   console.log("Uploaded file!")
 }
+
+
+export const updatePostAuthorInfo = async (userId, newDisplayName, newPhotoURL) => {
+  try {
+    const postsQuery = query(collection(db, "posts"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(postsQuery);
+
+    querySnapshot.forEach(async (doc) => {
+      const postRef = doc.ref;
+      await updateDoc(postRef, { displayName: newDisplayName, photoURL: newPhotoURL });
+    });
+
+    console.log("Post author info updated successfully");
+  } catch (error) {
+    console.log("Error updating post author info:", error);
+  }
+};
+
 

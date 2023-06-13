@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { auth, upload } from '../../config/firebase';
+import { auth, upload, db } from '../../config/firebase';
 import { useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import { updateEmail, updateProfile } from "firebase/auth";
 import { BackButton } from "../buttons/BackButton";
+import { updateDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { updatePostAuthorInfo } from '../../config/firebase';
+
+
 
 export const UpdateUser = () => {
 
@@ -58,7 +62,10 @@ export const UpdateUser = () => {
               setDisplayName(user.displayName || '');
               console.log('Profile updated successfully');
               setUpdateStatusNameTrue('     ');
-
+      
+              // Update post author information
+              updatePostAuthorInfo(user.uid, user.displayName, user.photoURL);
+              
               setTimeout(() => {
                 setUpdateStatusNameTrue('');
               }, 5000);
@@ -66,12 +73,12 @@ export const UpdateUser = () => {
           })
           .catch((error) => {
             console.error('Error updating profile:', error);
-
+      
             setUpdateStatusNameFalse('     ');
-
-              setTimeout(() => {
-                setUpdateStatusNameFalse('');
-              }, 10000);
+      
+            setTimeout(() => {
+              setUpdateStatusNameFalse('');
+            }, 10000);
           });
       };
 
@@ -104,12 +111,35 @@ export const UpdateUser = () => {
       }
     }
 
-    function updatePhotoURL(url) {
+    const updatePhotoURL = async (url) => {
       setUploadedPhotoURL(url);
       const cacheBuster = Date.now(); // Generate a unique value (timestamp)
       const updatedURL = `${url}?cache=${cacheBuster}`; // Append the cache buster to the photo URL
       setPhotoURL(updatedURL);
-  }
+    
+      try {
+        const postsQuery = query(collection(db, "posts"), where("userId", "==", currentUser.uid));
+        const querySnapshot = await getDocs(postsQuery);
+    
+        const batch = db.batch();
+    
+        querySnapshot.forEach((doc) => {
+          const postRef = doc.ref;
+          batch.update(postRef, { photoURL: updatedURL });
+        });
+    
+        await batch.commit();
+        console.log("PhotoURL updated in posts collection");
+    
+        // Update the photoURL in the author's information as well
+        await updatePostAuthorInfo(currentUser.uid, { photoURL: updatedURL });
+        console.log("PhotoURL updated in post author's information");
+      } catch (error) {
+        console.error("Error updating photoURL:", error);
+      }
+    };
+    
+    
 
     function navTo() {
       navigate("/home/settings/update/password")

@@ -6,53 +6,81 @@ import { Navbar } from "../components/navs/Navbar.jsx";
 import { BackButton } from "../components/buttons/BackButton";
 import { NotificationButtonAlt2 } from '../components/buttons/NotificationButtonAlt2';
 import { HelpButton } from "../components/buttons/HelpButton"
-// Componetns
-import { LoadingScreen } from "./../components/other/LoadingScreen";
+import { onSnapshot } from "firebase/firestore";
+
+
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 import iconFinancial from './../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
 import iconStuff from './../assets/icons/icon_stuff_001_FFFFFF_32x32.svg';
 import iconConsumption from './../assets/icons/icon_consumption_001_FFFFFF_32x32.svg';
 import iconCharity from './../assets/icons/icon_charity_001_FFFFFF_32x32.svg';
+import { LoadingScreen } from "../components/other/LoadingScreen";
 
-export function PostDetail () {
+export function PostDetail() {
+  const { postId } = useParams();
+  const [post, setPost] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentPhotoURL, setCurrentPhotoURL] = useState('');
+  const [uploadedPhotoURL, setUploadedPhotoURL] = useState('');
 
-    const { postId } = useParams();
-    const [post, setPost] = useState(null);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-    useEffect(() => {
-      const fetchPost = async () => {
-        try {
-          const postDoc = await getDoc(doc(db, "posts", postId));
-          if (postDoc.exists) {
-            setPost(postDoc.data());
-          } else {
-            console.log("Post not found");
-          }
-        } catch (error) {
-          console.log("Error fetching post:", error);
-        }
-      };
-  
-      fetchPost();
-    }, [postId]);
-  
-    if (!post) {
-      return <LoadingScreen />;
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     try {
+  //       const postDoc = await getDoc(doc(db, "posts", postId));
+  //       if (postDoc.exists) {
+  //         setPost(postDoc.data());
+  //       } else {
+  //         console.log("Post not found");
+  //       }
+  //     } catch (error) {
+  //       console.log("Error fetching post:", error);
+  //     }
+  //   };
+
+  //   fetchPost();
+  // }, [postId]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(doc(db, "posts", postId), (postDoc) => {
+      if (postDoc.exists()) {
+        setPost(postDoc.data());
+      } else {
+        console.log("Post not found");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [postId]);
+
+  useEffect(() => {
+    if (post) {
+      setCurrentPhotoURL(post.photoURL);
     }
+  }, [post]);
 
-    const imageURL = post.imageURLs && post.imageURLs[0]; // Check if imageURLs exist
+  if (!post) {
+    return <LoadingScreen />;
+  }
 
-    const nextImage = () => {
-      const nextIndex = currentImageIndex + 1;
-      setCurrentImageIndex(nextIndex >= post.imageURLs.length ? 0 : nextIndex);
-    };
-  
-    const previousImage = () => {
-      const previousIndex = currentImageIndex - 1;
-      setCurrentImageIndex(previousIndex < 0 ? post.imageURLs.length - 1 : previousIndex);
-    };
+  function updatePhotoURL(url) {
+    setUploadedPhotoURL(url);
+    const cacheBuster = Date.now(); // Generate a unique value (timestamp)
+    const updatedURL = `${url}?cache=${cacheBuster}`; // Append the cache buster to the photo URL
+    setCurrentPhotoURL(updatedURL); // Update the state with the updated URL
+  }
+
+  const imageURL = post.imageURLs && post.imageURLs[0]; // Check if imageURLs exist
+
+  const nextImage = () => {
+    const nextIndex = currentImageIndex + 1;
+    setCurrentImageIndex(nextIndex >= post.imageURLs.length ? 0 : nextIndex);
+  };
+
+  const previousImage = () => {
+    const previousIndex = currentImageIndex - 1;
+    setCurrentImageIndex(previousIndex < 0 ? post.imageURLs.length - 1 : previousIndex);
+  };
 
     return (
         <div className="">
@@ -100,11 +128,11 @@ export function PostDetail () {
                     </div>
 
                 {/* Profiel pic + name of author */}
-                <div className="mt-4 ms-3 flex">
-                    <img src={post.photoURL} alt="" className="w-8 h-8 rounded-full" />
-                    <p className="text-xs font-medium mt-2 ms-3">{post.displayName}</p>
-            
+                <div className="mt-2 ms-3 flex">
+                  <img src={post.photoURL} alt="" className="w-8 h-8 rounded-full" />
+                  <p className="text-xs font-medium mt-2 ms-3">{post.displayName}</p>
                 </div>
+
 
                 {/* Main + subcategory */}
                 <div className="flex">
