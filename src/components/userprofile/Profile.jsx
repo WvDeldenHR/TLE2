@@ -3,6 +3,8 @@ import { auth } from "../../config/firebase"
 import { Navbar } from "../../components/navs/Navbar.jsx";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
+// Images
+import iconLocation from "./../../assets/icons/icon_location_001_212427_32x32.svg";
 
 
 export function Profile() {
@@ -93,9 +95,9 @@ export function Profile() {
       </a>
 
       <a href="/update-location">
-      <button className="flex w-80 m-auto mt-5 shadow rounded bg-gray-100 ps-5 py-3 text-xs font-semibold leading-6 text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">
+      <button className="flex items-center w-80 m-auto mt-5 shadow rounded bg-gray-100 ps-5 py-3 text-xs font-semibold leading-6 text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">
         <div className='text-black me-5'>
-        <i class="fa-regular fa-location-dot"></i>
+        <img className="w-4" src={iconLocation} alt=""></img>
         </div>
         Mijn Locatie
         <div className='text-black ms-40'>
