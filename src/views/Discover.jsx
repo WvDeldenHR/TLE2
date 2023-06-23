@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import { db } from './../config/firebase';
 import { useNavigate } from "react-router-dom";
-
+import { db } from './../config/firebase';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 // Components
 import { FilterButtonAlt } from '../components/buttons/FilterButtonAlt';
+import { LocationAlgorithm } from '../components/algorithm/LocationAlgorithm';
 import { Navbar } from "../components/navs/Navbar";
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
-import { PostCard } from '../components/content/PostCard';
-import { RecommendedPosts } from '../components/content/RecommendedPosts';
 import { PostCardActies } from '../components/content/PostCardActies';
-import { PostCardSmall } from '../components/content/PostCardSmall';
-import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
+import RecommendationAlgorithmVerTwo from '../components/algorithm/RecommendationAlgorithmVerTwo';
 import Searchbar from '../components/search/Searchbar';
+import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
 // Images
 import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
-
-import { LocationAlgorithm } from '../components/algorithm/LocationAlgorithm';
-import RecommendationAlgorithmVerTwo from '../components/algorithm/RecommendationAlgorithmVerTwo';
 
 
 export function Discover() {
@@ -66,12 +61,8 @@ export function Discover() {
             );
         setFilteredPosts(filtered);
         setNoResults(filtered.length === 0);
-        
     };
 
-
-
-    
     // Content
     return (
         <div className="bg-white">
@@ -83,21 +74,21 @@ export function Discover() {
                     <div className="w-full">
                         <h2 className="text-lg text-dark font-bold">Ontdekken</h2>
                     </div>
-                    { <NotificationButtonAlt /> }
+                    <NotificationButtonAlt />
                 </div>
                 <div className={`transition-3 | flex items-center ${search ? "pb-2 -transformY-17" : "-transformY-0"}`}>
                     <div onClick={() => searchToggle(1) } className="flex mr-3 rounded-lg w-full h-10 drop-shadow bg-gray-200">
                         <Searchbar onSearch={handleSearch} />
                     </div>
                     <div className={`transition-3 ${search ? "hidden" : "flex"}`}>
-                        { <FilterButtonAlt />}
+                        <FilterButtonAlt />
                     </div>
                     <div onClick={() => searchToggle(0) } className={`transition-3 ${search ? "w-20 transformX-0" : "w-0 transformX-24"}`}>
                         <span className="text-sm text-dark font-semibold">Annuleren</span>
                     </div>
                 </div>
                 <div className={`-mr-5 ${search ? "opacity-0" : "opacity-100"}`}>
-                    { <TagButtonsSliderPrimary /> }
+                    <TagButtonsSliderPrimary />
                 </div>
             </div>
 

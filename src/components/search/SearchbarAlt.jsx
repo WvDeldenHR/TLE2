@@ -24,9 +24,9 @@ const Searchbar = ({ onSearch }) => {
       <input className="searchbar-alt | w-full text-sm text-dark outline-none"
               type="text"
               placeholder="Naar wat wilt u zoeken?"
-              value={ searchQuery }
-              onChange={ handleInputChange }
-              onKeyPress={ handleKeyPress } />
+              value={searchQuery}
+              onChange={handleInputChange}
+              onKeyPress={handleKeyPress} />
     </>
   );
 };

@@ -107,6 +107,7 @@ export function Home() {
         navigate(`/overview`);
     }
 
+    // Content
     return (
         <div className="bg-white">
             <Navbar />
@@ -117,17 +118,17 @@ export function Home() {
                     <NotificationButton />
                     <div className="pt-2 pb-6">
                         <h1 className="text-3xl text-white font-semibold">Hallo</h1>
-                        <h1 className="text-3xl text-white font-semibold">{displayName}</h1>
+                        <h1 className="text-3xl text-white font-semibold">{ displayName }</h1>
                     </div>
                 </div>
                 <div className={`transition-3 | flex items-center ${search ? "-transformY-38" : "transformY-0"}`}>
-                    <div onClick={() => searchToggle(1) } className={`flex mr-3 rounded-lg w-full h-10 ${search ? "bg-gray-200" : "bg-white bg-opacity-25"}`}>
-                       <Searchbar onSearch={handleSearch} />
+                    <div onClick={() => searchToggle(1)} className={`flex mr-3 rounded-lg w-full h-10 ${search ? "bg-gray-200" : "bg-white bg-opacity-25"}`}>
+                       <Searchbar onSearch={ handleSearch } />
                     </div>
                     <div className={`transition-3 ${search ? "hidden" : "flex"}`}>
                         <FilterButton />
                     </div>
-                    <div onClick={() => searchToggle(0) } className={`transition-3 ${search ? "w-20 transformX-0" : "w-0 transformX-24"}`}>
+                    <div onClick={() => searchToggle(0)} className={`transition-3 ${search ? "w-20 transformX-0" : "w-0 transformX-24"}`}>
                         <span className="text-sm text-dark font-semibold">Annuleren</span>
                     </div>
                 </div>
@@ -157,16 +158,16 @@ export function Home() {
                             </div>
                             <div className="ml-4 border-b-1 border-gray-500 pl-2 w-full">
                                 <div className="flex">
-                                    <h3 className="w-52 text-sm text-dark font-bold truncate">{post.title}</h3>
+                                    <h3 className="w-52 text-sm text-dark font-bold truncate">{ post.title }</h3>
                                     <span className="flex justify-end w-full text-xxs text-gray-500 font-normal">30-5-2023</span>
                                 </div>
                                 <div className="flex items-center py-0.5">
-                                    <img className="w-3" src={iconLocation} alt="Locatie"></img>
-                                    <span className="ml-1 text-xxs text-dark font-medium">{post.location}</span>
+                                    <img className="w-3" src={ iconLocation } alt="Locatie"></img>
+                                    <span className="ml-1 text-xxs text-dark font-medium">{ post.location }</span>
                                 </div>
                                 <div className="flex pb-2 overflow-y-auto">
-                                    <button className="mr-2 rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{post.category}</button>
-                                    <button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{post.subCategories.join(', ')}</button>
+                                    <button className="mr-2 rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.category }</button>
+                                    <button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.subCategories.join(', ')}</button>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +188,7 @@ export function Home() {
                                     backgroundRepeat: 'no-repeat',
                                 }}>
                                 <div className="flex items-end w-full h-full">
-                                    <span className="mx-4 my-3 rounded px-3 py-1 w-60 text-sm text-dark font-semibold truncate bg-white">{latestPost.title}</span>
+                                    <span className="rounded px-3 py-2 w-full text-sm text-dark text-left font-semibold truncate bg-white">{ latestPost.title }</span>
                                 </div>
                                 <div className="w-full">
                                     <div className="flex items-center justify-end px-5 py-4 w-full">
