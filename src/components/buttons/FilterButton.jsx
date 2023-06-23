@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // Component
-import { SearchbarAlt } from './../../components/forms/SearchbarAlt';
+import { SearchbarAlt } from '../forms/SearchbarAlt';
 // Images
 import IconArrow from './../../assets/icons/icon_arrow_001_212427_32x32.svg';
 import IconCharity from './../..//assets/icons/icon_charity_001_FFFFFF_32x32.svg';
@@ -38,7 +38,7 @@ export function FilterButton() {
                 </g></svg>
             </button>
 
-            <div className={`filter-overlay | fixed top-0 left-0 h-full bg-white overflow-x-hidden z-50 ${overlay ? 'w-full': 'w-0'}`}>
+            <div className={`transition-5 | fixed h-full top-0 left-0 bg-white overflow-x-hidden z-50 ${overlay ? 'w-full': 'w-0'}`}>
                 <div className="p-6">
                     <div className="flex pb-8">
                         <button onClick={ toggleOverlay } className="mr-4 rounded p-3 w-10 h-10 bg-gray-200 drop-shadow">

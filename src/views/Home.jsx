@@ -114,7 +114,7 @@ export function Home() {
 
             <div className={`transition-3 | px-6 py-4 overflow-y-hidden 
                             ${search ? "fixed border-b-1 border-gray-300 rounded-none h-18 top-0 left-0 right-0 z-40 bg-white" : "relative m-1 rounded-xl h-80 bg-primary"}`}>
-                <div className={`transition-3 ${search ? "opacity-0 -transformY-40" : "opacity-100 transformY-0"}`}>
+                <div className={`transition-3 ${search ? "-transformY-40 | opacity-0" : "transformY-0 | opacity-100"}`}>
                     <NotificationButton />
                     <div className="pt-2 pb-6">
                         <h1 className="text-3xl text-white font-semibold">Hallo</h1>
@@ -128,7 +128,7 @@ export function Home() {
                     <div className={`transition-3 ${search ? "hidden" : "flex"}`}>
                         <FilterButton />
                     </div>
-                    <div onClick={() => searchToggle(0)} className={`transition-3 ${search ? "w-20 transformX-0" : "w-0 transformX-24"}`}>
+                    <div onClick={() => searchToggle(0)} className={`transition-3 ${search ? "transformX-0 | w-20" : "transformX-24 | w-0"}`}>
                         <span className="text-sm text-dark font-semibold">Annuleren</span>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ export function Home() {
                         <p className="text-base text-dark font-medium">Geen resultaten gevonden</p>
                     ) : (filteredPosts.map((post) => (
                         <div key={post.id} className="flex items-center mb-3 h-20">
-                           <div className="rounded-lg h-4/5 w-3/12"
+                           <div className="rounded-lg w-3/12 h-4/5"
                                 key={post.id}
                                 style={{
                                     backgroundColor: '#E6E6E6',
@@ -165,8 +165,8 @@ export function Home() {
                                     <img className="w-3" src={ iconLocation } alt="Locatie"></img>
                                     <span className="ml-1 text-xxs text-dark font-medium">{ post.location }</span>
                                 </div>
-                                <div className="flex pb-2 overflow-y-auto">
-                                    <button className="mr-2 rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.category }</button>
+                                <div className="flex gap-2 pb-2 overflow-y-auto">
+                                    <button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.category }</button>
                                     <button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.subCategories.join(', ')}</button>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@ export function Home() {
 
                 <div>
                     <h2 className="text-base text-dark font-bold">Aanbevolen Voor Jou</h2>
-                    <div className="mb-24">
+                    <div className="mb-24 pt-2">
                         <RecommendationAlgorithm />
                     </div>
                 </div>
