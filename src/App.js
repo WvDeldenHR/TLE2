@@ -31,6 +31,8 @@ import  UserPreference from "./components/algorithm/UserPreference"
 import  RecommendationAlgorithm from "./components/algorithm/RecommendationAlgorithm"
 import  RecommendationAlgorithmVerTwo from "./components/algorithm/RecommendationAlgorithmVerTwo"
 
+import MoreInfo from "./components/userprofile/MoreInfo";
+
 // Components
 // import { Navbar } from "./navs/Navbar.jsx";
 // Views
@@ -92,6 +94,7 @@ function App() {
         <Route path="/update-profile" element={<AuthChecker><UpdateUser /></AuthChecker>} />
         <Route path="/update-password" element={<AuthChecker><UpdatePassword /></AuthChecker>} />
         <Route path="/update-location" element={<AuthChecker><UpdateUserLocation /></AuthChecker>} />
+        <Route path="/more-info" element={<AuthChecker><MoreInfo /></AuthChecker>} />
         <Route path="/logout" element={<AuthChecker><LogOut /></AuthChecker>} />
 
         {/* CRUD Post */}

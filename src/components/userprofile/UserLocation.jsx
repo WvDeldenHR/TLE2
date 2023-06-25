@@ -64,7 +64,7 @@ export function UserLocation() {
           /> */}
           <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">Uw Locatie</h1>
           <h2 className="mt-2 text-center text-xs tracking-tight text-white px-16">
-              Voeg uw locatie toe. Dit is volledig prive en delen wij met niemand.<br></br> 
+          Om u relevante berichten te tonen, vragen we vriendelijk om uw postcode in te voeren. Uw locatie blijft volledig privé en wordt niet gedeeld.<br></br> 
           </h2>
 
       </div>

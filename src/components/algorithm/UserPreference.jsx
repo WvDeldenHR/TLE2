@@ -113,7 +113,7 @@ const UserPreference = () => {
   /> */}
   <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">Mijn interesses</h1>
   <h2 className="mt-2 text-center px-14 text-xs tracking-tight text-white">
-      In welke onderwerpen bent u geintereseerd? Door dit door te geven zorgen wij ervoor dat u aanbevelingen krijgt die bij u passen. <br></br> 
+  Geef ons inzicht in uw interesses door de bijbehorende subcategorieën aan te vinken. Op deze manier kunnen we berichten tonen die aansluiten bij uw voorkeuren. <br></br> 
   </h2>
 </div>
 
@@ -495,9 +495,13 @@ const UserPreference = () => {
         <br />
         
         <button type="submit" 
-        className="block items-center text-xs font-medium mb-20 justify-center rounded-full py-3 px-10 bg-gray-600 text-white mx-auto" 
-        >Volgende</button>
+        className="block items-center text-xs font-medium mb-10 justify-center rounded-full py-3 px-10 bg-gray-600 text-white mx-auto" 
+        >Opslaan</button>
       </form>
+
+      <div className="text-center text-xxs px-16 pb-10">
+          <p>Lees <a href="/more-info" className=" underline underline-offset-1">het privacyartikel</a> voor meer informatie over hoe Charium je interesses gebruikt.</p>
+        </div>
     
     </div>
   );

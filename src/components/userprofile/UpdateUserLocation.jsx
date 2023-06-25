@@ -124,7 +124,7 @@ export function UpdateUserLocation() {
         <BackButton/>
           <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">Uw Locatie</h1>
           <h2 className="mt-2 text-center text-xs tracking-tight text-white px-16">
-              Voeg uw locatie toe. Dit is volledig prive en delen wij met niemand.<br></br> 
+          Om u relevante berichten te tonen, vragen we vriendelijk om uw postcode in te voeren. Uw locatie blijft volledig privé en wordt niet gedeeld.<br></br> 
           </h2>
 
         </div>
@@ -187,6 +187,9 @@ export function UpdateUserLocation() {
               </label>
             </div>
           </div>
+        </div>
+        <div className="text-center text-xxs px-16 py-10">
+          <p>Lees <a href="/more-info" className=" underline underline-offset-1">het privacyartikel</a> voor meer informatie over hoe Charium je locatiegegevens gebruikt.</p>
         </div>
       </div>
     </>

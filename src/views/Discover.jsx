@@ -153,7 +153,7 @@ export function Discover() {
 
                 <div className="">
                     <div className="">
-                        <h2 className="text-lg text-dark font-bold">In Jou Buurt</h2>
+                        <h2 className="text-lg text-dark font-bold">Berichten In Jouw Buurt</h2>
                     </div>
                     <div className="flex flex-row -mt-1 -mr-6 pt-5 overflow-y-auto">
                         {/* { <PostCard /> }
