@@ -39,6 +39,7 @@ module.exports = {
         '0.5': '0.125rem',
         '38': '9.5rem',
         '30': '7.5rem',
+        '55': '13.75rem',
       },
       textColor: {
         'dark': '#212427',

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import './../../index.css';
 // Component
-import { SearchbarAlt } from './../../components/forms/SearchbarAlt';
+import { SearchbarAlt } from '../forms/SearchbarAlt';
 // Images
 import IconArrow from './../../assets/icons/icon_arrow_001_212427_32x32.svg';
 import IconCharity from './../..//assets/icons/icon_charity_001_FFFFFF_32x32.svg';
@@ -18,8 +17,8 @@ export function FilterButton() {
     }; 
 
     return (
-        <div>
-            <button className="rounded p-2 h-10 bg-white bg-opacity-25 drop-shadow" onClick={ toggleOverlay }>
+        <>
+            <button onClick={ toggleOverlay } className="rounded p-2 h-10 bg-white bg-opacity-25 drop-shadow">
                 <svg className="fill-white" width="26" height="26" viewBox="0 0 32 32"><g>
                     <path d="M20.7,8.1c-2.4,0-4.8,0-7.2,0c-0.2,0-0.3,0.1-0.4,0.3c-0.7,1.5-1.9,2.4-3.6,2.4c-1.7,0-2.9-0.9-3.6-2.4
                         C5.7,8.1,5.6,8,5.4,8.1c-0.4,0-0.9,0-1.3,0c-0.8,0-1.3-0.6-1.3-1.3C2.7,6,3.3,5.4,4,5.4c0.4,0,0.9,0,1.3,0c0.2,0,0.3,0,0.4-0.2
@@ -39,82 +38,78 @@ export function FilterButton() {
                 </g></svg>
             </button>
 
-        <div className={`filter-overlay | fixed top-0 left-0 h-full bg-white overflow-x-hidden z-50 ${overlay ? 'w-full': 'w-0'}`}>
-            <div className="p-6">
-                <div className="flex pb-8">
-                    <div>
-                        <button className="mr-4 rounded p-3 w-10 h-10 bg-gray-200 drop-shadow" onClick={ toggleOverlay }>
-                            <img className="w-100" src={ IconArrow } alt="Terug"></img>
+            <div className={`transition-5 | fixed h-full top-0 left-0 bg-white overflow-x-hidden z-50 ${overlay ? 'w-full': 'w-0'}`}>
+                <div className="p-6">
+                    <div className="flex pb-8">
+                        <button onClick={ toggleOverlay } className="mr-4 rounded p-3 w-10 h-10 bg-gray-200 drop-shadow">
+                            <img className="w-4" src={ IconArrow } alt="Terug"></img>
                         </button>
-                    </div>
-                    <div className="w-full">
-                        { <SearchbarAlt /> }
-                    </div>
-                </div>
-                <div className="pb-4">
-                    <h2 className="text-dark text-xl font-bold">Filter</h2>
-                </div>
-                <div className="grid grid-cols-2">
-                    <div className="">
-                        <div className="flex items-center pb-4">
-
-
-                            <div className="mr-2 rounded p-2 bg-primary">
-                                <img className="w-4" src={ IconFinancial } alt="Financieel"></img>
-                            </div>
-                            <div>
-                                <a href="/financieel">
-                                <h3 className="text-dark font-semibold">Financieel</h3>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="px-4 pb-4">
-                            <button className="flex items-center">
-                                <span className="block mr-2 rounded-full w-2 h-2 bg-primary"></span>
-                                <span className="text-primary font-semibold">Onderwijs</span>
-                            </button>
-                            <div className="flex items-center"><span className="block mr-2 rounded-full w-2 h-2"></span><span>Milieu</span></div>
+                        <div className="w-full">
+                            <SearchbarAlt />
                         </div>
                     </div>
-                    <div className="">
-                        <div className="flex items-center">
-                            <div className="mr-2 rounded p-2 bg-primary">
-                                <img className="w-4" src={ IconStuff } alt="Spullen"></img>
+                    <div className="pb-4">
+                        <h2 className="text-dark text-xl font-bold">Filter</h2>
+                    </div>
+                    <div className="grid grid-cols-2">
+                        <div className="">
+                            <div className="flex items-center pb-4">
+                                <div className="mr-2 rounded p-2 bg-primary">
+                                    <img className="w-4" src={ IconFinancial } alt="Financieel"></img>
+                                </div>
+                                <div>
+                                    <a href="/financieel">
+                                    <h3 className="text-dark font-semibold">Financieel</h3>
+                                    </a>
+                                </div>
                             </div>
-                            <div>
-                                <a href="/spullen">
-                                <h3 className="text-dark font-semibold">Spullen</h3>
-                                </a>
+                            <div className="px-4 pb-4">
+                                <button className="flex items-center">
+                                    <span className="block mr-2 rounded-full w-2 h-2 bg-primary"></span>
+                                    <span className="text-primary font-semibold">Onderwijs</span>
+                                </button>
+                                <div className="flex items-center"><span className="block mr-2 rounded-full w-2 h-2"></span><span>Milieu</span></div>
                             </div>
                         </div>
-                    </div>
-                    <div className="">
-                        <div className="flex items-center">
-                            <div className="mr-2 rounded p-2 bg-primary">
-                                <img className="w-4" src={ IconConsumption } alt="Eten & Drinken"></img>
-                            </div>
-                            <div>
-                                <a href="/eten">
-                                <h3 className="text-dark font-semibold">Eten & Drinken</h3>
-                                </a>
+                        <div className="">
+                            <div className="flex items-center">
+                                <div className="mr-2 rounded p-2 bg-primary">
+                                    <img className="w-4" src={ IconStuff } alt="Spullen"></img>
+                                </div>
+                                <div>
+                                    <a href="/spullen">
+                                    <h3 className="text-dark font-semibold">Spullen</h3>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="">
-                        <div className="flex items-center">
-                            <div className="mr-2 rounded p-2 bg-primary">
-                                <img className="w-4" src={ IconCharity } alt="Acties"></img>
+                        <div className="">
+                            <div className="flex items-center">
+                                <div className="mr-2 rounded p-2 bg-primary">
+                                    <img className="w-4" src={ IconConsumption } alt="Eten & Drinken"></img>
+                                </div>
+                                <div>
+                                    <a href="/eten">
+                                    <h3 className="text-dark font-semibold">Eten & Drinken</h3>
+                                    </a>
+                                </div>
                             </div>
-                            <div>
-                                <a href="/acties">
-                                <h3 className="text-dark font-semibold">Acties</h3>
-                                </a>
+                        </div>
+                        <div className="">
+                            <div className="flex items-center">
+                                <div className="mr-2 rounded p-2 bg-primary">
+                                    <img className="w-4" src={ IconCharity } alt="Acties"></img>
+                                </div>
+                                <div>
+                                    <a href="/acties">
+                                    <h3 className="text-dark font-semibold">Acties</h3>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </>
     );
 }
