@@ -32,6 +32,7 @@ import  RecommendationAlgorithm from "./components/algorithm/RecommendationAlgor
 import  RecommendationAlgorithmVerTwo from "./components/algorithm/RecommendationAlgorithmVerTwo"
 
 import MoreInfo from "./components/userprofile/MoreInfo";
+import Subcategory from "./components/subcategory/Subcategory"; //ignore
 
 // Components
 // import { Navbar } from "./navs/Navbar.jsx";
@@ -107,6 +108,8 @@ function App() {
 
         <Route path="post-create" element={<AuthChecker> <PostCreate /> </AuthChecker>} />
         <Route path="/search" element={<AuthChecker> <SearchingPosts /> </AuthChecker>} />
+
+        <Route path="/subcategory/:subcategory" element={<AuthChecker><Subcategory /></AuthChecker>} />
       
         <Route path="/financieel" element={<AuthChecker> <FinancialCategory /> </AuthChecker>} />
         <Route exact path="/spullen" element={<AuthChecker> <StuffCategory /> </AuthChecker>} />
