@@ -4,7 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../../config/firebase';
 import { ProfileButton } from '../buttons/ProfileButton';
 
-const OverviewOther = () => {
+const MyReservations = () => {
   const [reservations, setReservations] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [selectedReservation, setSelectedReservation] = useState(null);
@@ -15,7 +15,7 @@ const OverviewOther = () => {
       // Fetch the reservations for the current user
       const reservationsQuery = query(
         collection(db, 'reservations'),
-        where('postUser', '==', userId)
+        where('user', '==', userId)
       );
 
       try {
@@ -56,7 +56,7 @@ const OverviewOther = () => {
       // Fetch the updated reservations list from Firestore after deletion
       const updatedReservationsQuery = query(
         collection(db, 'reservations'),
-        where('postUser', '==', userId)
+        where('user', '==', userId)
       );
       const updatedReservationsSnapshot = await getDocs(updatedReservationsQuery);
       const updatedReservations = updatedReservationsSnapshot.docs.map((doc) => ({
@@ -87,7 +87,18 @@ const OverviewOther = () => {
 
   return (
     <div className="flex min-h-full w-full flex-1 flex-col justify-center items-center  lg:px-8 sm:w-full sm:h-full ">
-    
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-primary pt-8 pb-14 border border-gray-200">
+        <ProfileButton />
+
+        <h1 className="mt-6 text-center text-xl font-bold leading-9 tracking-tight text-white">
+          Mijn Afspraken
+        </h1>
+        <h2 className="mt-2 text-center text-xs tracking-tight text-white">
+          Bekijk de overzicht van uw afspraken. 
+          <br />
+        </h2>
+      </div>
+
       {showConfirmation && (
   <div className="fixed inset-0 flex items-center justify-center z-50">
     <div className="fixed inset-0 bg-black opacity-70"></div>
@@ -114,25 +125,25 @@ const OverviewOther = () => {
 )}
 
 {reservations.length === 0 ? (
-  <p className='text-xs text-center w-80 mt-10'>U heeft nog geen afspraken.</p>
+  <p className='text-xs text-center w-80 mt-10'>U heeft nog geen afspraken. <br></br> Om een afspraak te maken kunt u op de 'help' knop klikken van berichten waarbij u wilt helpen.</p>
 ) : (
   reservations.map((reservation) => (
         <div
           key={reservation.id}
-          className="bg-white mx-2 rounded-md shadow-md relative"
+          className="bg-white mx-10 mt-5 rounded-md shadow-md relative"
         >
           <button
            onClick={() => {
             setSelectedReservation(reservation);
             setShowConfirmation(true);
           }}
-            className="absolute top-3 right-6 bg-transparent border-none"
+            className="absolute top-5 right-5 bg-transparent border-none"
           >
             <i className="fa-solid fa-trash text-red-700 hover:text-red-500"></i>
           </button>
 
-          <h2 className="text-sm font-semibold mb-2 bg-primary text-white p-4 pr-10 rounded-t-md">
-            <p className='w-60'> {reservation.postTitle}</p>
+          <h2 className="text-sm font-semibold mb-2 bg-gray-300 text-black p-4 rounded-t-md">
+            {reservation.postTitle}
           </h2>
 
           <div className="py-3 px-5 text-xs">
@@ -160,5 +171,5 @@ const OverviewOther = () => {
   );
 };
 
-export default OverviewOther;
+export default MyReservations;
 

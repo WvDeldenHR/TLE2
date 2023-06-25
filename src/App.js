@@ -46,6 +46,8 @@ import FinancialCategory from "./components/category/FinancialCategory";
 import StuffCategory from "./components/category/StuffCategory";
 import ConsumptionCategory from "./components/category/ConsumptionCategory";
 import CharityCategory from "./components/category/CharityCategory";
+import ReservationPage from "./components/reservation/ReservationPage";
+import MyReservations from "./components/reservation/MyReservations";
 // import { Settings } from './views/Settings';
 
 
@@ -116,6 +118,8 @@ function App() {
         <Route exact path="/eten" element={<AuthChecker> <ConsumptionCategory /> </AuthChecker>} />
         <Route exact path="/acties" element={<AuthChecker> <CharityCategory /> </AuthChecker>} />   
 
+        <Route path="/reservation/:postId" element={<ReservationPage />} />
+        <Route path="/mijn-afspraken" element={<MyReservations />} />
 
       </Routes>
       {/* <Navbar /> */}

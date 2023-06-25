@@ -118,6 +118,7 @@ export function Profile() {
       </button>
       </a>
 
+      <a href="/mijn-afspraken">
       <button className="flex w-80 m-auto mt-5 shadow rounded bg-gray-100 px-5 py-3 text-xs font-semibold leading-6 text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">
         <div className='text-black me-5'>
         <i class="fa-regular fa-calendar"></i>
@@ -127,6 +128,7 @@ export function Profile() {
         <i class="fa-solid fa-chevron-right"></i>
         </div>
       </button>
+      </a>
 
       <a href="/more-info">
       <button className="flex w-80 m-auto mt-5 shadow rounded bg-gray-100 px-5 py-3 text-xs font-semibold leading-6 text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">
