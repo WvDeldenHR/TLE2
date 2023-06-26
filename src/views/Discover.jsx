@@ -111,18 +111,20 @@ export function Discover() {
                                     backgroundSize: 'cover',
                                 }}>
                             </div>
-                            <div className="ml-4 border-b-1 border-gray-500 pl-2 w-full">
+                            <div className="ml-4 border-b-1 border-gray-500 pl-2 w-3/4">
                                 <div className="flex">
                                     <h3 className="w-52 text-sm text-dark font-bold truncate">{ post.title }</h3>
                                     <span className="flex justify-end w-full text-xxs text-gray-500 font-normal">30-5-2023</span>
                                 </div>
                                 <div className="flex items-center py-0.5">
                                     <img className="w-3" src={ iconLocation } alt="Locatie"></img>
-                                    <span className="ml-1 text-xxs text-dark font-medium">Locatie</span>
+                                    <span className="ml-1 text-xxs text-dark font-medium">{ post.location }</span>
                                 </div>
                                 <div className="flex gap-2 pb-2 overflow-y-auto">
-                                    <button className="rounded px-2 py-1 bg-primary w-max text-white text-xxxs font-semibold">{ post.category }</button>
-                                    <button className="rounded px-2 py-1 bg-primary w-max text-white text-xxxs font-semibold">{ post.subCategories.join(', ')}</button>
+                                    <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxxs font-semibold">{ post.category }</button></div>
+                                    { post.subCategories.map((subCategory, index) => ( 
+                                        <div><button key={index} className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{ subCategory }</button></div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
