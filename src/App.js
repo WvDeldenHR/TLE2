@@ -29,7 +29,7 @@ import { LocationAlgorithm } from "./components/algorithm/LocationAlgorithm";
 
 import  UserPreference from "./components/algorithm/UserPreference"
 import  RecommendationAlgorithm from "./components/algorithm/RecommendationAlgorithm"
-import  RecommendationAlgorithmVerTwo from "./components/algorithm/RecommendationAlgorithmVerTwo"
+import  RecommendationAlgorithmAlt from "./components/algorithm/RecommendationAlgorithmAlt"
 
 import MoreInfo from "./components/userprofile/MoreInfo";
 import Subcategory from "./components/subcategory/Subcategory"; //ignore
@@ -89,7 +89,7 @@ function App() {
         <Route path="/location" element={<AuthChecker><LocationAlgorithm /></AuthChecker>} />
         <Route path="/user-pref" element={<AuthChecker><UserPreference /></AuthChecker>} />
         <Route path="/rec" element={<AuthChecker><RecommendationAlgorithm /></AuthChecker>} />
-        <Route path="/rectwo" element={<AuthChecker><RecommendationAlgorithmVerTwo /></AuthChecker>} />
+        <Route path="/rectwo" element={<AuthChecker><RecommendationAlgorithmAlt /></AuthChecker>} />
 
         {/* Profile, Updates, Log Out */}
         <Route path="/profile" element={<AuthChecker><Profile /></AuthChecker>} />

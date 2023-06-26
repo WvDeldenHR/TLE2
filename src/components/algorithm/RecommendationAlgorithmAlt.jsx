@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
-import { db, auth } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
-
-import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.svg';
-import iconFinancial from './../../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
-import iconStuff from './../../assets/icons/icon_stuff_001_FFFFFF_32x32.svg';
-import iconConsumption from './../../assets/icons/icon_consumption_001_FFFFFF_32x32.svg';
+import { auth, db } from '../../config/firebase';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+// Component
+import { LoadingScreen } from '../other/LoadingScreen';
+// Images
 import iconCharity from './../../assets/icons/icon_charity_001_FFFFFF_32x32.svg';
+import iconConsumption from './../../assets/icons/icon_consumption_001_FFFFFF_32x32.svg';
+import iconFinancial from './../../assets/icons/icon_financial_001_FFFFFF_32x32.svg';
+import iconLocation from './../../assets/icons/icon_location_001_212427_32x32.svg';
+import iconStuff from './../../assets/icons/icon_stuff_001_FFFFFF_32x32.svg';
 
-const RecommendationAlgorithmVerTwo = () => {
+
+const RecommendationAlgorithmAlt = () => {
     const [recommendations, setRecommendations] = useState([]);
     const navigate = useNavigate();
 
@@ -170,10 +173,10 @@ const RecommendationAlgorithmVerTwo = () => {
 
     // Content
     return (
-    <div className='flex my-2'>
+    <div className="flex my-2">
         {recommendations.length > 0 ? ( recommendations.map((post, index) => (
             <div key={index}>
-                <button onClick={() => handleDetail(post.id)} className='w-full'>
+                <button onClick={() => handleDetail(post.id)} className="w-full">
                     <div className="relative mr-4 rounded-lg h-48"
                         key={post.id}
                         style={{
@@ -183,44 +186,46 @@ const RecommendationAlgorithmVerTwo = () => {
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover',
                     }}>
-                    <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
-                        {post.category === 'Financieel' && (
-                            <img className="w-5" src={ iconFinancial } alt="Financieel" />
-                        )}
-                        {post.category === 'Acties' && (
-                            <img className="w-5" src={ iconCharity } alt="Acties" />
-                        )}
-                        {post.category === 'Eten' && (
-                            <img className="w-5" src={ iconConsumption } alt="Eten & Drinken" />
-                        )}
-                        {post.category === 'Spullen' && (
-                            <img className="w-5" src={ iconStuff } alt="Spullen" />
-                        )}
-                    </div>
-                    <div className="flex flex-col w-38 h-full drop-shadow">
-                    <div className="flex items-end h-full">
-                        <div className="flex overflow-y-auto pl-3 py-3">
-                            <div className="mr-2"><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.category}</button></div>
-                            {/* <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{post.subCategories.join(', ')}</button></div> */}
+                        <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
+                            { post.category === "Financieel" && (
+                                <img className="w-5" src={ iconFinancial } alt="Financieel" />
+                            )}
+                            { post.category === "Acties" && (
+                                <img className="w-5" src={ iconCharity } alt="Acties" />
+                            )}
+                            { post.category === "Eten" && (
+                                <img className="w-5" src={ iconConsumption } alt="Eten & Drinken" />
+                            )}
+                            { post.category === "Spullen" && (
+                                <img className="w-5" src={ iconStuff } alt="Spullen" />
+                            )}
+                        </div>
+                        <div className="flex flex-col w-38 h-full drop-shadow">
+                            <div className="flex items-end h-full">
+                                <div className="flex gap-2 pl-3 py-3 overflow-y-auto">
+                                    <div><button className="rounded px-2 py-1 w-max text-xxs text-white font-semibold bg-primary">{ post.category }</button></div>
+                                    { post.subCategories.map((subCategory, index) => ( 
+                                        <div><button key={index} className="rounded px-2 py-1 w-max text-xxs text-white font-semibold bg-primary">{ subCategory }</button></div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex flex-col rounded-b-lg px-3 py-1 bg-white">
+                                <h3 className="text-sm text-dark font-bold truncate">{ post.title }</h3>
+                                <div className="flex items-center">
+                                    <img className="mr-1 w-2" src={ iconLocation } alt="Locatie" />
+                                    <span className="text-xxs text-dark font-normal truncate">{ post.location }</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex flex-col rounded-b-lg px-3 py-1 bg-white">
-                        <h3 className="text-dark text-sm font-bold truncate">{post.title}</h3>
-                        <div className="flex items-center">
-                            <img className="w-2 mr-1" src={iconLocation} alt="Location"></img>
-                            <span className="text-dark text-xxs truncate">{post.location}</span>
-                        </div>
-                    </div>
-                </div>
-         </div>
-         </button>
-          </div>
+                </button>
+            </div>
         ))
       ) : (
-        <p>Loading recommendations...</p>
+        <LoadingScreen />
       )}
     </div>
   );
 };
 
-export default RecommendationAlgorithmVerTwo;
+export default RecommendationAlgorithmAlt;

@@ -154,9 +154,9 @@ export function Home() {
                                     <span className="ml-1 text-xxs text-dark font-medium">{ post.location }</span>
                                 </div>
                                 <div className="flex gap-2 pb-2 overflow-y-auto">
-                                    <div><button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.category }</button></div>
+                                    <div><button className="rounded px-2 py-1 w-max text-xxxs text-white font-semibold bg-primary">{ post.category }</button></div>
                                     { post.subCategories.map((subCategory, index) => ( 
-                                        <div><button key={index} className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{ subCategory }</button></div>
+                                        <div><button key={index} className="rounded px-2 py-1 w-max text-xxs text-white font-semibold bg-primary">{ subCategory }</button></div>
                                     ))}
                                 </div>
                             </div>

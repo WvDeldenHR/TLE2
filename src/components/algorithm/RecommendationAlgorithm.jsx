@@ -169,55 +169,55 @@ const RecommendationAlgorithm = () => {
 
     return (
         <div className="pb-16">
-        {recommendations.length > 0 ? ( recommendations.map((post, index) => (
-            <div key={index}>
-                <button onClick={() => handleDetail(post.id)} className='w-full'>
-                    <div className="content-box relative mb-8 rounded-lg h-40"
-                        key={post.id}
-                        style={{
-                            backgroundImage: `url(${post.imageURLs[0]})`,
-                            backgroundSize: '100%',
-                            backgroundPosition: 'left',
-                            backgroundRepeat: 'no-repeat',
-                        }}>
-                        <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
-                            { post.category === 'Financieel' && (
-                                <img className="w-5" src={ iconFinancial } alt="Financieel" />
-                            )}
-                            { post.category === 'Acties' && (
-                                <img className="w-5" src={ iconCharity } alt="Acties" />
-                            )}
-                            { post.category === 'Eten' && (
-                                <img className="w-5" src={ iconConsumption } alt="Financieel" />
-                            )}
-                            { post.category === 'Spullen' && (
-                                <img className="w-5" src={ iconStuff } alt="Acties" />
-                            )}
-                        </div>
-                        <div className="flex h-full drop-shadow">
-                            <div className="flex items-end w-7/12">
-                                <div className="flex gap-2 pl-3 py-3 overflow-y-auto">
-                                    <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{ post.category }</button></div>
-                                    { post.subCategories.map((subCategory, index) => ( 
-                                        <div><button key={index} className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{ subCategory }</button></div>
-                                    ))}
+            {recommendations.length > 0 ? ( recommendations.map((post, index) => (
+                <div key={index}>
+                    <button onClick={() => handleDetail(post.id)} className="w-full">
+                        <div className="relative mb-8 rounded-lg h-40"
+                            key={post.id}
+                            style={{
+                                backgroundImage: `url(${post.imageURLs[0]})`,
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'cover',
+                            }}>
+                            <div className="absolute rounded p-2.5 -top-4 right-4 bg-primary drop-shadow z-10">
+                                { post.category === "Financieel" && (
+                                    <img className="w-5" src={ iconFinancial } alt="Financieel" />
+                                )}
+                                { post.category === "Acties" && (
+                                    <img className="w-5" src={ iconCharity } alt="Acties" />
+                                )}
+                                { post.category === "Eten" && (
+                                    <img className="w-5" src={ iconConsumption } alt="Eten & Drinken" />
+                                )}
+                                { post.category === "Spullen" && (
+                                    <img className="w-5" src={ iconStuff } alt="Spullen" />
+                                )}
+                            </div>
+                            <div className="flex h-full drop-shadow">
+                                <div className="flex items-end w-7/12">
+                                    <div className="flex gap-2 pl-3 py-3 overflow-y-auto">
+                                        <div><button className="rounded px-2 py-1 w-max text-xxs text-white font-semibold bg-primary">{ post.category }</button></div>
+                                        { post.subCategories.map((subCategory, index) => ( 
+                                            <div><button key={index} className="rounded px-2 py-1 w-max text-xxs text-white font-semibold bg-primary">{ subCategory }</button></div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="flex flex-col justify-center rounded-r-lg pl-4 pr-3 pt-8 pb-6 w-5/12 bg-white">
+                                    <h3 className="text-dark text-sm font-semibold truncate">{ post.title }</h3>
+                                    <div className="flex items-center pb-2">
+                                        <img className="mr-1 w-2" src={ iconLocation } alt="Locatie" />
+                                        <span className="text-dark text-xxs truncate">{ post.location }</span>
+                                    </div>
+                                    <p className="paragraph | text-xs text-dark font-normal">{ post.description }</p>
                                 </div>
                             </div>
-                            <div className="flex flex-col justify-center rounded-r-lg pl-4 pr-3 pt-8 pb-6 w-5/12 bg-white">
-                                <h3 className="text-dark text-sm font-semibold truncate">{ post.title }</h3>
-                                <div className="flex items-center pb-2">
-                                    <img className="mr-1 w-2" src={ iconLocation } alt="Locatie"></img>
-                                    <span className="text-dark text-xxs truncate">{ post.location }</span>
-                                </div>
-                                <p className="paragraph | tetx-dark text-xs">{ post.description }</p>
-                            </div>
                         </div>
-                    </div>
-                </button>
-            </div>
-        ))) : (
-            <LoadingScreen />
-        )}
+                    </button>
+                </div>
+            ))) : (
+                <LoadingScreen />
+            )}
         </div>
     );
 };

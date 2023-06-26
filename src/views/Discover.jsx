@@ -8,7 +8,7 @@ import { LocationAlgorithm } from '../components/algorithm/LocationAlgorithm';
 import { Navbar } from "../components/navs/Navbar";
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
 import { PostCardActies } from '../components/content/PostCardActies';
-import RecommendationAlgorithmVerTwo from '../components/algorithm/RecommendationAlgorithmVerTwo';
+import RecommendationAlgorithmAlt from '../components/algorithm/RecommendationAlgorithmAlt';
 import Searchbar from '../components/search/Searchbar';
 import { TagButtonsSliderPrimary } from '../components/buttons/TagButtonsSliderPrimary';
 // Images
@@ -121,9 +121,9 @@ export function Discover() {
                                     <span className="ml-1 text-xxs text-dark font-medium">{ post.location }</span>
                                 </div>
                                 <div className="flex gap-2 pb-2 overflow-y-auto">
-                                    <div><button className="rounded px-2 py-1 bg-primary w-max text-white text-xxxs font-semibold">{ post.category }</button></div>
+                                    <div><button className="rounded px-2 py-1 w-max text-xxxs text-white font-semibold bg-primary">{ post.category }</button></div>
                                     { post.subCategories.map((subCategory, index) => ( 
-                                        <div><button key={index} className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{ subCategory }</button></div>
+                                        <div><button key={index} className="rounded px-2 py-1 w-max text-xxs text-white font-semibold bg-primary">{ subCategory }</button></div>
                                     ))}
                                 </div>
                             </div>
@@ -136,7 +136,7 @@ export function Discover() {
                 <div className="mb-6">
                     <h2 className="text-lg text-dark font-bold">Aanbevolen Voor Jou</h2>
                     <div className="flex -mt-1 -mr-6 pt-5 overflow-y-auto">
-                        <RecommendationAlgorithmVerTwo />
+                        <RecommendationAlgorithmAlt />
                     </div>
                 </div>
                 <div className="">
