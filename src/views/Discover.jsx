@@ -106,9 +106,9 @@ export function Discover() {
                                 style={{
                                     backgroundColor: '#E6E6E6',
                                     backgroundImage: `url(${post.imageURLs[0]})`,
-                                    backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat',
+                                    backgroundSize: 'cover',
                                 }}>
                             </div>
                             <div className="ml-4 border-b-1 border-gray-500 pl-2 w-full">
