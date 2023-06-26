@@ -14,7 +14,6 @@ import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
 
 export function Home() {
-
     const [displayName, setDisplayName] = useState('');
     const [latestPost, setLatestPost] = useState(null);
     const navigate = useNavigate();
@@ -85,7 +84,7 @@ export function Home() {
             }
         };
         fetchLatestPost();
-      }, []);
+    }, []);
 
     const handleDetail = (postId) => {
         navigate(`/overview`);
@@ -93,7 +92,7 @@ export function Home() {
 
     const handeDetail = (postId) => {
         navigate(`/post/${postId}`);
-      }
+    }
 
     // Content
     return (
@@ -145,7 +144,7 @@ export function Home() {
                                     backgroundSize: 'cover',
                                 }}>
                             </div>
-                            <div className="ml-4 border-b-1 border-gray-500 pl-2 w-full">
+                            <div className="ml-4 border-b-1 border-gray-500 pl-2 w-3/4">
                                 <div className="flex">
                                     <h3 className="w-52 text-sm text-dark font-bold truncate">{ post.title }</h3>
                                     <span className="flex justify-end w-full text-xxs text-gray-500 font-normal">30-5-2023</span>
@@ -155,8 +154,10 @@ export function Home() {
                                     <span className="ml-1 text-xxs text-dark font-medium">{ post.location }</span>
                                 </div>
                                 <div className="flex gap-2 pb-2 overflow-y-auto">
-                                    <button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.category }</button>
-                                    <button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.subCategories.join(', ')}</button>
+                                    <div><button className="rounded px-2 py-1 w-max text-white text-xxxs font-semibold bg-primary">{ post.category }</button></div>
+                                    { post.subCategories.map((subCategory, index) => ( 
+                                        <div><button key={index} className="rounded px-2 py-1 bg-primary w-max text-white text-xxs font-semibold">{ subCategory }</button></div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -178,7 +179,7 @@ export function Home() {
                                     backgroundSize: 'cover',
                                 }}>
                                 <div className="flex items-end w-full h-full">
-                                    <span className="rounded px-3 py-2 w-full text-sm text-dark text-left font-semibold truncate bg-white">{ latestPost.title }</span>
+                                    <span className="rounded-b px-3 py-2 w-full text-sm text-dark text-left font-semibold truncate bg-white">{ latestPost.title }</span>
                                 </div>
                                 <div className="w-full">
                                     <div className="flex items-center justify-end px-5 py-4 w-full">
