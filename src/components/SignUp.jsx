@@ -14,6 +14,11 @@ export const SignUp = () => {
     const [password, setPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handlePasswordToggle = () => {
+      setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
  
     const onSubmit = async (e) => {
       e.preventDefault()
@@ -111,22 +116,35 @@ export const SignUp = () => {
                             />
                         </div>
 
-                        <div className="">
+                        <div className="flex items-center justify-between">
                             <label htmlFor="password" className="block mb-2 text-xs font-medium mt-5 leading-6 text-gray-900">
-                            <i class="fa-solid fa-user-lock"></i>
+                                <i className="fa-solid fa-user-lock"></i>
                                 {'\u00A0'} {'\u00A0'}
                                 Wachtwoord
                             </label>
+                            <div className="text-xs">
+                                <a href="/forgot-password" className="font-semibold text-gray-500 hover:text-red-700">
+                                Wachtwoord vergeten?
+                                </a>
+                            </div>
+                            </div>
+                            <div className="relative">
                             <input
-                                type="password"
-                                label="Password"
+                                type={showPassword ? 'text' : 'password'}
+                                required
+                                placeholder="Minimaal 6 tekens"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)} 
-                                required                                 
-                                placeholder="Minimaal 6 tekens"         
-                                className="block w-full rounded-md text-xs mb-10 border py-1.5 px-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"     
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="block mb-10 w-full text-xs rounded-md border py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
-                        </div>                                             
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-5 flex items-center focus:outline-none"
+                                onClick={handlePasswordToggle}
+                            >
+                                <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'} text-gray-400`}></i>
+                            </button>
+                            </div>                                            
                         
                         {error && <p className="mt-5 mb-5 text-xs text-center text-red-900">{error}</p>}
 

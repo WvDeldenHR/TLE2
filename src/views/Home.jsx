@@ -14,23 +14,7 @@ import iconLocation from './../assets/icons/icon_location_001_212427_32x32.svg';
 
 
 export function Home() {
-    // const user = auth.currentUser;
-    // const displayName = user.displayName;
-    // console.log(displayName)
 
-    // const [displayName, setDisplayName] = useState('');
-
-    // useEffect(() => {
-    //   // Fetch the user's display name from Firebase
-    //   const user = auth.currentUser;
-    //   if (user) {
-    //     const { displayName } = user;
-    //     setDisplayName(displayName || ''); // Set the display name or an empty string
-    //     console.log(displayName)
-    //   }
-    // }, []);
-
-    // 
     const [displayName, setDisplayName] = useState('');
     const [latestPost, setLatestPost] = useState(null);
     const navigate = useNavigate();
@@ -107,6 +91,10 @@ export function Home() {
         navigate(`/overview`);
     }
 
+    const handeDetail = (postId) => {
+        navigate(`/post/${postId}`);
+      }
+
     // Content
     return (
         <div className="bg-white">
@@ -145,6 +133,7 @@ export function Home() {
                     {noResults ? (
                         <p className="text-base text-dark font-medium">Geen resultaten gevonden</p>
                     ) : (filteredPosts.map((post) => (
+                        <button onClick={() => handeDetail(post.id)} className="w-full">
                         <div key={post.id} className="flex items-center mb-3 h-20">
                            <div className="rounded-lg w-3/12 h-4/5"
                                 key={post.id}
@@ -171,6 +160,7 @@ export function Home() {
                                 </div>
                             </div>
                         </div>
+                        </button>
                     )))}
                 </div>
             </div>
@@ -204,7 +194,7 @@ export function Home() {
                             </div>
                         </button>
                     ) : (
-                        <></>
+                        <div className='mb-8'> </div>
                     )}
                 </div>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Component
 import { SearchbarAlt } from '../forms/SearchbarAlt';
 // Images
@@ -15,6 +16,13 @@ export function FilterButton() {
     const toggleOverlay = () => {
         setOverlay(!overlay);
     }; 
+
+    const navigate = useNavigate();
+
+
+const handleSubcategoryClick = (subcategory) => {
+  navigate(`/subcategory/${subcategory}`);
+};
 
     return (
         <>
@@ -64,13 +72,82 @@ export function FilterButton() {
                                 </div>
                             </div>
                             <div className="px-4 pb-4">
-                                <button className="flex items-center">
-                                    <span className="block mr-2 rounded-full w-2 h-2 bg-primary"></span>
-                                    <span className="text-primary font-semibold">Onderwijs</span>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Onderwijs')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Onderwijs</span>
                                 </button>
-                                <div className="flex items-center"><span className="block mr-2 rounded-full w-2 h-2"></span><span>Milieu</span></div>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Milieu')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Milieu</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Dierenwelzijn')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Dierenwelzijn</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Medisch Hulp')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Medisch Hulp</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Ondersteuning')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Ondersteuning</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Moeilijke situaties')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Moeilijke situaties</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Zware dagen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Zware dagen</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Huisvesting')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Huisvesting</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Ouderen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Ouderen</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Jongeren')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Jongeren</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Kinderen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Kinderen</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Studenten')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Studenten</span>
+                                </button>
+                              
                             </div>
                         </div>
+
                         <div className="">
                             <div className="flex items-center">
                                 <div className="mr-2 rounded p-2 bg-primary">
@@ -82,7 +159,48 @@ export function FilterButton() {
                                     </a>
                                 </div>
                             </div>
+
+                            <div className="px-4 pb-4 mt-5">
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Kleding')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Kleding</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Elektronica')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Elektronica</span>
+                                </button>
+
+                                <button className="flex items-center text-left"
+                                 onClick={() => handleSubcategoryClick('Boeken & Media')}>
+                                    <span className="mr-2 w-2 h-2 pb-10"></span>
+                                    <span>Boeken & Media</span>
+                                </button>
+
+                                <button className="flex items-center text-left"
+                                 onClick={() => handleSubcategoryClick('Meubels & Huishoudelijke artikelen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8 ps-1"></span>
+                                    <span> Meubels & Huishoudelijke artikelen</span>
+                                </button>
+
+                                <button className="flex items-center text-left"
+                                 onClick={() => handleSubcategoryClick('Kunst & Ambachten')}>
+                                    <span className="mr-2 w-2 h-2 pb-8 pt-10"></span>
+                                    <span> Kunst & Ambachten</span>
+                                </button>
+
+                                <button className="flex items-center text-left"
+                                 onClick={() => handleSubcategoryClick('Speelgoed & Spellen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span> Speelgoed & Spellen</span>
+                                </button>
+
+                            </div>
                         </div>
+
                         <div className="">
                             <div className="flex items-center">
                                 <div className="mr-2 rounded p-2 bg-primary">
@@ -94,6 +212,42 @@ export function FilterButton() {
                                     </a>
                                 </div>
                             </div>
+
+                            <div className="px-4 pb-4 mt-5">
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Voedselreclycing')}>
+                                    <span className="mr-2 w-2 h-2 pb-10"></span>
+                                    <span>Voedselreclycing</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Voedselbanken')}>
+                                    <span className="mr-2 w-2 h-2 pb-10"></span>
+                                    <span>Voedselbanken</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Voedselpakketten')}>
+                                    <span className="mr-2 w-2 h-2 pb-10"></span>
+                                    <span>Voedselpakketten</span>
+                                </button>
+
+                                <button className="flex items-center text-left"
+                                 onClick={() => handleSubcategoryClick('Ongeopende etenswaren')}>
+                                    <span className="mr-2 w-2 h-2 pb-12"></span>
+                                    <span>Ongeopende <br></br>etenswaren</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Boodschappen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8 pt-2"></span>
+                                    <span>Boodschappen</span>
+                                </button>
+
+                            </div>
+
+
                         </div>
                         <div className="">
                             <div className="flex items-center">
@@ -105,6 +259,52 @@ export function FilterButton() {
                                     <h3 className="text-dark font-semibold">Acties</h3>
                                     </a>
                                 </div>
+                            </div>
+
+                            <div className="px-4 pb-4 mt-8">
+
+                                <button className="flex items-center text-left"
+                                 onClick={() => handleSubcategoryClick('Buurthuis-activiteiten')}>
+                                    <span className="mr-2 w-2 h-2 pb-10"></span>
+                                    <span>Buurthuis <br></br> activiteiten</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Vrijwilligerswerk')}>
+                                    <span className="mr-2 w-2 h-2 pb-10"></span>
+                                    <span>Vrijwilligerswerk</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Buurtmarkten')}>
+                                    <span className="mr-2 w-2 h-2 pb-10"></span>
+                                    <span>Buurtmarkten</span>
+                                </button>
+
+                                <button className="flex items-center text-left"
+                                 onClick={() => handleSubcategoryClick('Buurt-collectieven')}>
+                                    <span className="mr-2 w-2 h-2 pb-12"></span>
+                                    <span>Buurt <br></br>collectieven</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Evenementen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8 pt-2"></span>
+                                    <span>Evenementen</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Sport')}>
+                                    <span className="mr-2 w-2 h-2 pb-8 pt-2"></span>
+                                    <span>Sport</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Wijkhuis')}>
+                                    <span className="mr-2 w-2 h-2 pb-8 pt-2"></span>
+                                    <span>Wijkhuis</span>
+                                </button>
+
                             </div>
                         </div>
                     </div>

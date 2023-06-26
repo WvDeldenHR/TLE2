@@ -31,6 +31,9 @@ import  UserPreference from "./components/algorithm/UserPreference"
 import  RecommendationAlgorithm from "./components/algorithm/RecommendationAlgorithm"
 import  RecommendationAlgorithmVerTwo from "./components/algorithm/RecommendationAlgorithmVerTwo"
 
+import MoreInfo from "./components/userprofile/MoreInfo";
+import Subcategory from "./components/subcategory/Subcategory"; //ignore
+
 // Components
 // import { Navbar } from "./navs/Navbar.jsx";
 // Views
@@ -43,6 +46,8 @@ import FinancialCategory from "./components/category/FinancialCategory";
 import StuffCategory from "./components/category/StuffCategory";
 import ConsumptionCategory from "./components/category/ConsumptionCategory";
 import CharityCategory from "./components/category/CharityCategory";
+import ReservationPage from "./components/reservation/ReservationPage";
+import MyReservations from "./components/reservation/MyReservations";
 // import { Settings } from './views/Settings';
 
 
@@ -92,6 +97,7 @@ function App() {
         <Route path="/update-profile" element={<AuthChecker><UpdateUser /></AuthChecker>} />
         <Route path="/update-password" element={<AuthChecker><UpdatePassword /></AuthChecker>} />
         <Route path="/update-location" element={<AuthChecker><UpdateUserLocation /></AuthChecker>} />
+        <Route path="/more-info" element={<AuthChecker><MoreInfo /></AuthChecker>} />
         <Route path="/logout" element={<AuthChecker><LogOut /></AuthChecker>} />
 
         {/* CRUD Post */}
@@ -104,12 +110,16 @@ function App() {
 
         <Route path="post-create" element={<AuthChecker> <PostCreate /> </AuthChecker>} />
         <Route path="/search" element={<AuthChecker> <SearchingPosts /> </AuthChecker>} />
+
+        <Route path="/subcategory/:subcategory" element={<AuthChecker><Subcategory /></AuthChecker>} />
       
         <Route path="/financieel" element={<AuthChecker> <FinancialCategory /> </AuthChecker>} />
         <Route exact path="/spullen" element={<AuthChecker> <StuffCategory /> </AuthChecker>} />
         <Route exact path="/eten" element={<AuthChecker> <ConsumptionCategory /> </AuthChecker>} />
         <Route exact path="/acties" element={<AuthChecker> <CharityCategory /> </AuthChecker>} />   
 
+        <Route path="/reservation/:postId" element={<ReservationPage />} />
+        <Route path="/mijn-afspraken" element={<MyReservations />} />
 
       </Routes>
       {/* <Navbar /> */}

@@ -5,7 +5,7 @@ import { Navbar } from "./../components/navs/Navbar.jsx";
 import { NotificationButtonAlt } from '../components/buttons/NotificationButtonAlt';
 import { SearchbarAlt } from '../components/forms/SearchbarAlt';
 import { OverviewUser } from '../components/content/OverviewUser';
-import { OverviewOther } from '../components/content/OverviewOther';
+import OverviewOther from '../components/content/OverviewOther';
 
 export function Overview() {
     // Scroll
@@ -46,7 +46,7 @@ export function Overview() {
                     <button onClick={() => optionsToggle(0)} 
                             className={`border-2 border-primary rounded py-2 w-full text-sm font-semibold ${optionsIndex === 0 ? "text-white bg-primary drop-shadow" : " text-primary bg-white"}`}>Mijn Posts</button>
                     <button onClick={() => optionsToggle(1)} 
-                            className={`border-2 border-primary rounded py-2 w-full text-sm font-semibold ${optionsIndex === 1 ? "text-white bg-primary drop-shadow" : " text-primary bg-white"}`}>Waarbij Ik Help</button>
+                            className={`border-2 border-primary rounded py-2 w-full text-sm font-semibold ${optionsIndex === 1 ? "text-white bg-primary drop-shadow" : " text-primary bg-white"}`}>Wie Mij Helpt</button>
                 </div>
             </div>
 

@@ -88,7 +88,7 @@ export function PostDetail() {
             {/* Buttons */}
               <BackButton />
               <Navbar />
-              <HelpButton />
+              <HelpButton postId={postId} />
               <NotificationButtonAlt2 />
 
             {/* Foto */}
