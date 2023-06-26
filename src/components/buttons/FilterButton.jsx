@@ -80,18 +80,6 @@ const handleSubcategoryClick = (subcategory) => {
                                 </button>
 
                                 <button className="flex items-center"
-                                 onClick={() => handleSubcategoryClick('Milieu')}>
-                                    <span className="mr-2 w-2 h-2 pb-8"></span>
-                                    <span>Milieu</span>
-                                </button>
-
-                                <button className="flex items-center"
-                                 onClick={() => handleSubcategoryClick('Dierenwelzijn')}>
-                                    <span className="mr-2 w-2 h-2 pb-8"></span>
-                                    <span>Dierenwelzijn</span>
-                                </button>
-
-                                <button className="flex items-center"
                                  onClick={() => handleSubcategoryClick('Medisch Hulp')}>
                                     <span className="mr-2 w-2 h-2 pb-8"></span>
                                     <span>Medisch Hulp</span>
@@ -119,30 +107,6 @@ const handleSubcategoryClick = (subcategory) => {
                                  onClick={() => handleSubcategoryClick('Huisvesting')}>
                                     <span className="mr-2 w-2 h-2 pb-8"></span>
                                     <span>Huisvesting</span>
-                                </button>
-
-                                <button className="flex items-center"
-                                 onClick={() => handleSubcategoryClick('Ouderen')}>
-                                    <span className="mr-2 w-2 h-2 pb-8"></span>
-                                    <span>Ouderen</span>
-                                </button>
-
-                                <button className="flex items-center"
-                                 onClick={() => handleSubcategoryClick('Jongeren')}>
-                                    <span className="mr-2 w-2 h-2 pb-8"></span>
-                                    <span>Jongeren</span>
-                                </button>
-
-                                <button className="flex items-center"
-                                 onClick={() => handleSubcategoryClick('Kinderen')}>
-                                    <span className="mr-2 w-2 h-2 pb-8"></span>
-                                    <span>Kinderen</span>
-                                </button>
-
-                                <button className="flex items-center"
-                                 onClick={() => handleSubcategoryClick('Studenten')}>
-                                    <span className="mr-2 w-2 h-2 pb-8"></span>
-                                    <span>Studenten</span>
                                 </button>
                               
                             </div>
@@ -270,6 +234,12 @@ const handleSubcategoryClick = (subcategory) => {
                                 </button>
 
                                 <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Milieu')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Milieu</span>
+                                </button>
+
+                                <button className="flex items-center"
                                  onClick={() => handleSubcategoryClick('Vrijwilligerswerk')}>
                                     <span className="mr-2 w-2 h-2 pb-10"></span>
                                     <span>Vrijwilligerswerk</span>
@@ -300,9 +270,40 @@ const handleSubcategoryClick = (subcategory) => {
                                 </button>
 
                                 <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Dierenwelzijn')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Dierenwelzijn</span>
+                                </button>
+                                
+
+                                <button className="flex items-center"
                                  onClick={() => handleSubcategoryClick('Wijkhuis')}>
                                     <span className="mr-2 w-2 h-2 pb-8 pt-2"></span>
                                     <span>Wijkhuis</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Ouderen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Ouderen</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Jongeren')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Jongeren</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Kinderen')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Kinderen</span>
+                                </button>
+
+                                <button className="flex items-center"
+                                 onClick={() => handleSubcategoryClick('Studenten')}>
+                                    <span className="mr-2 w-2 h-2 pb-8"></span>
+                                    <span>Studenten</span>
                                 </button>
 
                             </div>

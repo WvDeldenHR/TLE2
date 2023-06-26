@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import {ListPosts} from "./views/ListPosts";
-import {CreatePost} from "./views/CreatePost";
+import { CreatePost } from "./views/CreatePost";
 import {BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 import { EditPost } from './views/EditPost';
 import { auth } from "./config/firebase";

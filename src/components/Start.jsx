@@ -15,13 +15,15 @@ export function Start() {
                 />
             </div>
 
-            <div className="flex -mt-10 mx-10 mb-5">
+            <div className="flex justify-center items-center mx-10 mb-5">
                 <p className="text-4xl font-bold -mt-10">Samen <br></br> Naar Een <br></br> Betere Buurt</p>
             </div>
 
-            <p className="mx-10 mb-10 text-sm text-gray-500">Everything works better, together...</p>
+            <div className="flex justify-center items-center">
+                <p className="mx-10 mb-10 text-sm text-gray-500">Everything works better, together...</p>
+            </div>
 
-            <div className='mt-10'>
+            <div className='-mt-12'>
                 <Link to="/signup">
                     <button
                         type="submit"

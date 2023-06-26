@@ -3,6 +3,7 @@ import { db, storage, auth } from "../config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import { BackButton } from "../components/buttons/BackButton";
 
 import IconCharity from './../assets/icons/icon_charity_001_FFFFFF_32x32.svg';
 import IconConsumption from './../assets/icons/icon_consumption_001_FFFFFF_32x32.svg';
@@ -156,7 +157,7 @@ export function CreatePost() {
           // Save the post data to Firebase
           await addDoc(postsCollectionRef, {
             title: title,
-            description: des,
+            description: des,  
             imageURLs: fileURLs,
             userId: userId, // Associate the post with the user
             category: selectedCategory, // Include the selected category
@@ -185,43 +186,28 @@ export function CreatePost() {
     };
           
 
-        // // Save the post data to Firebase
-        // await addDoc(postsCollectionRef, {
-        //     title: title,
-        //     description: des,
-        //     imageURLs: fileURLs,
-        //     userId: userId, // Associate the post with the user
-        //     category: selectedCategory, // Include the selected categor
-        //     createdAt: new Date(createdAtString), // Convert the createdAt string to a Date object
-        //     displayName: displayName, // Save the user's displayName
-        //     email: email, // Save the user's email
-        //     photoURL: photoURL, // Save the user's photoURL
-        //     location: location, // Include the location
-        //     subCategory: subCategory, // Include the subcategory
-        //     phoneNumber: phoneNumber,
-            
-        // });
-
-        // setUploading(false);
-        // console.log("Uploaded");
-
-        // navigate("/overview")
-    
-
     return (
-        <div className="flex flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
-            <h1 className="text-3xl">Citiesa</h1>
+        <div className="flex min-h-full w-full flex-1 flex-col justify-center items-center  lg:px-8 sm:w-full sm:h-full ">
+
+        <BackButton/>
+
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm w-full bg-primary pt-16 pb-12 border border-gray-200 text-center">
+          <h1 className="text-xl text-white font-semibold pb-1">Bericht opstellen</h1>
+          <p className="text-center text-xs text-white px-10">Voer de onderstaande velden in om een bericht te plaatsen over hulp dat je nodig hebt of hulp die je aanbied.</p>
+        </div>
+           
             <form
                 onSubmit={handleSubmit}
-                className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                className="bg-white px-8 pt-6 pb-8 mb-4"
             >
+
                 {/* Title field */}
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                <div className="mb-4 p-4">
+                    <label className="text-base text-dark font-bold text-sm">
                         Titel
                     </label>
                     <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="my-2 rounded px-3 py-2 w-full bg-gray-200"
                         id="name"
                         type="text"
                         placeholder=""
@@ -233,13 +219,13 @@ export function CreatePost() {
                 </div>
 
                 {/* Description field */}
-                <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Vertel Jouw Probleem
+                <div className="mb-6 px-4">
+                    <label className="text-base text-dark font-bold text-sm">
+                        Vertel Over Jouw Verhaal
                     </label>
                     <textarea
-                        className="resize-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        rows="8"
+                        className="resize-none my-2 rounded px-3 py-2 w-full h-32 bg-gray-200"
+                        rows="10"
                         id="name"
                         type="text"
                         value={des}
@@ -250,10 +236,11 @@ export function CreatePost() {
                 </div>
 
                 {/* File selection */}
-                <div className="mb-6">
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Upload files</label>
+                <div className="mb-6 px-4">
+                    <label className="text-base text-dark font-bold text-sm">Foto's toevoegen</label>
                     <input
-                        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        className="block w-full text-sm p-3 my-2 text-gray-900 border border-gray-200 rounded-lg cursor-pointer bg-gray-200"
+                        placeholder="Upload foto / Maak foto"
                         type="file"
                         accept="image/png, image/gif, image/jpeg"
                         multiple
@@ -262,47 +249,15 @@ export function CreatePost() {
 
                 </div>
 
-                {/* Location field */}
-                <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Location
-                </label>
-                <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="location"
-                    type="text"
-                    placeholder="3011WN"
-                    value={location}
-                    onChange={handleLocationChange}
-                />
-                 {locationError && <span>{locationError}</span>}
-                </div>
-
-                {/* Location field */}
-                <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Telefoon Nummer
-                </label>
-                <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="phoneNumber"
-                    type="text"
-                    placeholder="0624351839"
-                    value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
-                />
-                 {phoneNumberError && <div className="error">{phoneNumberError}</div>}
-                </div>
-
 
                 {/* Category selection */}
-                <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Choose a main category</label>
-                <div className="flex">
+                <div className="mb-4 px-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">Hoofdcategorie</label>
+                <div className="grid grid-cols-2 gap-3 my-4 px-6">
                     {mainCategories.map((mainCategory) => (
                     <button
                         key={mainCategory}
-                        className={`border rounded py-2 px-4 mr-2 ${selectedCategory === mainCategory ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                        className={`border-2 rounded-lg py-2 w-32 text-xs ${selectedCategory === mainCategory ? 'border-primary text-white font-semibold bg-primary drop-shadow' : 'border-gray-400 text-gray-400 font-medium bg-white'}`}
                         type="button"
                         onClick={() => setSelectedCategory(mainCategory)}
                     >
@@ -313,10 +268,13 @@ export function CreatePost() {
                 </div>
 
                 {/* Subcategory selection */}
-        <div className="pt-10 px-10 text-xs">
+              
+        <div className="pt-5 px-4">
             
+        <label className="block text-gray-700 text-sm font-bold mb-1">Subcategorieën</label>
+        <p className="text-xs text-gray-600 pb-8">Je kunt meerdere subcategorieën kiezen, ook die onder andere hoofdcategorieën staan.</p>
             
-            <div className="subcategory-container">
+            <div className="subcategory-container text-xs">
 
                 <div className="subcategory-group">
 
@@ -342,15 +300,6 @@ export function CreatePost() {
                     onClick={() => handleSubcategoryToggle('Onderwijs')}
                     >
                     Onderwijs
-                    </div>
-
-                    <div
-                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
-                        subCategories.includes('Milieu') && 'bg-primary text-white'
-                    }`}
-                    onClick={() => handleSubcategoryToggle('Milieu')}
-                    >
-                    Milieu
                     </div>
 
                     <div
@@ -405,42 +354,6 @@ export function CreatePost() {
                     onClick={() => handleSubcategoryToggle("Huisvesting")}
                     >
                     Huisvesting
-                    </div>
-
-                    <div
-                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
-                        subCategories.includes("Ouderen") && "bg-primary text-white"
-                    }`}
-                    onClick={() => handleSubcategoryToggle("Ouderen")}
-                    >
-                    Ouderen
-                    </div>
-
-                    <div
-                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
-                        subCategories.includes("Jongeren") && "bg-primary text-white"
-                    }`}
-                    onClick={() => handleSubcategoryToggle("Jongeren")}
-                    >
-                    Jongeren
-                    </div>
-
-                    <div
-                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
-                        subCategories.includes("Kinderen") && "bg-primary text-white"
-                    }`}
-                    onClick={() => handleSubcategoryToggle("Kinderen")}
-                    >
-                    Kinderen
-                    </div>
-
-                    <div
-                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
-                        subCategories.includes("Studenten") && "bg-primary text-white"
-                    }`}
-                    onClick={() => handleSubcategoryToggle("Studenten")}
-                    >
-                    Studenten
                     </div>
 
                     </div>
@@ -677,12 +590,80 @@ export function CreatePost() {
                     Wijkhuis
                     </div>
 
+                    <div
+                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Ouderen") && "bg-primary text-white"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Ouderen")}
+                    >
+                    Ouderen
+                    </div>
+
+                    <div
+                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Jongeren") && "bg-primary text-white"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Jongeren")}
+                    >
+                    Jongeren
+                    </div>
+
+                    <div
+                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Kinderen") && "bg-primary text-white"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Kinderen")}
+                    >
+                    Kinderen
+                    </div>
+
+                    <div
+                    className={`bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 rounded mr-2 mb-2 ${
+                        subCategories.includes("Studenten") && "bg-primary text-white"
+                    }`}
+                    onClick={() => handleSubcategoryToggle("Studenten")}
+                    >
+                    Studenten
+                    </div>
+
                     </div>
                    
                 </div>
 
             </div>
             </div>
+
+             {/* Location field */}
+             <div className="mb-4 px-4">
+                <label className="text-base text-dark font-bold text-sm">
+                    Postcode
+                </label>
+                <input
+                    className="my-2 rounded px-3 py-2 w-full bg-gray-200"
+                    id="location"
+                    type="text"
+                    placeholder="3052AR"
+                    value={location}
+                    onChange={handleLocationChange}
+                />
+                 {locationError && <span>{locationError}</span>}
+                </div>
+
+                {/* Phone field */}
+                <div className="mb-4 px-4">
+                <label className="text-base text-dark font-bold text-sm">
+                    Telefoon
+                </label>
+                <input
+                    className="my-2 rounded px-3 py-2 w-full bg-gray-200"
+                    id="phoneNumber"
+                    type="text"
+                    placeholder="06..."
+                    value={phoneNumber}
+                    onChange={handlePhoneNumberChange}
+                />
+                 {phoneNumberError && <div className="error">{phoneNumberError}</div>}
+                </div>
 
                 {/* Error message */}
                 {errorMessage && (
@@ -692,16 +673,16 @@ export function CreatePost() {
                 
 
                 {/* Submit button */}
-                <div className="flex items-center justify-between">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline items-center"
-                        type="submit"
-                        disabled={uploading}
-                    >
-                        {uploading ? "Uploading..." : "Publish"}
-                    </button>
-
+                <div className="flex items-center justify-center mt-10 mb-10">
+                <button
+                    className="flex items-center justify-center rounded-xl px-6 py-2 w-52 text-sm text-white font-semibold bg-primary drop-shadow"
+                    type="submit"
+                    disabled={uploading}
+                >
+                    {uploading ? "Aan het plaatsen..." : "Plaats je bericht"}
+                </button>
                 </div>
+
                 {/* <input type="hidden" value={user.userId} /> */}
 
 
