@@ -151,9 +151,9 @@ export function Home() {
                                 style={{
                                     backgroundColor: '#E6E6E6',
                                     backgroundImage: `url(${post.imageURLs[0]})`,
-                                    backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat',
+                                    backgroundSize: 'cover',
                                 }}>
                             </div>
                             <div className="ml-4 border-b-1 border-gray-500 pl-2 w-full">
@@ -183,9 +183,9 @@ export function Home() {
                                 style={{
                                     backgroundColor: '#E6E6E6',
                                     backgroundImage: `url(${latestPost.imageURLs[0]})`,
-                                    backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat',
+                                    backgroundSize: 'cover',
                                 }}>
                                 <div className="flex items-end w-full h-full">
                                     <span className="rounded px-3 py-2 w-full text-sm text-dark text-left font-semibold truncate bg-white">{ latestPost.title }</span>
